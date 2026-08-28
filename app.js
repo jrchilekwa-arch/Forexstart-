@@ -419,34 +419,8 @@ window.answerQuestion = answerQuestion;
   color: #91a0b8;
 }
 
-.bottom-nav button.active:first-child,
-.bottom-nav .nav-btn.active:first-child {
-  color: #28d17c;
-}
 
-body {
-  padding-bottom: 90px;
-}
 
-@media (max-width: 480px) {
-  .bottom-nav {
-    height: 76px;
-  }
-
-  .bottom-nav button,
-  .bottom-nav .nav-btn {
-    min-width: 55px;
-    font-size: 12px;
-  }
-
-  .bottom-nav button span,
-  .bottom-nav .nav-btn span {
-    font-size: 24px;
-  }
-}
-// ================================
-// FOREXSTART NAVIGATION FIX
-// ================================
 
 function showScreen(screenName) {
   const screens = document.querySelectorAll(".screen");
@@ -477,3 +451,5 @@ function showScreen(screenName) {
     }
   });
 }
+ 
+ 
