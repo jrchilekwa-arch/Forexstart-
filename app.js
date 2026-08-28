@@ -360,3 +360,87 @@ window.calculatePips = calculatePips;
 window.completeLesson = completeLesson;
 window.retryQuiz = retryQuiz;
 window.answerQuestion = answerQuestion;
+/* ===== BOTTOM NAVIGATION FIX ===== */
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 82px;
+  background: #111b2e;
+  border-top: 1px solid #23324b;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+  padding: 8px 4px;
+}
+
+.bottom-nav button,
+.bottom-nav .nav-btn {
+  background: transparent;
+  border: none;
+  color: #91a0b8;
+  font-size: 13px;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-width: 58px;
+  height: 66px;
+  padding: 4px;
+  border-radius: 12px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.bottom-nav button:hover,
+.bottom-nav .nav-btn:hover {
+  background: #162238;
+}
+
+.bottom-nav button.active,
+.bottom-nav .nav-btn.active {
+  color: #28d17c;
+}
+
+.bottom-nav button span,
+.bottom-nav .nav-btn span {
+  font-size: 26px;
+  line-height: 28px;
+}
+
+.bottom-nav button:first-child,
+.bottom-nav .nav-btn:first-child {
+  color: #91a0b8;
+}
+
+.bottom-nav button.active:first-child,
+.bottom-nav .nav-btn.active:first-child {
+  color: #28d17c;
+}
+
+body {
+  padding-bottom: 90px;
+}
+
+@media (max-width: 480px) {
+  .bottom-nav {
+    height: 76px;
+  }
+
+  .bottom-nav button,
+  .bottom-nav .nav-btn {
+    min-width: 55px;
+    font-size: 12px;
+  }
+
+  .bottom-nav button span,
+  .bottom-nav .nav-btn span {
+    font-size: 24px;
+  }
+}
