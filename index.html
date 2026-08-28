@@ -4,243 +4,475 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0b1220">
-  <meta name="description" content="ForexStart - Learn forex trading from beginner to confident trader.">
+  <meta name="description" content="ForexStart — learn forex and practice safely with virtual money.">
   <title>ForexStart</title>
-
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <!-- HEADER -->
-  <header class="topbar">
-    <div class="logo">
-      <span class="logo-icon">₣</span>
-      <span>Forex<span class="accent">Start</span></span>
+<header class="topbar">
+  <div class="logo">
+    <span class="logo-icon">F</span>
+    <span>Forex<span class="accent">Start</span></span>
+  </div>
+
+  <button id="themeBtn" class="icon-btn" aria-label="Toggle theme">
+    ☀️
+  </button>
+</header>
+
+<main id="app">
+
+  <!-- HOME -->
+  <section class="screen active" data-screen="home">
+
+    <div class="hero">
+      <p class="eyebrow">WELCOME TO FOREXSTART</p>
+
+      <h1>
+        Learn Forex.<br>
+        <span class="accent">Build Confidence.</span>
+      </h1>
+
+      <p class="lead">
+        A simple beginner-friendly guide to understanding forex trading
+        and practicing with virtual money.
+      </p>
+
+      <button class="primary" onclick="showScreen('learn')">
+        Start Learning →
+      </button>
     </div>
 
-    <button id="themeBtn" class="icon-btn" aria-label="Toggle theme">
-      ☀️
+    <div class="card progress-card">
+      <div>
+        <p class="muted">Your Progress</p>
+        <strong id="homeProgress">0%</strong>
+      </div>
+
+      <div class="progress-ring">
+        <span id="homeProgressRing">0%</span>
+      </div>
+    </div>
+
+    <h2>Quick Start</h2>
+
+    <button class="quick-card" onclick="showScreen('learn')">
+      📚
+      <span>
+        <b>Learn Forex</b>
+        <small>Start with the basics</small>
+      </span>
+      ›
     </button>
-  </header>
+
+    <button class="quick-card" onclick="showScreen('trade')">
+      📊
+      <span>
+        <b>Demo Trading</b>
+        <small>Practice with virtual money</small>
+      </span>
+      ›
+    </button>
+
+  </section>
 
 
-  <!-- APP -->
-  <main>
+  <!-- LEARN -->
+  <section class="screen" data-screen="learn">
 
-    <!-- HOME -->
-    <section id="home" class="screen active">
+    <p class="eyebrow">LEARNING PATH</p>
 
-      <div class="hero">
-        <p class="small-label">WELCOME TO FOREXSTART</p>
-        <h1>Learn Forex.<br><span class="accent">Build Confidence.</span></h1>
-        <p class="hero-text">
-          A simple beginner-friendly guide to understanding forex trading.
-        </p>
+    <h1>Learn Forex</h1>
 
-        <button class="primary-btn" onclick="showScreen('learn')">
-          Start Learning →
-        </button>
-      </div>
+    <p class="lead">
+      Master the fundamentals one lesson at a time.
+    </p>
+
+    <div id="lessonList"></div>
+
+  </section>
 
 
-      <div class="progress-card">
-        <div>
-          <p>Your Progress</p>
-          <h2 id="progressPercent">0%</h2>
-        </div>
+  <!-- LESSON -->
+  <section class="screen" data-screen="lesson">
 
-        <div class="progress-circle">
-          <span id="progressNumber">0%</span>
-        </div>
-      </div>
+    <button class="back" onclick="showScreen('learn')">
+      ← Back to lessons
+    </button>
 
+    <div id="lessonContent"></div>
 
-      <h2 class="section-title">Quick Start</h2>
-
-      <div class="cards">
-
-        <button class="feature-card" onclick="showScreen('learn')">
-          <div class="card-icon">📚</div>
-          <div>
-            <h3>Learn Forex</h3>
-            <p>Start with the basics</p>
-          </div>
-          <span>›</span>
-        </button>
-
-        <button class="feature-card" onclick="showScreen('calculator')">
-          <div class="card-icon">🧮</div>
-          <div>
-            <h3>Pip Calculator</h3>
-            <p>Practice calculating pips</p>
-          </div>
-          <span>›</span>
-        </button>
-
-        <button class="feature-card" onclick="showScreen('quiz')">
-          <div class="card-icon">📝</div>
-          <div>
-            <h3>Take a Quiz</h3>
-            <p>Test your knowledge</p>
-          </div>
-          <span>›</span>
-        </button>
-
-      </div>
-
-    </section>
+  </section>
 
 
-    <!-- LEARN -->
-    <section id="learn" class="screen">
+  <!-- CALCULATOR -->
+  <section class="screen" data-screen="calculator">
 
-      <div class="page-heading">
-        <p class="small-label">FOREX BASICS</p>
-        <h1>Learn Forex</h1>
-        <p>Master the fundamentals one lesson at a time.</p>
-      </div>
+    <p class="eyebrow">PRACTICE TOOL</p>
 
-      <div id="lessonList"></div>
+    <h1>Pip Calculator</h1>
 
-    </section>
+    <p class="lead">
+      Learn how price movement is measured in pips.
+    </p>
 
+    <div class="card form-card">
 
-    <!-- LESSON -->
-    <section id="lesson" class="screen">
+      <label>
+        Currency Pair
 
-      <button class="back-btn" onclick="showScreen('learn')">
-        ← Back to Lessons
+        <select id="calcPair">
+          <option>EUR/USD</option>
+          <option>GBP/USD</option>
+          <option>USD/JPY</option>
+          <option>EUR/GBP</option>
+        </select>
+      </label>
+
+      <label>
+        Entry Price
+
+        <input
+          id="entryPrice"
+          type="number"
+          step="0.00001"
+          placeholder="Example: 1.10000"
+        >
+      </label>
+
+      <label>
+        Exit Price
+
+        <input
+          id="exitPrice"
+          type="number"
+          step="0.00001"
+          placeholder="Example: 1.10500"
+        >
+      </label>
+
+      <button class="primary" onclick="calculatePips()">
+        Calculate Pips
       </button>
 
-      <div id="lessonContent"></div>
-
-    </section>
-
-
-    <!-- CALCULATOR -->
-    <section id="calculator" class="screen">
-
-      <div class="page-heading">
-        <p class="small-label">PRACTICE TOOL</p>
-        <h1>Pip Calculator</h1>
-        <p>Learn how price movement is measured in pips.</p>
+      <div id="pipResult" class="result">
+        Enter your prices above.
       </div>
 
-      <div class="calculator-card">
+    </div>
 
-        <label>Currency Pair</label>
+    <div class="card info">
 
-        <select id="pair">
-          <option value="normal">EUR/USD</option>
-          <option value="normal">GBP/USD</option>
-          <option value="normal">AUD/USD</option>
-          <option value="jpy">USD/JPY</option>
+      <h2>💡 What is a pip?</h2>
+
+      <p>
+        A pip is a common unit used to describe small price movement.
+        Many non-JPY pairs use 0.0001; many JPY pairs use 0.01.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- QUIZ -->
+  <section class="screen" data-screen="quiz">
+
+    <p class="eyebrow">KNOWLEDGE CHECK</p>
+
+    <h1>Forex Quiz</h1>
+
+    <p class="lead">
+      Test what you've learned.
+    </p>
+
+    <div id="quizBox"></div>
+
+  </section>
+
+
+  <!-- PROGRESS -->
+  <section class="screen" data-screen="progress">
+
+    <p class="eyebrow">YOUR JOURNEY</p>
+
+    <h1>Progress</h1>
+
+    <div class="card center">
+
+      <div class="big-number" id="progressNumber">
+        0%
+      </div>
+
+      <p class="muted" id="progressText">
+        0 of 10 lessons completed
+      </p>
+
+      <div class="bar">
+        <span id="progressBar"></span>
+      </div>
+
+    </div>
+
+    <div class="card">
+
+      <h2>🏆 Learning Goal</h2>
+
+      <p>
+        Complete the lessons, take the quiz, and practice on demo mode
+        before considering real-money trading.
+      </p>
+
+    </div>
+
+    <button class="danger-outline" onclick="resetProgress()">
+      Reset learning progress
+    </button>
+
+  </section>
+
+
+  <!-- DEMO TRADING -->
+  <section class="screen" data-screen="trade">
+
+    <p class="eyebrow">SAFE PRACTICE</p>
+
+    <h1>Demo Trading</h1>
+
+    <p class="lead">
+      Practice with virtual money. No real trades or deposits.
+    </p>
+
+
+    <!-- BALANCE -->
+    <div class="card balance-card">
+
+      <span class="muted">
+        Virtual Balance
+      </span>
+
+      <strong id="balance">
+        $10,000.00
+      </strong>
+
+      <small id="equityLine">
+        Equity: $10,000.00
+      </small>
+
+    </div>
+
+
+    <!-- TRADE FORM -->
+    <div class="card form-card">
+
+      <label>
+        Currency Pair
+
+        <select id="tradePair" onchange="changePair()">
+
+          <option value="EUR/USD">
+            EUR/USD
+          </option>
+
+          <option value="GBP/USD">
+            GBP/USD
+          </option>
+
+          <option value="USD/JPY">
+            USD/JPY
+          </option>
+
         </select>
 
-
-        <label>Entry Price</label>
-        <input id="entry" type="number" step="0.00001" placeholder="Example: 1.10000">
+      </label>
 
 
-        <label>Exit Price</label>
-        <input id="exit" type="number" step="0.00001" placeholder="Example: 1.10500">
+      <!-- SIMULATED PRICE -->
+      <div class="price-box">
+
+        <span id="tradePrice">
+          1.10000
+        </span>
+
+        <small>
+          SIMULATED PRICE
+        </small>
+
+      </div>
 
 
-        <button class="primary-btn" onclick="calculatePips()">
-          Calculate Pips
+      <!-- LOT SIZE -->
+      <label>
+        Lot Size
+
+        <input
+          id="lotSize"
+          type="number"
+          min="0.01"
+          step="0.01"
+          value="0.10"
+        >
+
+      </label>
+
+
+      <!-- STOP LOSS / TAKE PROFIT -->
+      <div class="two">
+
+        <label>
+          Stop Loss (optional)
+
+          <input
+            id="stopLoss"
+            type="number"
+            step="0.00001"
+            placeholder="Price"
+          >
+        </label>
+
+        <label>
+          Take Profit (optional)
+
+          <input
+            id="takeProfit"
+            type="number"
+            step="0.00001"
+            placeholder="Price"
+          >
+        </label>
+
+      </div>
+
+
+      <!-- BUY / SELL -->
+      <div class="two">
+
+        <button
+          class="buy"
+          onclick="openTrade('BUY')"
+        >
+          BUY
         </button>
 
-        <div id="pipResult" class="result-box">
-          Enter your prices above.
-        </div>
+        <button
+          class="sell"
+          onclick="openTrade('SELL')"
+        >
+          SELL
+        </button>
 
       </div>
 
-      <div class="info-box">
-        <h3>💡 What is a pip?</h3>
-        <p>
-          A pip is a standard unit used to measure movement in many currency pairs.
-          For most pairs, one pip is the fourth decimal place.
+
+      <p class="tiny">
+        This simulator uses artificial price movements for learning.
+        It is not connected to a broker or live market.
+      </p>
+
+    </div>
+
+
+    <!-- OPEN TRADES -->
+    <div class="card">
+
+      <h2>
+        Open Trades
+      </h2>
+
+      <div id="openTrades">
+
+        <p class="muted">
+          No open trades.
         </p>
+
       </div>
 
-    </section>
+    </div>
 
 
-    <!-- QUIZ -->
-    <section id="quiz" class="screen">
+    <!-- TRADE HISTORY -->
+    <div class="card">
 
-      <div class="page-heading">
-        <p class="small-label">KNOWLEDGE CHECK</p>
-        <h1>Forex Quiz</h1>
-        <p>Test what you've learned.</p>
-      </div>
+      <h2>
+        Trade History
+      </h2>
 
-      <div id="quizBox" class="quiz-card"></div>
+      <div id="tradeHistory">
 
-    </section>
-
-
-    <!-- PROGRESS -->
-    <section id="progress" class="screen">
-
-      <div class="page-heading">
-        <p class="small-label">YOUR JOURNEY</p>
-        <h1>Progress</h1>
-        <p>Keep learning and build your forex knowledge.</p>
-      </div>
-
-      <div class="big-progress">
-        <div id="bigProgressNumber">0%</div>
-        <p>Lessons completed</p>
-      </div>
-
-      <div class="info-box">
-        <h3>🎯 Your Goal</h3>
-        <p>
-          Complete every beginner lesson and pass the quiz before moving
-          toward more advanced forex concepts.
+        <p class="muted">
+          No closed trades yet.
         </p>
+
       </div>
 
-    </section>
+    </div>
 
-  </main>
+  </section>
 
-
-  <!-- BOTTOM NAVIGATION -->
-  <nav class="bottom-nav">
-
-    <button onclick="showScreen('home')" data-screen="home">
-      <span>🏠</span>
-      Home
-    </button>
-
-    <button onclick="showScreen('learn')" data-screen="learn">
-      <span>📚</span>
-      Learn
-    </button>
-
-    <button onclick="showScreen('calculator')" data-screen="calculator">
-      <span>🧮</span>
-      Calculator
-    </button>
-
-    <button onclick="showScreen('quiz')" data-screen="quiz">
-      <span>📝</span>
-      Quiz
-    </button>
-
-    <button onclick="showScreen('progress')" data-screen="progress">
-      <span>📈</span>
-      Progress
-    </button>
-
-  </nav>
+</main>
 
 
-  <script src="app.js"></script>
+<!-- BOTTOM NAVIGATION -->
+<nav class="bottom-nav">
+
+  <button
+    onclick="showScreen('home')"
+    data-nav="home"
+  >
+    🏠
+    <span>Home</span>
+  </button>
+
+
+  <button
+    onclick="showScreen('learn')"
+    data-nav="learn"
+  >
+    📚
+    <span>Learn</span>
+  </button>
+
+
+  <button
+    onclick="showScreen('trade')"
+    data-nav="trade"
+  >
+    📊
+    <span>Trade</span>
+  </button>
+
+
+  <button
+    onclick="showScreen('calculator')"
+    data-nav="calculator"
+  >
+    🧮
+    <span>Calculator</span>
+  </button>
+
+
+  <button
+    onclick="showScreen('quiz')"
+    data-nav="quiz"
+  >
+    📝
+    <span>Quiz</span>
+  </button>
+
+
+  <button
+    onclick="showScreen('progress')"
+    data-nav="progress"
+  >
+    📈
+    <span>Progress</span>
+  </button>
+
+</nav>
+
+
+<script src="app.js"></script>
 
 </body>
-    </html>
+</html>
