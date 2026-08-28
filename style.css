@@ -425,10 +425,7 @@ label {
     height: 110px;
   }
 
-  .bottom-nav {
-    height: 90px;
-  }
-}
+   
 
 @media (max-width: 400px) {
   .topbar {
@@ -464,5 +461,111 @@ label {
 
   .nav-btn {
     font-size: 13px;
+  }
+  }
+/* ===== FOREXSTART BOTTOM NAVIGATION ===== */
+
+.bottom-nav {
+  position: fixed !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 82px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-around !important;
+
+  background: #111b2e !important;
+  border-top: 1px solid #23324b !important;
+
+  padding: 6px 4px !important;
+  box-sizing: border-box !important;
+
+  z-index: 9999 !important;
+}
+
+.bottom-nav > button {
+  flex: 1 1 0 !important;
+  width: 20% !important;
+  height: 70px !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  background: transparent !important;
+  background-color: transparent !important;
+
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+
+  color: #91a0b8 !important;
+  font-family: inherit !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+
+  padding: 4px 2px !important;
+  margin: 0 !important;
+
+  border-radius: 12px !important;
+
+  appearance: none !important;
+  -webkit-appearance: none !important;
+}
+
+.bottom-nav > button span {
+  display: block !important;
+  font-size: 26px !important;
+  line-height: 30px !important;
+  margin-bottom: 2px !important;
+}
+
+.bottom-nav > button small {
+  display: block !important;
+  color: inherit !important;
+  font-size: 12px !important;
+  line-height: 16px !important;
+  font-weight: 500 !important;
+}
+
+.bottom-nav > button:hover {
+  background: #162238 !important;
+}
+
+.bottom-nav > button.active,
+.bottom-nav > button[aria-current="page"] {
+  color: #28d17c !important;
+  background: transparent !important;
+}
+
+.bottom-nav > button.active small,
+.bottom-nav > button[aria-current="page"] small {
+  color: #28d17c !important;
+}
+
+body {
+  padding-bottom: 95px !important;
+}
+
+@media (max-width: 480px) {
+  .bottom-nav {
+    height: 78px !important;
+  }
+
+  .bottom-nav > button {
+    height: 68px !important;
+    font-size: 12px !important;
+  }
+
+  .bottom-nav > button span {
+    font-size: 24px !important;
+  }
+
+  .bottom-nav > button small {
+    font-size: 11px !important;
   }
   }
