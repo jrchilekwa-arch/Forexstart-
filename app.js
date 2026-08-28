@@ -795,3 +795,10 @@ setInterval(
   updateDemoPrice,
   3000
 );
+function showUpgradeMessage() {
+
+  alert(
+    "👑 ForexStart PRO is coming soon!\n\n" +
+    "This demo shows where the paid upgrade will appear."
+  );
+}
