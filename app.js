@@ -397,10 +397,14 @@ function renderLessons() {
     const completed =
       completedLessons.includes(index);
 
-    const unlocked =
-      index === 0 ||
-      completedLessons.includes(index - 1);
+    const isPro = index >= 4;
 
+const unlocked =
+  !isPro &&
+  (
+    index === 0 ||
+    completedLessons.includes(index - 1)
+  );
     const card =
       document.createElement("button");
 
@@ -456,9 +460,14 @@ function renderLessons() {
 
 function openLesson(index) {
 
-  const unlocked =
+ const isPro = index >= 4;
+
+const unlocked =
+  !isPro &&
+  (
     index === 0 ||
-    completedLessons.includes(index - 1);
+    completedLessons.includes(index - 1)
+  );
 
   if (!unlocked) return;
 
