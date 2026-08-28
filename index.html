@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0b1220">
-  <meta name="description" content="ForexStart - Learn Forex from zero to confident.">
+  <meta name="description" content="ForexStart - Learn forex trading from the basics.">
   <title>ForexStart</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -13,188 +13,255 @@
 
 <header class="topbar">
   <div class="logo">📈 ForexStart</div>
-  <button id="menuBtn" class="menu-btn">☰</button>
+  <button class="menu-btn">☰</button>
 </header>
 
 <main>
 
-  <!-- HOME -->
-  <section id="home" class="screen active">
+<!-- HOME -->
+<section id="home" class="screen active">
 
-    <div class="hero">
-      <span class="badge">BEGINNER FRIENDLY</span>
-      <h1>Learn Forex.<br><span>Start Smart.</span></h1>
-      <p>Learn the basics of forex trading step by step — without risking real money.</p>
+  <div class="hero">
+    <span class="badge">BEGINNER FRIENDLY</span>
+    <h1>Learn Forex.<br><span>Start Smart.</span></h1>
 
-      <button class="primary-btn" onclick="showScreen('lessons')">
-        Start Learning →
+    <p>
+      Learn the basics of forex trading step by step —
+      without risking real money.
+    </p>
+
+    <button class="primary-btn" onclick="showScreen('lessons')">
+      Start Learning →
+    </button>
+  </div>
+
+  <!-- XP CARD -->
+  <div class="stats-card">
+
+    <div class="stat">
+      <span>🏆</span>
+      <small>LEVEL</small>
+      <strong id="levelNumber">1</strong>
+    </div>
+
+    <div class="stat">
+      <span>⭐</span>
+      <small>XP</small>
+      <strong id="xpNumber">0</strong>
+    </div>
+
+    <div class="stat">
+      <span>🔥</span>
+      <small>STREAK</small>
+      <strong id="streakNumber">0</strong>
+    </div>
+
+  </div>
+
+  <div class="level-card">
+    <div class="progress-top">
+      <span id="levelName">Beginner</span>
+      <strong id="levelProgress">0 / 500 XP</strong>
+    </div>
+
+    <div class="progress-bar">
+      <div id="levelBar"></div>
+    </div>
+  </div>
+
+  <!-- COURSE PROGRESS -->
+  <div class="progress-card">
+
+    <div class="progress-top">
+      <span>Your Course Progress</span>
+      <strong id="progressText">0%</strong>
+    </div>
+
+    <div class="progress-bar">
+      <div id="progressBar"></div>
+    </div>
+
+    <p id="progressMessage">
+      Start your first lesson today.
+    </p>
+
+  </div>
+
+  <div class="quick-grid">
+
+    <button onclick="showScreen('lessons')" class="quick-card">
+      <span>📚</span>
+      <strong>Lessons</strong>
+      <small>Learn Forex</small>
+    </button>
+
+    <button onclick="showScreen('quiz')" class="quick-card">
+      <span>🧠</span>
+      <strong>Quiz</strong>
+      <small>Test yourself</small>
+    </button>
+
+    <button onclick="showScreen('calculator')" class="quick-card">
+      <span>🧮</span>
+      <strong>Calculator</strong>
+      <small>Practice numbers</small>
+    </button>
+
+    <button onclick="showScreen('demo')" class="quick-card">
+      <span>🎯</span>
+      <strong>Demo Trade</strong>
+      <small>Practice safely</small>
+    </button>
+
+  </div>
+
+  <div class="warning">
+    ⚠️ <strong>Education only:</strong>
+    ForexStart is for learning and demo practice.
+    It does not provide financial advice or guarantee profits.
+  </div>
+
+</section>
+
+
+<!-- LESSONS -->
+<section id="lessons" class="screen">
+
+  <div class="section-heading">
+    <span>FOREX COURSE</span>
+    <h2>Start with the basics</h2>
+    <p>Complete each lesson in order.</p>
+  </div>
+
+  <div id="lessonList"></div>
+
+</section>
+
+
+<!-- LESSON DETAIL -->
+<section id="lessonDetail" class="screen">
+
+  <button class="back-btn" onclick="showScreen('lessons')">
+    ← Back to lessons
+  </button>
+
+  <div class="lesson-detail">
+
+    <span id="lessonNumber"></span>
+
+    <h2 id="lessonTitle"></h2>
+
+    <div id="lessonContent"></div>
+
+    <button id="completeLessonBtn" class="primary-btn">
+      Complete Lesson +100 XP
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- QUIZ -->
+<section id="quiz" class="screen">
+
+  <div class="section-heading">
+    <span>KNOWLEDGE CHECK</span>
+    <h2>Forex Quiz</h2>
+    <p>Test what you've learned.</p>
+  </div>
+
+  <div class="quiz-card">
+
+    <div id="quizQuestion"></div>
+
+    <div id="quizAnswers"></div>
+
+    <div id="quizResult"></div>
+
+    <button id="nextQuizBtn" class="primary-btn hidden">
+      Next Question →
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- CALCULATOR -->
+<section id="calculator" class="screen">
+
+  <div class="section-heading">
+    <span>PRACTICE TOOL</span>
+    <h2>Risk Calculator</h2>
+    <p>Learn how risk affects your trades.</p>
+  </div>
+
+  <div class="calculator-card">
+
+    <label>Account Balance ($)</label>
+    <input id="balance" type="number" placeholder="1000">
+
+    <label>Risk Percentage (%)</label>
+    <input id="riskPercent" type="number" placeholder="1">
+
+    <button class="primary-btn" onclick="calculateRisk()">
+      Calculate Risk
+    </button>
+
+    <div id="calculatorResult" class="result-box"></div>
+
+  </div>
+
+</section>
+
+
+<!-- DEMO -->
+<section id="demo" class="screen">
+
+  <div class="section-heading">
+    <span>SIMULATOR</span>
+    <h2>Demo Trading</h2>
+    <p>Practice with virtual money.</p>
+  </div>
+
+  <div class="demo-card">
+
+    <div class="demo-balance">
+      <small>Virtual Balance</small>
+      <strong id="demoBalance">$10,000.00</strong>
+    </div>
+
+    <div class="pair">
+      <span>EUR/USD</span>
+      <strong id="demoPrice">1.1000</strong>
+    </div>
+
+    <div class="trade-buttons">
+      <button class="buy" onclick="demoTrade('buy')">
+        BUY
+      </button>
+
+      <button class="sell" onclick="demoTrade('sell')">
+        SELL
       </button>
     </div>
 
-    <div class="progress-card">
-      <div class="progress-top">
-        <span>Your Progress</span>
-        <strong id="progressText">0%</strong>
-      </div>
+    <p id="tradeMessage"></p>
 
-      <div class="progress-bar">
-        <div id="progressBar"></div>
-      </div>
+  </div>
 
-      <p id="progressMessage">Start your first lesson today.</p>
-    </div>
+  <div class="warning">
+    🎯 This is simulated trading.
+    No real trades are placed.
+  </div>
 
-    <div class="quick-grid">
-      <button onclick="showScreen('lessons')" class="quick-card">
-        <span>📚</span>
-        <strong>Lessons</strong>
-        <small>Learn Forex</small>
-      </button>
-
-      <button onclick="showScreen('quiz')" class="quick-card">
-        <span>🧠</span>
-        <strong>Quiz</strong>
-        <small>Test yourself</small>
-      </button>
-
-      <button onclick="showScreen('calculator')" class="quick-card">
-        <span>🧮</span>
-        <strong>Calculator</strong>
-        <small>Practice numbers</small>
-      </button>
-
-      <button onclick="showScreen('demo')" class="quick-card">
-        <span>🎯</span>
-        <strong>Demo Trade</strong>
-        <small>Practice safely</small>
-      </button>
-    </div>
-
-    <div class="warning">
-      ⚠️ <strong>Education only:</strong> ForexStart is for learning and demo practice. It does not provide financial advice or guarantee profits.
-    </div>
-
-  </section>
-
-
-  <!-- LESSONS -->
-  <section id="lessons" class="screen">
-
-    <div class="section-heading">
-      <span>FOREX COURSE</span>
-      <h2>Start with the basics</h2>
-      <p>Complete each lesson in order.</p>
-    </div>
-
-    <div id="lessonList"></div>
-
-  </section>
-
-
-  <!-- LESSON DETAIL -->
-  <section id="lessonDetail" class="screen">
-
-    <button class="back-btn" onclick="showScreen('lessons')">← Back to lessons</button>
-
-    <div class="lesson-detail">
-      <span id="lessonNumber"></span>
-      <h2 id="lessonTitle"></h2>
-      <div id="lessonContent"></div>
-
-      <button id="completeLessonBtn" class="primary-btn">
-        Complete Lesson ✓
-      </button>
-    </div>
-
-  </section>
-
-
-  <!-- QUIZ -->
-  <section id="quiz" class="screen">
-
-    <div class="section-heading">
-      <span>KNOWLEDGE CHECK</span>
-      <h2>Forex Quiz</h2>
-      <p>Test what you've learned.</p>
-    </div>
-
-    <div class="quiz-card">
-      <div id="quizQuestion"></div>
-      <div id="quizAnswers"></div>
-      <div id="quizResult"></div>
-      <button id="nextQuizBtn" class="primary-btn hidden">Next Question →</button>
-    </div>
-
-  </section>
-
-
-  <!-- CALCULATOR -->
-  <section id="calculator" class="screen">
-
-    <div class="section-heading">
-      <span>PRACTICE TOOL</span>
-      <h2>Risk Calculator</h2>
-      <p>Learn how risk affects your trades.</p>
-    </div>
-
-    <div class="calculator-card">
-
-      <label>Account Balance ($)</label>
-      <input id="balance" type="number" placeholder="1000">
-
-      <label>Risk Percentage (%)</label>
-      <input id="riskPercent" type="number" placeholder="1">
-
-      <button class="primary-btn" onclick="calculateRisk()">
-        Calculate Risk
-      </button>
-
-      <div id="calculatorResult" class="result-box"></div>
-
-    </div>
-
-  </section>
-
-
-  <!-- DEMO TRADING -->
-  <section id="demo" class="screen">
-
-    <div class="section-heading">
-      <span>SIMULATOR</span>
-      <h2>Demo Trading</h2>
-      <p>Practice with virtual money — never real money.</p>
-    </div>
-
-    <div class="demo-card">
-
-      <div class="demo-balance">
-        <small>Virtual Balance</small>
-        <strong id="demoBalance">$10,000.00</strong>
-      </div>
-
-      <div class="pair">
-        <span>EUR/USD</span>
-        <strong id="demoPrice">1.1000</strong>
-      </div>
-
-      <div class="trade-buttons">
-        <button class="buy" onclick="demoTrade('buy')">BUY</button>
-        <button class="sell" onclick="demoTrade('sell')">SELL</button>
-      </div>
-
-      <p id="tradeMessage"></p>
-
-    </div>
-
-    <div class="warning">
-      🎯 This is a simulated trading environment. No real trades are placed.
-    </div>
-
-  </section>
+</section>
 
 </main>
 
 
+<!-- BOTTOM NAV -->
 <nav class="bottom-nav">
 
   <button onclick="showScreen('home')">
@@ -222,4 +289,4 @@
 <script src="app.js"></script>
 
 </body>
-         </html>
+  </html>
