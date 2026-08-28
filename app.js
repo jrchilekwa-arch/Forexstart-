@@ -46,48 +46,221 @@ const lessons = [
     `
   },
 
-  {
+    {
     title: "Spread",
-    description: "Learn about a common trading cost.",
+    description: "Understand the bid-ask spread and trading costs.",
     content: `
-      <p>The <strong>spread</strong> is the difference between the bid price and ask price.</p>
-      <p>It is one of the costs traders need to understand.</p>
+      <h3>What is the spread?</h3>
+
+      <p>
+        The <strong>spread</strong> is the difference between the
+        <strong>bid price</strong> and the <strong>ask price</strong>
+        of a currency pair.
+      </p>
+
+      <p>
+        When you look at a forex quote, you will normally see two prices.
+        The bid is the price at which you can sell, while the ask is the
+        price at which you can buy.
+      </p>
+
+      <h3>Simple example</h3>
+
+      <p>
+        Imagine EUR/USD is quoted as:
+        <strong>1.1000 / 1.1002</strong>
+      </p>
+
+      <p>
+        The difference is <strong>0.0002</strong>, which is the spread
+        expressed in price terms.
+      </p>
+
+      <h3>Why does the spread matter?</h3>
+
+      <ul>
+        <li>A wider spread can increase the cost of entering a trade.</li>
+        <li>A narrower spread generally means a smaller spread cost.</li>
+        <li>Spreads can change depending on market conditions.</li>
+      </ul>
+
+      <h3>Beginner takeaway</h3>
+
+      <p>
+        Always understand the spread before entering a trade.
+        A trade does not become profitable simply because the price
+        moves slightly in your expected direction.
+      </p>
+
+      <p>
+        <strong>Remember:</strong> ForexStart is educational and does not
+        guarantee trading profits.
+      </p>
     `
   },
 
   {
     title: "Leverage",
-    description: "Understand leverage and its risks.",
+    description: "Understand leverage and why it increases risk.",
     content: `
-      <p><strong>Leverage</strong> allows a trader to control a larger position using less capital.</p>
-      <p>It can increase both potential gains and potential losses.</p>
+      <h3>What is leverage?</h3>
+
+      <p>
+        <strong>Leverage</strong> allows a trader to control a larger
+        position with a smaller amount of their own capital.
+      </p>
+
+      <p>
+        For example, leverage may allow a trader to open a position
+        larger than the cash they have deposited with a broker.
+      </p>
+
+      <h3>Why is leverage dangerous?</h3>
+
+      <p>
+        Leverage can magnify the effect of price movements on your
+        account. This means losses can grow quickly when a trade moves
+        against you.
+      </p>
+
+      <ul>
+        <li>Higher leverage can mean greater exposure.</li>
+        <li>Losses can increase quickly.</li>
+        <li>Margin requirements and broker rules matter.</li>
+        <li>Leverage does not create a guaranteed advantage.</li>
+      </ul>
+
+      <h3>Beginner rule</h3>
+
+      <p>
+        Never use high leverage simply because it is available.
+        Understand your position size, potential loss and margin
+        requirements first.
+      </p>
+
+      <p>
+        <strong>Key lesson:</strong> More leverage does not mean
+        more guaranteed profit. It means greater exposure.
+      </p>
     `
   },
 
   {
     title: "Risk Management",
-    description: "Learn how traders manage risk.",
+    description: "Learn how to plan and control trading risk.",
     content: `
-      <p><strong>Risk management</strong> is one of the most important trading skills.</p>
+      <h3>Why risk management matters</h3>
+
+      <p>
+        <strong>Risk management</strong> is the process of deciding how
+        much you are willing to lose before entering a trade and how
+        you will control that risk.
+      </p>
+
+      <h3>Important concepts</h3>
+
       <ul>
-        <li>Understand position sizing.</li>
-        <li>Learn about stop losses.</li>
-        <li>Understand risk-to-reward.</li>
-        <li>Never risk money you cannot afford to lose.</li>
+        <li>
+          <strong>Position size:</strong> How large your trade is.
+        </li>
+
+        <li>
+          <strong>Stop-loss:</strong> An order that can help limit a
+          loss if the market moves against you.
+        </li>
+
+        <li>
+          <strong>Risk-to-reward:</strong> A way of comparing potential
+          loss with a planned potential gain.
+        </li>
+
+        <li>
+          <strong>Risk per trade:</strong> The amount of your account
+          you decide to put at risk on a trade.
+        </li>
       </ul>
+
+      <h3>Simple example</h3>
+
+      <p>
+        Suppose a practice account has a balance of
+        <strong>$1,000</strong>.
+      </p>
+
+      <p>
+        If a trader chooses to risk 1%, the planned risk amount would
+        be <strong>$10</strong>.
+      </p>
+
+      <p>
+        This does not mean the trader will automatically lose $10.
+        It is simply a planned risk amount before the trade.
+      </p>
+
+      <h3>Beginner takeaway</h3>
+
+      <p>
+        Good trading is not only about finding winning trades.
+        It is also about controlling losses and protecting your
+        trading capital.
+      </p>
+
+      <p>
+        <strong>Important:</strong> Risk management reduces risk;
+        it cannot eliminate the possibility of losing money.
+      </p>
     `
   },
 
   {
     title: "Demo Trading",
-    description: "Practice without using real money.",
+    description: "Practice your skills with virtual money.",
     content: `
-      <p>A <strong>demo account</strong> uses virtual money to simulate trading.</p>
-      <p>It can help beginners practice without risking real money.</p>
-    `
-  }
-];
+      <h3>What is demo trading?</h3>
 
+      <p>
+        <strong>Demo trading</strong> allows you to practice trading
+        using virtual money instead of your own cash.
+      </p>
+
+      <p>
+        It can help beginners become familiar with trading platforms,
+        currency pairs, orders, position sizes and risk management.
+      </p>
+
+      <h3>What should you practice?</h3>
+
+      <ul>
+        <li>Reading currency-pair prices.</li>
+        <li>Understanding buy and sell orders.</li>
+        <li>Calculating potential risk.</li>
+        <li>Using sensible position sizes.</li>
+        <li>Recording your trading decisions.</li>
+      </ul>
+
+      <h3>Build good habits</h3>
+
+      <p>
+        Treat demo trading seriously. Instead of randomly pressing
+        BUY or SELL, write down why you would take a trade and what
+        could make the idea wrong.
+      </p>
+
+      <h3>Final lesson</h3>
+
+      <p>
+        Demo trading is practice, not proof that you will make money
+        in a live account. Real markets involve risk, costs,
+        execution differences and emotional pressure.
+      </p>
+
+      <p>
+        <strong>ForexStart rule:</strong> Learn first, practice with
+        virtual money, understand the risks, and never trade money
+        you cannot afford to lose.
+      </p>
+    `
+  },
 
 const quizQuestions = [
   {
