@@ -382,7 +382,6 @@ function showScreen(screenId) {
 /* =========================
    LESSONS
 ========================= */
-
 function renderLessons() {
 
   const list =
@@ -397,168 +396,87 @@ function renderLessons() {
     const completed =
       completedLessons.includes(index);
 
-    const isPro = index >= 4;
+    const isPro =
+      index >= 4;
 
-const unlocked =
-  !isPro &&
-  (
-    index === 0 ||
-    completedLessons.includes(index - 1)
-  );
+    const freeUnlocked =
+      !isPro &&
+      (
+        index === 0 ||
+        completedLessons.includes(index - 1)
+      );
+
     const card =
       document.createElement("button");
 
     card.className =
       "lesson-card " +
       (completed ? "completed " : "") +
-      (!unlocked ? "locked" : "");
+      (isPro ? "pro-lesson" : "") +
+      (!freeUnlocked && !isPro ? "locked" : "");
 
     card.innerHTML = `
       <div class="lesson-icon">
         ${
           completed
             ? "✓"
-            : unlocked
-              ? "📖"
-              : "🔒"
+            : isPro
+              ? "👑"
+              : freeUnlocked
+                ? "📖"
+                : "🔒"
         }
       </div>
 
-      <div>
+      <div class="lesson-info">
+
         <h3>
           Lesson ${index + 1}: ${lesson.title}
         </h3>
 
         <p>
           ${
-            unlocked
-              ? lesson.description
-              : "Complete the previous lesson to unlock."
+            isPro
+              ? "👑 PRO — Unlock this lesson"
+              : freeUnlocked
+                ? lesson.description
+                : "Complete the previous lesson to unlock."
           }
         </p>
+
       </div>
+
+      ${
+        isPro
+          ? `<span class="pro-badge">PRO</span>`
+          : ""
+      }
     `;
 
-    if (unlocked) {
+    card.onclick = () => {
 
-      card.onclick =
-        () => openLesson(index);
+      if (isPro) {
 
-    } else {
+        showScreen("upgrade");
 
-      card.onclick = () => {
+        return;
+      }
+
+      if (!freeUnlocked) {
+
         alert(
           "🔒 Complete the previous lesson first."
         );
-      };
-    }
+
+        return;
+      }
+
+      openLesson(index);
+    };
 
     list.appendChild(card);
   });
-}
-
-
-function openLesson(index) {
-
- const isPro = index >= 4;
-
-const unlocked =
-  !isPro &&
-  (
-    index === 0 ||
-    completedLessons.includes(index - 1)
-  );
-
-  if (!unlocked) return;
-
-  currentLesson = index;
-
-  const lesson =
-    lessons[index];
-
-  document.getElementById("lessonNumber")
-    .textContent =
-    `LESSON ${index + 1} OF ${lessons.length}`;
-
-  document.getElementById("lessonTitle")
-    .textContent =
-    lesson.title;
-
-  document.getElementById("lessonContent")
-    .innerHTML =
-    lesson.content;
-
-  const button =
-    document.getElementById(
-      "completeLessonBtn"
-    );
-
-  if (completedLessons.includes(index)) {
-
-    button.textContent =
-      "Lesson Completed ✓";
-
-    button.disabled = true;
-
-  } else {
-
-    button.textContent =
-      "Complete Lesson +100 XP";
-
-    button.disabled = false;
   }
-
-  button.onclick =
-    completeLesson;
-
-  showScreen("lessonDetail");
-}
-
-
-function completeLesson() {
-
-  if (
-    !completedLessons.includes(
-      currentLesson
-    )
-  ) {
-
-    completedLessons.push(
-      currentLesson
-    );
-
-    completedLessons.sort(
-      (a, b) => a - b
-    );
-
-    localStorage.setItem(
-      "forexstartProgress",
-      JSON.stringify(
-        completedLessons
-      )
-    );
-
-    addXP(100);
-
-    alert(
-      "🎉 Lesson complete! +100 XP"
-    );
-  }
-
-  updateProgress();
-  renderLessons();
-
-  const button =
-    document.getElementById(
-      "completeLessonBtn"
-    );
-
-  button.textContent =
-    "Lesson Completed ✓";
-
-  button.disabled = true;
-}
-
 
 /* =========================
    COURSE PROGRESS
