@@ -7,10 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // Start app
   setupNavigation();
   setupTheme();
-  setupCalculator();
-  setupQuiz();
-  setupLearn();
-  updateProgress();
+   setupCalculator();
+setupLearn();
+setupQuiz();
+updateProgress();
 
   // Show home screen
   showScreen("home");
