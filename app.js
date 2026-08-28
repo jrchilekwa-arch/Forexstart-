@@ -444,3 +444,36 @@ body {
     font-size: 24px;
   }
 }
+// ================================
+// FOREXSTART NAVIGATION FIX
+// ================================
+
+function showScreen(screenName) {
+  const screens = document.querySelectorAll(".screen");
+
+  screens.forEach(screen => {
+    screen.classList.remove("active");
+  });
+
+  const selectedScreen = document.querySelector(
+    `.screen[data-screen="${screenName}"]`
+  );
+
+  if (selectedScreen) {
+    selectedScreen.classList.add("active");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+  const navButtons = document.querySelectorAll(".bottom-nav button");
+
+  navButtons.forEach(button => {
+    button.classList.remove("active");
+
+    if (button.dataset.nav === screenName) {
+      button.classList.add("active");
+    }
+  });
+}
