@@ -260,10 +260,11 @@ const lessons = [
         you cannot afford to lose.
       </p>
     `
-  },
+  }
+
+];
 
 const quizQuestions = [
-  {
     question: "What does Forex mean?",
     answers: [
       "Foreign Exchange",
