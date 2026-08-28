@@ -131,8 +131,7 @@ window.calculatePips = calculatePips;
 // =====================================
 // LEARN
 // =====================================
- 
- }function setupLearn() {
+ function setupLearn() {
     const lessonList = document.getElementById("lessonList");
 
     if (!lessonList) return;
@@ -193,10 +192,9 @@ window.calculatePips = calculatePips;
         });
 
         lessonList.appendChild(card);
-    }}
- }                  
-
-
+    });
+         }
+     
 // =====================================
 // QUIZ
 // =====================================
