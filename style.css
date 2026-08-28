@@ -96,6 +96,44 @@ main {
   font-size: 16px;
 }
 
+/* STATS */
+
+.stats-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.stat {
+  background: #121c2b;
+  border: 1px solid #243247;
+  border-radius: 14px;
+  padding: 15px 8px;
+  text-align: center;
+}
+
+.stat span {
+  display: block;
+  font-size: 23px;
+  margin-bottom: 6px;
+}
+
+.stat small {
+  display: block;
+  color: #8996a9;
+  font-size: 10px;
+}
+
+.stat strong {
+  display: block;
+  font-size: 20px;
+  margin-top: 3px;
+}
+
+/* LEVEL */
+
+.level-card,
 .progress-card,
 .calculator-card,
 .demo-card,
@@ -121,11 +159,21 @@ main {
   overflow: hidden;
 }
 
-#progressBar {
+#progressBar,
+#levelBar {
   height: 100%;
   width: 0%;
   background: #38d39f;
   transition: width .3s;
+}
+
+.level-card {
+  margin-bottom: 12px;
+}
+
+.level-card .progress-top {
+  color: #dce3ec;
+  font-size: 13px;
 }
 
 .progress-card p {
@@ -133,6 +181,8 @@ main {
   font-size: 13px;
   margin-top: 10px;
 }
+
+/* QUICK CARDS */
 
 .quick-grid {
   display: grid;
@@ -166,6 +216,8 @@ main {
   margin-top: 5px;
 }
 
+/* WARNING */
+
 .warning {
   background: #171f2d;
   border-left: 3px solid #f5b942;
@@ -175,6 +227,8 @@ main {
   line-height: 1.5;
   border-radius: 8px;
 }
+
+/* LESSONS */
 
 .section-heading {
   padding: 20px 0;
@@ -211,6 +265,7 @@ main {
   background: #1b293b;
   border-radius: 12px;
   font-size: 20px;
+  flex-shrink: 0;
 }
 
 .lesson-card h3 {
@@ -229,6 +284,10 @@ main {
 
 .completed .lesson-icon {
   background: #163d32;
+}
+
+.locked {
+  opacity: .75;
 }
 
 .back-btn {
@@ -256,6 +315,8 @@ main {
   line-height: 1.8;
 }
 
+/* INPUTS */
+
 label {
   display: block;
   color: #b6c0cf;
@@ -281,6 +342,8 @@ input {
   color: #38d39f;
   font-weight: bold;
 }
+
+/* QUIZ */
 
 .quiz-question {
   font-size: 20px;
@@ -312,6 +375,8 @@ input {
 .hidden {
   display: none;
 }
+
+/* DEMO */
 
 .demo-balance {
   text-align: center;
@@ -366,6 +431,8 @@ input {
   margin-top: 15px;
 }
 
+/* NAV */
+
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -396,4 +463,4 @@ input {
   .hero h1 {
     font-size: 55px;
   }
-  }
+                                }
