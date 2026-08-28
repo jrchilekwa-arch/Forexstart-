@@ -131,70 +131,61 @@ window.calculatePips = calculatePips;
 // =====================================
 // LEARN
 // =====================================
+ function setupLearn() {
+    const lessonList = document.getElementById("lessonList");
 
-function setupLearn() {
+    if (!lessonList) return;
 
-  const lessonList = document.getElementById("lessonList");
+    const lessons = [
+        {
+            title: "What is Forex?",
+            text: "Forex is the global market where currencies are bought and sold."
+        },
+        {
+            title: "Currency Pairs",
+            text: "Forex trading uses currency pairs such as EUR/USD and GBP/USD."
+        },
+        {
+            title: "What is a Pip?",
+            text: "A pip is a small unit used to measure changes in a currency pair."
+        },
+        {
+            title: "Buy vs Sell",
+            text: "Buy when you expect the price to rise and sell when you expect it to fall."
+        },
+        {
+            title: "Risk Management",
+            text: "Good risk management helps protect your trading account."
+        }
+    ];
 
-  if (!lessonList) return;
+    lessonList.innerHTML = "";
 
-  const lessons = [
-    {
-      title: "What is Forex?",
-      text: "Learn what forex trading is and how currency pairs work."
-    },
-    {
-      title: "Currency Pairs",
-      text: "Understand base currency, quote currency and exchange rates."
-    },
-    {
-      title: "What is a Pip?",
-      text: "Learn how traders measure small price movements."
-    },
-    {
-      title: "Buy vs Sell",
-      text: "Understand what buying and selling a currency pair means."
-    },
-    {
-      title: "Risk Management",
-      text: "Learn why protecting your trading account matters."
-    }
-  ];
+    lessons.forEach(function(lesson) {
+        const card = document.createElement("div");
 
-  lessonList.innerHTML = "";
+        card.className = "quick-card";
 
-  lessons.forEach(function (lesson, index) {
+        card.innerHTML =
+            '<div class="quick-icon">📚</div>' +
+            '<div>' +
+            '<h3>' + lesson.title + '</h3>' +
+            '<p>' + lesson.text + '</p>' +
+            '</div>' +
+            '<span class="arrow">›</span>';
 
-    const card = document.createElement("div");
+        card.addEventListener("click", function() {
+            alert(
+                lesson.title +
+                "\n\n" +
+                lesson.text +
+                "\n\nKeep learning and practicing!"
+            );
+        });
 
-    card.className = "quick-card";
-
-    card.innerHTML =
-      '<div class="quick-icon">📚</div>' +
-      '<div>' +
-      '<h3>' + lesson.title + '</h3>' +
-      '<p>' + lesson.text + '</p>' +
-      '</div>' +
-      '<span class="arrow">›</span>';
-
-    card.addEventListener("click", function () {
-
-      alert(
-        lesson.title +
-        "\n\n" +
-        lesson.text +
-        "\n\nKeep learning and practice with virtual money."
-      );
-
-      localStorage.setItem("forexLessonComplete", "true");
-
-      updateProgress();
+        lessonList.appendChild(card);
     });
-
-    lessonList.appendChild(card);
-
-  });
-}
+ }
 
 
 // =====================================
