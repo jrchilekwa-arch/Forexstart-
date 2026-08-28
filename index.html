@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description" content="ForexStart - Learn forex trading from beginner to confident trader.">
+  <title>ForexStart</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="logo">
+      <span class="logo-icon">₣</span>
+      <span>Forex<span class="accent">Start</span></span>
+    </div>
+
+    <button id="themeBtn" class="icon-btn" aria-label="Toggle theme">
+      ☀️
+    </button>
+  </header>
+
+
+  <!-- APP -->
+  <main>
+
+    <!-- HOME -->
+    <section id="home" class="screen active">
+
+      <div class="hero">
+        <p class="small-label">WELCOME TO FOREXSTART</p>
+        <h1>Learn Forex.<br><span class="accent">Build Confidence.</span></h1>
+        <p class="hero-text">
+          A simple beginner-friendly guide to understanding forex trading.
+        </p>
+
+        <button class="primary-btn" onclick="showScreen('learn')">
+          Start Learning →
+        </button>
+      </div>
+
+
+      <div class="progress-card">
+        <div>
+          <p>Your Progress</p>
+          <h2 id="progressPercent">0%</h2>
+        </div>
+
+        <div class="progress-circle">
+          <span id="progressNumber">0%</span>
+        </div>
+      </div>
+
+
+      <h2 class="section-title">Quick Start</h2>
+
+      <div class="cards">
+
+        <button class="feature-card" onclick="showScreen('learn')">
+          <div class="card-icon">📚</div>
+          <div>
+            <h3>Learn Forex</h3>
+            <p>Start with the basics</p>
+          </div>
+          <span>›</span>
+        </button>
+
+        <button class="feature-card" onclick="showScreen('calculator')">
+          <div class="card-icon">🧮</div>
+          <div>
+            <h3>Pip Calculator</h3>
+            <p>Practice calculating pips</p>
+          </div>
+          <span>›</span>
+        </button>
+
+        <button class="feature-card" onclick="showScreen('quiz')">
+          <div class="card-icon">📝</div>
+          <div>
+            <h3>Take a Quiz</h3>
+            <p>Test your knowledge</p>
+          </div>
+          <span>›</span>
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- LEARN -->
+    <section id="learn" class="screen">
+
+      <div class="page-heading">
+        <p class="small-label">FOREX BASICS</p>
+        <h1>Learn Forex</h1>
+        <p>Master the fundamentals one lesson at a time.</p>
+      </div>
+
+      <div id="lessonList"></div>
+
+    </section>
+
+
+    <!-- LESSON -->
+    <section id="lesson" class="screen">
+
+      <button class="back-btn" onclick="showScreen('learn')">
+        ← Back to Lessons
+      </button>
+
+      <div id="lessonContent"></div>
+
+    </section>
+
+
+    <!-- CALCULATOR -->
+    <section id="calculator" class="screen">
+
+      <div class="page-heading">
+        <p class="small-label">PRACTICE TOOL</p>
+        <h1>Pip Calculator</h1>
+        <p>Learn how price movement is measured in pips.</p>
+      </div>
+
+      <div class="calculator-card">
+
+        <label>Currency Pair</label>
+
+        <select id="pair">
+          <option value="normal">EUR/USD</option>
+          <option value="normal">GBP/USD</option>
+          <option value="normal">AUD/USD</option>
+          <option value="jpy">USD/JPY</option>
+        </select>
+
+
+        <label>Entry Price</label>
+        <input id="entry" type="number" step="0.00001" placeholder="Example: 1.10000">
+
+
+        <label>Exit Price</label>
+        <input id="exit" type="number" step="0.00001" placeholder="Example: 1.10500">
+
+
+        <button class="primary-btn" onclick="calculatePips()">
+          Calculate Pips
+        </button>
+
+        <div id="pipResult" class="result-box">
+          Enter your prices above.
+        </div>
+
+      </div>
+
+      <div class="info-box">
+        <h3>💡 What is a pip?</h3>
+        <p>
+          A pip is a standard unit used to measure movement in many currency pairs.
+          For most pairs, one pip is the fourth decimal place.
+        </p>
+      </div>
+
+    </section>
+
+
+    <!-- QUIZ -->
+    <section id="quiz" class="screen">
+
+      <div class="page-heading">
+        <p class="small-label">KNOWLEDGE CHECK</p>
+        <h1>Forex Quiz</h1>
+        <p>Test what you've learned.</p>
+      </div>
+
+      <div id="quizBox" class="quiz-card"></div>
+
+    </section>
+
+
+    <!-- PROGRESS -->
+    <section id="progress" class="screen">
+
+      <div class="page-heading">
+        <p class="small-label">YOUR JOURNEY</p>
+        <h1>Progress</h1>
+        <p>Keep learning and build your forex knowledge.</p>
+      </div>
+
+      <div class="big-progress">
+        <div id="bigProgressNumber">0%</div>
+        <p>Lessons completed</p>
+      </div>
+
+      <div class="info-box">
+        <h3>🎯 Your Goal</h3>
+        <p>
+          Complete every beginner lesson and pass the quiz before moving
+          toward more advanced forex concepts.
+        </p>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- BOTTOM NAVIGATION -->
+  <nav class="bottom-nav">
+
+    <button onclick="showScreen('home')" data-screen="home">
+      <span>🏠</span>
+      Home
+    </button>
+
+    <button onclick="showScreen('learn')" data-screen="learn">
+      <span>📚</span>
+      Learn
+    </button>
+
+    <button onclick="showScreen('calculator')" data-screen="calculator">
+      <span>🧮</span>
+      Calculator
+    </button>
+
+    <button onclick="showScreen('quiz')" data-screen="quiz">
+      <span>📝</span>
+      Quiz
+    </button>
+
+    <button onclick="showScreen('progress')" data-screen="progress">
+      <span>📈</span>
+      Progress
+    </button>
+
+  </nav>
+
+
+  <script src="app.js"></script>
+
+</body>
+    </html>
