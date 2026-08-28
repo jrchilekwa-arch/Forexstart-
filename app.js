@@ -131,7 +131,8 @@ window.calculatePips = calculatePips;
 // =====================================
 // LEARN
 // =====================================
- function setupLearn() {
+ 
+ }function setupLearn() {
     const lessonList = document.getElementById("lessonList");
 
     if (!lessonList) return;
@@ -147,21 +148,22 @@ window.calculatePips = calculatePips;
         },
         {
             title: "What is a Pip?",
-            text: "A pip is a small unit used to measure changes in a currency pair."
+            text: "A pip is a small unit used to measure price movement in a currency pair."
         },
         {
-            title: "Buy vs Sell",
-            text: "Buy when you expect the price to rise and sell when you expect it to fall."
+            title: "Buy & Sell",
+            text: "Buy when you expect a currency pair to rise. Sell when you expect it to fall."
         },
         {
             title: "Risk Management",
-            text: "Good risk management helps protect your trading account."
+            text: "Learn why protecting your trading account is important before risking real money."
         }
     ];
 
     lessonList.innerHTML = "";
 
-    lessons.forEach(function(lesson) {
+    lessons.forEach(function(lesson, index) {
+
         const card = document.createElement("div");
 
         card.className = "quick-card";
@@ -169,7 +171,7 @@ window.calculatePips = calculatePips;
         card.innerHTML =
             '<div class="quick-icon">📚</div>' +
             '<div>' +
-            '<h3>' + lesson.title + '</h3>' +
+            '<h3>' + (index + 1) + '. ' + lesson.title + '</h3>' +
             '<p>' + lesson.text + '</p>' +
             '</div>' +
             '<span class="arrow">›</span>';
@@ -181,11 +183,18 @@ window.calculatePips = calculatePips;
                 lesson.text +
                 "\n\nKeep learning and practicing!"
             );
+
+            localStorage.setItem(
+                "forexLessonComplete",
+                "true"
+            );
+
+            updateProgress();
         });
 
         lessonList.appendChild(card);
-    });
- }
+    }}
+ }                  
 
 
 // =====================================
