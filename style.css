@@ -464,3 +464,83 @@ input {
     font-size: 55px;
   }
                                 }
+/* =========================
+   PRO UPGRADE
+========================= */
+
+.pro-lesson {
+  border-color: #705d2c;
+  background: #151b28;
+}
+
+.pro-lesson .lesson-icon {
+  background: #2b2517;
+}
+
+.lesson-info {
+  flex: 1;
+}
+
+.pro-badge {
+  background: #2d2615;
+  color: #f5c84b;
+  border: 1px solid #5d4b20;
+  padding: 5px 8px;
+  border-radius: 7px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.upgrade-card {
+  margin-top: 30px;
+  padding: 30px 20px;
+  text-align: center;
+  background: #121c2b;
+  border: 1px solid #705d2c;
+  border-radius: 18px;
+}
+
+.crown {
+  font-size: 55px;
+  margin-bottom: 15px;
+}
+
+.upgrade-card h2 {
+  font-size: 32px;
+  margin: 12px 0;
+}
+
+.upgrade-card > p {
+  color: #9da9bb;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.pro-features {
+  text-align: left;
+  background: #172131;
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 25px;
+}
+
+.pro-features div {
+  padding: 8px 0;
+  color: #dce3ec;
+}
+
+.price {
+  margin-bottom: 20px;
+}
+
+.price small {
+  display: block;
+  color: #f5c84b;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.price strong {
+  font-size: 20px;
+}
