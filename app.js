@@ -3,9 +3,9 @@ const lessons = [
     title: "What Is Forex?",
     description: "Understand the foreign exchange market.",
     content: `
-      <p><strong>Forex</strong> means foreign exchange. It is the global market where currencies are exchanged.</p>
-      <p>When you trade forex, you are comparing one currency against another.</p>
-      <h3>Key idea</h3>
+      <p><strong>Forex</strong> means foreign exchange.</p>
+      <p>It is the global market where currencies are exchanged.</p>
+      <h3>Key ideas</h3>
       <ul>
         <li>Forex means foreign exchange.</li>
         <li>Currencies are traded in pairs.</li>
@@ -18,9 +18,8 @@ const lessons = [
     title: "Currency Pairs",
     description: "Learn how currency pairs work.",
     content: `
-      <p>Forex prices are normally shown as currency pairs, such as <strong>EUR/USD</strong>.</p>
-      <p>The first currency is the <strong>base currency</strong>. The second is the <strong>quote currency</strong>.</p>
-      <h3>Examples</h3>
+      <p>Forex prices are normally shown as currency pairs such as <strong>EUR/USD</strong>.</p>
+      <p>The first currency is the base currency. The second is the quote currency.</p>
       <ul>
         <li>EUR/USD</li>
         <li>GBP/USD</li>
@@ -33,10 +32,8 @@ const lessons = [
     title: "Pips",
     description: "Understand forex price movement.",
     content: `
-      <p>A <strong>pip</strong> is a standard unit commonly used to describe small changes in a forex exchange rate.</p>
-      <p>Understanding pips helps beginners understand how much a currency pair has moved.</p>
-      <h3>Remember</h3>
-      <p>Always check the quotation convention for the currency pair you are studying.</p>
+      <p>A <strong>pip</strong> is a common unit used to describe a small movement in a forex exchange rate.</p>
+      <p>Understanding pips helps beginners understand price movement.</p>
     `
   },
 
@@ -46,19 +43,15 @@ const lessons = [
     content: `
       <p>A <strong>lot</strong> describes the size of a forex position.</p>
       <p>Position size matters because larger positions can create larger potential gains and losses.</p>
-      <h3>Beginner rule</h3>
-      <p>Learn position sizing and risk management before using real money.</p>
     `
   },
 
   {
     title: "Spread",
-    description: "Learn about one common trading cost.",
+    description: "Learn about a common trading cost.",
     content: `
-      <p>The <strong>spread</strong> is the difference between the bid price and the ask price.</p>
-      <p>It is one of the costs that can affect a forex trade.</p>
-      <h3>Why it matters</h3>
-      <p>A trader should understand spreads before placing trades.</p>
+      <p>The <strong>spread</strong> is the difference between the bid price and ask price.</p>
+      <p>It is one of the costs traders need to understand.</p>
     `
   },
 
@@ -67,25 +60,21 @@ const lessons = [
     description: "Understand leverage and its risks.",
     content: `
       <p><strong>Leverage</strong> allows a trader to control a larger position using less capital.</p>
-      <p>Leverage can increase the size of both potential gains and potential losses.</p>
-      <h3>Important</h3>
-      <p>High leverage can increase risk significantly. Beginners should learn how it works before using it.</p>
+      <p>It can increase both potential gains and potential losses.</p>
     `
   },
 
   {
     title: "Risk Management",
-    description: "Learn how traders manage potential losses.",
+    description: "Learn how traders manage risk.",
     content: `
-      <p><strong>Risk management</strong> is one of the most important skills in trading.</p>
-      <h3>Things to learn</h3>
+      <p><strong>Risk management</strong> is one of the most important trading skills.</p>
       <ul>
-        <li>Position sizing</li>
-        <li>Stop-loss orders</li>
-        <li>Risk-to-reward concepts</li>
-        <li>Keeping losses within a planned limit</li>
+        <li>Understand position sizing.</li>
+        <li>Learn about stop losses.</li>
+        <li>Understand risk-to-reward.</li>
+        <li>Never risk money you cannot afford to lose.</li>
       </ul>
-      <p>Never risk money you cannot afford to lose.</p>
     `
   },
 
@@ -94,9 +83,7 @@ const lessons = [
     description: "Practice without using real money.",
     content: `
       <p>A <strong>demo account</strong> uses virtual money to simulate trading.</p>
-      <p>Demo trading can help beginners practice entering and managing trades without putting real money at risk.</p>
-      <h3>Your next step</h3>
-      <p>Use the ForexStart demo trading simulator to practice what you have learned.</p>
+      <p>It can help beginners practice without risking real money.</p>
     `
   }
 ];
@@ -147,19 +134,226 @@ const quizQuestions = [
 
 let currentLesson = 0;
 let currentQuiz = 0;
+let quizScore = 0;
 let demoBalance = 10000;
 
 let completedLessons =
   JSON.parse(localStorage.getItem("forexstartProgress")) || [];
 
+let xp =
+  Number(localStorage.getItem("forexstartXP")) || 0;
+
+let streak =
+  Number(localStorage.getItem("forexstartStreak")) || 0;
+
+let lastVisit =
+  localStorage.getItem("forexstartLastVisit") || "";
+
+
+/* =========================
+   DAILY STREAK
+========================= */
+
+function updateStreak() {
+
+  const today =
+    new Date().toISOString().split("T")[0];
+
+  if (!lastVisit) {
+
+    streak = 1;
+
+  } else if (lastVisit !== today) {
+
+    const previous =
+      new Date(lastVisit);
+
+    const current =
+      new Date(today);
+
+    const difference =
+      Math.round(
+        (current - previous) /
+        (1000 * 60 * 60 * 24)
+      );
+
+    if (difference === 1) {
+      streak++;
+    } else if (difference > 1) {
+      streak = 1;
+    }
+  }
+
+  lastVisit = today;
+
+  localStorage.setItem(
+    "forexstartStreak",
+    streak
+  );
+
+  localStorage.setItem(
+    "forexstartLastVisit",
+    lastVisit
+  );
+}
+
+
+/* =========================
+   XP SYSTEM
+========================= */
+
+function addXP(amount) {
+
+  xp += amount;
+
+  localStorage.setItem(
+    "forexstartXP",
+    xp
+  );
+
+  updateXPDisplay();
+}
+
+
+function getLevel() {
+
+  if (xp >= 2000) {
+    return {
+      number: 5,
+      name: "Forex Master",
+      min: 2000,
+      max: 3000
+    };
+  }
+
+  if (xp >= 1200) {
+    return {
+      number: 4,
+      name: "Advanced",
+      min: 1200,
+      max: 2000
+    };
+  }
+
+  if (xp >= 700) {
+    return {
+      number: 3,
+      name: "Trader",
+      min: 700,
+      max: 1200
+    };
+  }
+
+  if (xp >= 300) {
+    return {
+      number: 2,
+      name: "Learner",
+      min: 300,
+      max: 700
+    };
+  }
+
+  return {
+    number: 1,
+    name: "Beginner",
+    min: 0,
+    max: 300
+  };
+}
+
+
+function updateXPDisplay() {
+
+  const level =
+    getLevel();
+
+  const levelNumber =
+    document.getElementById("levelNumber");
+
+  const levelName =
+    document.getElementById("levelName");
+
+  const xpNumber =
+    document.getElementById("xpNumber");
+
+  const streakNumber =
+    document.getElementById("streakNumber");
+
+  const levelProgress =
+    document.getElementById("levelProgress");
+
+  const levelBar =
+    document.getElementById("levelBar");
+
+  if (levelNumber) {
+    levelNumber.textContent =
+      level.number;
+  }
+
+  if (levelName) {
+    levelName.textContent =
+      level.name;
+  }
+
+  if (xpNumber) {
+    xpNumber.textContent =
+      xp;
+  }
+
+  if (streakNumber) {
+    streakNumber.textContent =
+      streak;
+  }
+
+  if (levelProgress) {
+
+    if (level.number === 5) {
+
+      levelProgress.textContent =
+        `${xp} XP — MAX LEVEL`;
+
+    } else {
+
+      levelProgress.textContent =
+        `${xp - level.min} / ${level.max - level.min} XP`;
+    }
+  }
+
+  if (levelBar) {
+
+    let percentage;
+
+    if (level.number === 5) {
+
+      percentage = 100;
+
+    } else {
+
+      percentage =
+        ((xp - level.min) /
+        (level.max - level.min)) * 100;
+    }
+
+    levelBar.style.width =
+      Math.min(100, percentage) + "%";
+  }
+}
+
+
+/* =========================
+   SCREEN NAVIGATION
+========================= */
 
 function showScreen(screenId) {
 
-  document.querySelectorAll(".screen").forEach(screen => {
-    screen.classList.remove("active");
-  });
+  document
+    .querySelectorAll(".screen")
+    .forEach(screen => {
+      screen.classList.remove("active");
+    });
 
-  const screen = document.getElementById(screenId);
+  const screen =
+    document.getElementById(screenId);
 
   if (screen) {
     screen.classList.add("active");
@@ -175,16 +369,24 @@ function showScreen(screenId) {
   }
 
   if (screenId === "quiz") {
+    currentQuiz = 0;
+    quizScore = 0;
     loadQuiz();
   }
 
   updateProgress();
+  updateXPDisplay();
 }
 
 
+/* =========================
+   LESSONS
+========================= */
+
 function renderLessons() {
 
-  const list = document.getElementById("lessonList");
+  const list =
+    document.getElementById("lessonList");
 
   if (!list) return;
 
@@ -192,13 +394,15 @@ function renderLessons() {
 
   lessons.forEach((lesson, index) => {
 
-    const completed = completedLessons.includes(index);
+    const completed =
+      completedLessons.includes(index);
 
     const unlocked =
       index === 0 ||
       completedLessons.includes(index - 1);
 
-    const card = document.createElement("button");
+    const card =
+      document.createElement("button");
 
     card.className =
       "lesson-card " +
@@ -217,7 +421,10 @@ function renderLessons() {
       </div>
 
       <div>
-        <h3>Lesson ${index + 1}: ${lesson.title}</h3>
+        <h3>
+          Lesson ${index + 1}: ${lesson.title}
+        </h3>
+
         <p>
           ${
             unlocked
@@ -229,10 +436,16 @@ function renderLessons() {
     `;
 
     if (unlocked) {
-      card.onclick = () => openLesson(index);
+
+      card.onclick =
+        () => openLesson(index);
+
     } else {
+
       card.onclick = () => {
-        alert("🔒 Complete the previous lesson first.");
+        alert(
+          "🔒 Complete the previous lesson first."
+        );
       };
     }
 
@@ -247,26 +460,29 @@ function openLesson(index) {
     index === 0 ||
     completedLessons.includes(index - 1);
 
-  if (!unlocked) {
-    alert("🔒 Complete the previous lesson first.");
-    return;
-  }
+  if (!unlocked) return;
 
   currentLesson = index;
 
-  const lesson = lessons[index];
+  const lesson =
+    lessons[index];
 
-  document.getElementById("lessonNumber").textContent =
+  document.getElementById("lessonNumber")
+    .textContent =
     `LESSON ${index + 1} OF ${lessons.length}`;
 
-  document.getElementById("lessonTitle").textContent =
+  document.getElementById("lessonTitle")
+    .textContent =
     lesson.title;
 
-  document.getElementById("lessonContent").innerHTML =
+  document.getElementById("lessonContent")
+    .innerHTML =
     lesson.content;
 
   const button =
-    document.getElementById("completeLessonBtn");
+    document.getElementById(
+      "completeLessonBtn"
+    );
 
   if (completedLessons.includes(index)) {
 
@@ -278,13 +494,13 @@ function openLesson(index) {
   } else {
 
     button.textContent =
-      "Complete Lesson ✓";
+      "Complete Lesson +100 XP";
 
     button.disabled = false;
-
   }
 
-  button.onclick = completeLesson;
+  button.onclick =
+    completeLesson;
 
   showScreen("lessonDetail");
 }
@@ -292,22 +508,41 @@ function openLesson(index) {
 
 function completeLesson() {
 
-  if (!completedLessons.includes(currentLesson)) {
+  if (
+    !completedLessons.includes(
+      currentLesson
+    )
+  ) {
 
-    completedLessons.push(currentLesson);
+    completedLessons.push(
+      currentLesson
+    );
 
-    completedLessons.sort((a, b) => a - b);
+    completedLessons.sort(
+      (a, b) => a - b
+    );
 
     localStorage.setItem(
       "forexstartProgress",
-      JSON.stringify(completedLessons)
+      JSON.stringify(
+        completedLessons
+      )
+    );
+
+    addXP(100);
+
+    alert(
+      "🎉 Lesson complete! +100 XP"
     );
   }
 
   updateProgress();
+  renderLessons();
 
   const button =
-    document.getElementById("completeLessonBtn");
+    document.getElementById(
+      "completeLessonBtn"
+    );
 
   button.textContent =
     "Lesson Completed ✓";
@@ -316,22 +551,33 @@ function completeLesson() {
 }
 
 
+/* =========================
+   COURSE PROGRESS
+========================= */
+
 function updateProgress() {
 
   const progressText =
-    document.getElementById("progressText");
+    document.getElementById(
+      "progressText"
+    );
 
   const progressBar =
-    document.getElementById("progressBar");
+    document.getElementById(
+      "progressBar"
+    );
 
   const progressMessage =
-    document.getElementById("progressMessage");
+    document.getElementById(
+      "progressMessage"
+    );
 
-  if (!progressText || !progressBar) return;
+  if (!progressText) return;
 
   const percent =
     Math.round(
-      (completedLessons.length / lessons.length) * 100
+      (completedLessons.length /
+      lessons.length) * 100
     );
 
   progressText.textContent =
@@ -340,27 +586,27 @@ function updateProgress() {
   progressBar.style.width =
     percent + "%";
 
-  if (progressMessage) {
+  if (percent === 0) {
 
-    if (percent === 0) {
+    progressMessage.textContent =
+      "Start your first lesson today.";
 
-      progressMessage.textContent =
-        "Start your first lesson today.";
+  } else if (percent < 100) {
 
-    } else if (percent < 100) {
+    progressMessage.textContent =
+      `${completedLessons.length} of ${lessons.length} lessons completed.`;
 
-      progressMessage.textContent =
-        `${completedLessons.length} of ${lessons.length} lessons completed.`;
+  } else {
 
-    } else {
-
-      progressMessage.textContent =
-        "🎉 Course completed! Great work.";
-
-    }
+    progressMessage.textContent =
+      "🎉 Course completed! Great work.";
   }
 }
 
+
+/* =========================
+   QUIZ
+========================= */
 
 function loadQuiz() {
 
@@ -368,18 +614,24 @@ function loadQuiz() {
     quizQuestions[currentQuiz];
 
   const question =
-    document.getElementById("quizQuestion");
+    document.getElementById(
+      "quizQuestion"
+    );
 
   const answers =
-    document.getElementById("quizAnswers");
+    document.getElementById(
+      "quizAnswers"
+    );
 
   const result =
-    document.getElementById("quizResult");
+    document.getElementById(
+      "quizResult"
+    );
 
   const nextButton =
-    document.getElementById("nextQuizBtn");
-
-  if (!q || !question || !answers) return;
+    document.getElementById(
+      "nextQuizBtn"
+    );
 
   question.innerHTML = `
     <div class="quiz-question">
@@ -389,32 +641,32 @@ function loadQuiz() {
 
   answers.innerHTML = "";
 
-  if (result) {
-    result.textContent = "";
-  }
+  result.textContent = "";
 
-  if (nextButton) {
-    nextButton.classList.add("hidden");
-    nextButton.textContent =
-      "Next Question →";
-  }
+  nextButton.classList.add(
+    "hidden"
+  );
 
-  q.answers.forEach((answer, index) => {
+  q.answers.forEach(
+    (answer, index) => {
 
-    const button =
-      document.createElement("button");
+      const button =
+        document.createElement(
+          "button"
+        );
 
-    button.className =
-      "answer-btn";
+      button.className =
+        "answer-btn";
 
-    button.textContent =
-      answer;
+      button.textContent =
+        answer;
 
-    button.onclick =
-      () => answerQuiz(index);
+      button.onclick =
+        () => answerQuiz(index);
 
-    answers.appendChild(button);
-  });
+      answers.appendChild(button);
+    }
+  );
 }
 
 
@@ -424,17 +676,21 @@ function answerQuiz(index) {
     quizQuestions[currentQuiz];
 
   const result =
-    document.getElementById("quizResult");
+    document.getElementById(
+      "quizResult"
+    );
 
   if (index === q.correct) {
 
+    quizScore++;
+
     result.textContent =
-      "✅ Correct! Great job.";
+      "✅ Correct!";
 
   } else {
 
     result.textContent =
-      "❌ Not quite. Review the lesson and keep learning.";
+      "❌ Not quite. Keep learning.";
   }
 
   document
@@ -444,26 +700,33 @@ function answerQuiz(index) {
     });
 
   const nextButton =
-    document.getElementById("nextQuizBtn");
+    document.getElementById(
+      "nextQuizBtn"
+    );
 
-  if (nextButton) {
+  nextButton.classList.remove(
+    "hidden"
+  );
 
-    nextButton.classList.remove("hidden");
+  if (
+    currentQuiz ===
+    quizQuestions.length - 1
+  ) {
 
-    if (currentQuiz === quizQuestions.length - 1) {
-      nextButton.textContent =
-        "Restart Quiz ↻";
-    }
+    nextButton.textContent =
+      `Finish Quiz — ${quizScore}/${quizQuestions.length}`;
+
+  } else {
+
+    nextButton.textContent =
+      "Next Question →";
   }
 }
 
 
-const nextQuizButton =
-  document.getElementById("nextQuizBtn");
-
-if (nextQuizButton) {
-
-  nextQuizButton.onclick = () => {
+document
+  .getElementById("nextQuizBtn")
+  .onclick = () => {
 
     if (
       currentQuiz <
@@ -472,30 +735,48 @@ if (nextQuizButton) {
 
       currentQuiz++;
 
+      loadQuiz();
+
     } else {
 
+      addXP(50);
+
+      alert(
+        `🧠 Quiz complete! You scored ${quizScore}/${quizQuestions.length}. +50 XP`
+      );
+
       currentQuiz = 0;
+      quizScore = 0;
+
+      loadQuiz();
     }
-
-    loadQuiz();
   };
-}
 
+
+/* =========================
+   RISK CALCULATOR
+========================= */
 
 function calculateRisk() {
 
   const balance =
     Number(
-      document.getElementById("balance").value
+      document.getElementById(
+        "balance"
+      ).value
     );
 
   const risk =
     Number(
-      document.getElementById("riskPercent").value
+      document.getElementById(
+        "riskPercent"
+      ).value
     );
 
   const result =
-    document.getElementById("calculatorResult");
+    document.getElementById(
+      "calculatorResult"
+    );
 
   if (
     !balance ||
@@ -522,6 +803,10 @@ function calculateRisk() {
 }
 
 
+/* =========================
+   DEMO TRADING
+========================= */
+
 function demoTrade(type) {
 
   const change =
@@ -531,7 +816,9 @@ function demoTrade(type) {
 
   demoBalance += change;
 
-  document.getElementById("demoBalance").textContent =
+  document.getElementById(
+    "demoBalance"
+  ).textContent =
     "$" +
     demoBalance.toLocaleString(
       undefined,
@@ -541,7 +828,9 @@ function demoTrade(type) {
       }
     );
 
-  document.getElementById("tradeMessage").textContent =
+  document.getElementById(
+    "tradeMessage"
+  ).textContent =
     `${type.toUpperCase()} demo trade simulated. Result: ${
       change >= 0 ? "+" : ""
     }$${change}.`;
@@ -554,18 +843,28 @@ function updateDemoPrice() {
     1.1000 +
     (Math.random() * 0.01 - 0.005);
 
-  const priceElement =
-    document.getElementById("demoPrice");
+  const element =
+    document.getElementById(
+      "demoPrice"
+    );
 
-  if (priceElement) {
-    priceElement.textContent =
+  if (element) {
+    element.textContent =
       price.toFixed(4);
   }
 }
 
 
-setInterval(updateDemoPrice, 3000);
+/* =========================
+   START APP
+========================= */
 
-
-renderLessons();
+updateStreak();
+updateXPDisplay();
 updateProgress();
+renderLessons();
+
+setInterval(
+  updateDemoPrice,
+  3000
+);
