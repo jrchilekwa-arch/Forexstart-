@@ -906,3 +906,64 @@ h2 {
     font-size: 11px;
   }
    }
+/* =====================================================
+   FINAL BUTTON + CARD FIX
+   ===================================================== */
+
+.hero .primary,
+.primary {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 100% !important;
+  min-height: 60px !important;
+
+  padding: 16px 24px !important;
+
+  background: #20d487 !important;
+  color: #06100c !important;
+
+  border: none !important;
+  border-radius: 14px !important;
+
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+
+  cursor: pointer !important;
+  box-shadow: none !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+}
+
+.hero .primary:hover,
+.primary:hover {
+  background: #14b873 !important;
+}
+
+.hero .primary:active,
+.primary:active {
+  transform: scale(0.98);
+}
+
+/* Make quick cards look correct */
+.quick-card {
+  background: #121e2e !important;
+  color: #f4f7fb !important;
+  border: 1px solid #263850 !important;
+  border-radius: 18px !important;
+}
+
+.quick-card h3 {
+  color: #f4f7fb !important;
+}
+
+.quick-card p {
+  color: #9baac0 !important;
+}
+
+/* Make all normal buttons inherit the app font */
+button {
+  font-family: Arial, Helvetica, sans-serif;
+}
