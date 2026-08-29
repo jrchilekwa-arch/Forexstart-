@@ -1,9 +1,6 @@
-/* =========================================================
-   FOREXSTART
-   Complete Mobile-First Stylesheet
-   ========================================================= */
-
-/* ---------- RESET ---------- */
+/* =====================================================
+   FOREXSTART - COMPLETE STYLE
+   ===================================================== */
 
 * {
   box-sizing: border-box;
@@ -16,103 +13,74 @@ html {
 }
 
 body {
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Arial,
-    sans-serif;
-
+  font-family: Arial, Helvetica, sans-serif;
   background: #08111f;
-  color: #f5f7fb;
+  color: #f4f7fb;
   min-height: 100vh;
-  line-height: 1.6;
   padding-bottom: 90px;
+  overflow-x: hidden;
 }
 
-button,
-input,
-select {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* ---------- COLORS ---------- */
+/* =====================================================
+   COLORS
+   ===================================================== */
 
 :root {
   --bg: #08111f;
-  --surface: #121d2d;
-  --surface-2: #172337;
-  --border: #263750;
-
-  --text: #f5f7fb;
-  --muted: #9aa8bd;
-
-  --green: #25d48a;
-  --green-dark: #19b978;
-
-  --yellow: #ffc928;
-  --red: #ff6b6b;
-
-  --max-width: 760px;
+  --card: #121e2e;
+  --card2: #162437;
+  --border: #263850;
+  --text: #f4f7fb;
+  --muted: #9baac0;
+  --green: #20d487;
+  --green-dark: #14b873;
+  --white: #ffffff;
 }
 
-/* =========================================================
-   TOP BAR
-   ========================================================= */
+/* =====================================================
+   HEADER
+   ===================================================== */
 
 .topbar {
   width: 100%;
-  height: 86px;
+  height: 105px;
+  background: #0a1423;
+  border-bottom: 1px solid var(--border);
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  padding: 0 24px;
+  padding: 0 38px;
 
-  background: rgba(8, 17, 31, 0.96);
-  border-bottom: 1px solid var(--border);
-
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 100;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 800;
   color: var(--text);
 }
 
 .logo-icon {
-  width: 42px;
-  height: 42px;
+  width: 48px;
+  height: 48px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border-radius: 10px;
-
   background: var(--green);
-  color: #06120d;
+  color: #06100c;
 
-  font-size: 24px;
+  border-radius: 12px;
+
+  font-size: 28px;
   font-weight: 900;
 }
 
@@ -122,473 +90,388 @@ a {
 
 .icon-btn,
 .menu-btn {
-  width: 54px;
-  height: 54px;
+  width: 64px;
+  height: 64px;
+
+  border-radius: 18px;
 
   border: 1px solid var(--border);
-  border-radius: 16px;
 
-  background: var(--surface);
+  background: #111e30;
   color: var(--text);
+
+  font-size: 32px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-size: 26px;
+  cursor: pointer;
 }
 
-/* =========================================================
-   MAIN CONTENT
-   ========================================================= */
+/* =====================================================
+   MAIN
+   ===================================================== */
 
 main {
   width: 100%;
-  max-width: var(--max-width);
+  max-width: 1100px;
   margin: 0 auto;
-
-  padding: 34px 20px 50px;
+  padding: 0 30px;
 }
 
-/* Screens */
+/* =====================================================
+   SCREENS
+   ===================================================== */
 
 .screen {
   display: none;
+  padding-top: 70px;
+  padding-bottom: 50px;
 }
 
 .screen.active {
   display: block;
 }
 
-/* =========================================================
+/* =====================================================
    HERO
-   ========================================================= */
+   ===================================================== */
 
 .hero {
-  padding: 34px 0 20px;
+  padding: 10px 0 60px;
 }
 
 .eyebrow {
   color: var(--green);
-
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 800;
-
-  letter-spacing: 1.2px;
-
-  margin-bottom: 12px;
+  letter-spacing: 1.5px;
+  margin-bottom: 22px;
 }
 
 .hero h1 {
-  font-size: clamp(42px, 10vw, 72px);
-
-  line-height: 1.03;
-
+  font-size: clamp(48px, 8vw, 82px);
+  line-height: 0.98;
   letter-spacing: -2px;
-
   font-weight: 850;
-
-  margin-bottom: 26px;
+  margin-bottom: 35px;
 }
 
 .lead {
+  max-width: 720px;
   color: var(--muted);
-
-  font-size: 20px;
-  line-height: 1.65;
-
-  max-width: 650px;
-
-  margin-bottom: 28px;
+  font-size: 24px;
+  line-height: 1.55;
+  margin-bottom: 38px;
 }
 
-/* =========================================================
+/* =====================================================
    BUTTONS
-   ========================================================= */
+   ===================================================== */
+
+button {
+  font-family: inherit;
+}
 
 .primary {
-  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
   min-height: 58px;
+  padding: 0 30px;
 
   border: none;
-  border-radius: 16px;
+  border-radius: 14px;
 
   background: var(--green);
-  color: #06120d;
+  color: #06100c;
 
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 800;
 
-  padding: 15px 22px;
+  cursor: pointer;
 
-  transition:
-    transform 0.15s ease,
-    background 0.15s ease;
+  transition: 0.2s ease;
 }
 
 .primary:hover {
   background: var(--green-dark);
+  transform: translateY(-2px);
 }
 
 .primary:active {
-  transform: scale(0.98);
+  transform: translateY(0);
 }
 
 .back-btn {
-  border: none;
   background: transparent;
+  border: none;
 
   color: var(--green);
 
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
 
-  margin-bottom: 22px;
-
-  padding: 8px 0;
-}
-
-/* =========================================================
-   HEADINGS
-   ========================================================= */
-
-.page-heading {
-  padding: 24px 0 30px;
-}
-
-.page-heading h1 {
-  font-size: clamp(38px, 9vw, 58px);
-
-  line-height: 1.08;
-
-  letter-spacing: -1.5px;
-
-  margin-bottom: 12px;
-}
-
-.page-heading p:not(.eyebrow) {
-  color: var(--muted);
-
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-/* =========================================================
-   PROGRESS CARD
-   ========================================================= */
-
-.progress-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  background: var(--surface);
-
-  border: 1px solid var(--border);
-  border-radius: 20px;
-
-  padding: 22px;
-
-  margin: 20px 0 32px;
-}
-
-.progress-card p {
-  color: var(--muted);
-  font-size: 15px;
-}
-
-.progress-card strong {
-  display: block;
-
-  font-size: 32px;
-
-  color: var(--text);
-}
-
-.progress-ring {
-  width: 72px;
-  height: 72px;
-
-  border-radius: 50%;
-
-  border: 7px solid var(--border);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: var(--green);
-
-  font-weight: 800;
-}
-
-/* =========================================================
-   QUICK START
-   ========================================================= */
-
-h2 {
-  font-size: 27px;
-  line-height: 1.2;
-
-  margin: 26px 0 16px;
-}
-
-.quick-card {
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-
-  gap: 16px;
-
-  background: var(--surface);
-
-  border: 1px solid var(--border);
-  border-radius: 18px;
-
-  padding: 19px;
-
-  margin-bottom: 12px;
-
-  transition:
-    transform 0.15s ease,
-    border-color 0.15s ease;
-}
-
-.quick-card:hover {
-  border-color: var(--green);
-}
-
-.quick-card:active {
-  transform: scale(0.98);
-}
-
-.quick-icon {
-  width: 48px;
-  height: 48px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 27px;
-
-  flex-shrink: 0;
-}
-
-.quick-card h3 {
-  font-size: 18px;
-  margin-bottom: 2px;
-}
-
-.quick-card p {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.arrow {
-  margin-left: auto;
-
-  font-size: 28px;
-  color: var(--muted);
-}
-
-/* =========================================================
-   LESSON LIST
-   ========================================================= */
-
-#lessonList {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.lesson-card {
-  position: relative;
-
-  background: var(--surface);
-
-  border: 1px solid var(--border);
-  border-radius: 20px;
-
-  padding: 24px;
-
   cursor: pointer;
-
-  transition:
-    transform 0.15s ease,
-    border-color 0.15s ease;
-}
-
-.lesson-card:hover {
-  border-color: var(--green);
-}
-
-.lesson-card:active {
-  transform: scale(0.985);
-}
-
-.lesson-card h3 {
-  font-size: 22px;
-  line-height: 1.3;
-
-  margin: 5px 35px 7px;
-}
-
-.lesson-card p {
-  color: var(--muted);
-
-  font-size: 16px;
-
-  margin-left: 35px;
-}
-
-.lesson-number {
-  color: var(--green);
-
-  font-size: 13px;
-  font-weight: 800;
-
-  letter-spacing: 0.8px;
-}
-
-.lesson-card .arrow {
-  position: absolute;
-
-  right: 22px;
-  top: 50%;
-
-  transform: translateY(-50%);
-}
-
-/* Support alternate lesson-card markup */
-
-.lesson {
-  background: var(--surface);
-
-  border: 1px solid var(--border);
-  border-radius: 20px;
-
-  padding: 24px;
-
-  margin-bottom: 14px;
-}
-
-.lesson h3 {
-  font-size: 22px;
-  margin-bottom: 6px;
-}
-
-.lesson p {
-  color: var(--muted);
-}
-
-/* =========================================================
-   LESSON CONTENT
-   ========================================================= */
-
-.lesson-content {
-  background: var(--surface);
-
-  border: 1px solid var(--border);
-  border-radius: 22px;
-
-  padding: 28px 22px;
 
   margin-bottom: 30px;
 }
 
-.lesson-content h1,
-.lesson-content h2 {
-  margin-top: 0;
-  margin-bottom: 16px;
-}
+/* =====================================================
+   PROGRESS CARD
+   ===================================================== */
 
-.lesson-content h1 {
-  font-size: clamp(34px, 8vw, 52px);
-  line-height: 1.1;
-}
-
-.lesson-content h2 {
-  font-size: 30px;
-  margin-top: 28px;
-}
-
-.lesson-content h3 {
-  font-size: 22px;
-  margin: 24px 0 8px;
-}
-
-.lesson-content p {
-  color: #b7c2d3;
-
-  font-size: 18px;
-
-  line-height: 1.75;
-
-  margin-bottom: 18px;
-}
-
-.lesson-content ul,
-.lesson-content ol {
-  padding-left: 24px;
-
-  color: #b7c2d3;
-
-  font-size: 17px;
-}
-
-.lesson-content li {
-  margin-bottom: 10px;
-}
-
-.lesson-content strong {
-  color: var(--text);
-}
-
-.lesson-content .tip,
-.tip {
-  background: #0d1828;
-
-  border-left: 4px solid var(--green);
-
-  border-radius: 12px;
-
-  padding: 18px;
-
-  margin-top: 24px;
-}
-
-.lesson-content .tip p,
-.tip p {
-  margin-bottom: 0;
-}
-
-/* =========================================================
-   CALCULATOR
-   ========================================================= */
-
-.calculator-card {
-  background: var(--surface);
-
+.progress-card {
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: 22px;
 
-  padding: 24px;
+  padding: 28px;
 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 45px;
+}
+
+.progress-card p {
+  color: var(--muted);
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.progress-card strong {
+  font-size: 40px;
+}
+
+.progress-ring {
+  width: 90px;
+  height: 90px;
+
+  border-radius: 50%;
+
+  border: 8px solid #203149;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-ring span {
+  font-weight: 800;
+  color: var(--green);
+}
+
+/* =====================================================
+   HEADINGS
+   ===================================================== */
+
+.page-heading {
+  margin-bottom: 45px;
+}
+
+.page-heading h1 {
+  font-size: clamp(44px, 7vw, 70px);
+  line-height: 1;
+  margin-bottom: 18px;
+}
+
+.page-heading p {
+  color: var(--muted);
+  font-size: 22px;
+  line-height: 1.5;
+}
+
+/* =====================================================
+   SECTION HEADINGS
+   ===================================================== */
+
+h2 {
+  font-size: 32px;
   margin-bottom: 20px;
+}
+
+/* =====================================================
+   QUICK CARDS
+   ===================================================== */
+
+.quick-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+
+  border-radius: 18px;
+
+  padding: 22px;
+
+  margin-bottom: 15px;
+
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.quick-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--green);
+}
+
+.quick-icon {
+  font-size: 32px;
+  width: 45px;
+  text-align: center;
+}
+
+.quick-card h3 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.quick-card p {
+  color: var(--muted);
+}
+
+.arrow {
+  margin-left: auto;
+  font-size: 32px;
+  color: var(--green);
+}
+
+/* =====================================================
+   LESSON LIST
+   ===================================================== */
+
+#lessonList {
+  display: grid;
+  gap: 18px;
+}
+
+.lesson-card {
+  background: var(--card);
+
+  border: 1px solid var(--border);
+
+  border-radius: 20px;
+
+  padding: 28px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.lesson-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--green);
+}
+
+.lesson-number {
+  color: var(--green);
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.lesson-card h3 {
+  font-size: 25px;
+  margin-bottom: 8px;
+}
+
+.lesson-card p {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.lesson-card .arrow {
+  float: right;
+}
+
+/* =====================================================
+   LESSON CONTENT
+   ===================================================== */
+
+.lesson-content {
+  background: var(--card);
+
+  border: 1px solid var(--border);
+
+  border-radius: 22px;
+
+  padding: 35px;
+
+  max-width: 850px;
+}
+
+.lesson-content h1 {
+  font-size: clamp(38px, 6vw, 60px);
+  line-height: 1.05;
+  margin-bottom: 25px;
+}
+
+.lesson-content h2 {
+  font-size: 34px;
+  margin-top: 35px;
+  margin-bottom: 15px;
+}
+
+.lesson-content p {
+  color: #b9c5d6;
+  font-size: 20px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.lesson-content ul {
+  padding-left: 25px;
+  color: #b9c5d6;
+  line-height: 1.8;
+  font-size: 18px;
+}
+
+.lesson-content .tip {
+  background: #102a25;
+  border-left: 4px solid var(--green);
+
+  padding: 20px;
+  margin-top: 25px;
+
+  border-radius: 10px;
+}
+
+/* =====================================================
+   CALCULATOR
+   ===================================================== */
+
+.calculator-card {
+  background: var(--card);
+
+  border: 1px solid var(--border);
+
+  border-radius: 22px;
+
+  padding: 30px;
+
+  margin-bottom: 25px;
 }
 
 .calculator-card label {
   display: block;
 
-  color: #c0cada;
+  color: #c5cfdd;
 
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 700;
 
-  margin: 18px 0 8px;
+  margin-bottom: 9px;
+  margin-top: 20px;
 }
 
 .calculator-card label:first-child {
@@ -596,188 +479,430 @@ h2 {
 }
 
 .calculator-card input,
-.calculator-card select,
-input,
-select {
+.calculator-card select {
   width: 100%;
 
-  min-height: 54px;
+  height: 58px;
 
-  background: #0b1423;
+  padding: 0 16px;
+
+  border-radius: 12px;
 
   border: 1px solid var(--border);
-  border-radius: 12px;
+
+  background: #091321;
 
   color: var(--text);
 
-  padding: 13px 15px;
+  font-size: 18px;
 
   outline: none;
 }
 
 .calculator-card input:focus,
-.calculator-card select:focus,
-input:focus,
-select:focus {
+.calculator-card select:focus {
   border-color: var(--green);
 }
 
 .calculator-card .primary {
-  margin-top: 22px;
+  width: 100%;
+  margin-top: 25px;
 }
 
 .result-box {
-  background: #0b1423;
+  margin-top: 20px;
+
+  padding: 20px;
+
+  background: #0a1727;
 
   border: 1px solid var(--border);
-  border-radius: 14px;
 
-  padding: 18px;
+  border-radius: 12px;
 
-  margin-top: 18px;
+  color: var(--green);
 
-  color: var(--muted);
-
-  font-size: 17px;
+  font-size: 20px;
+  font-weight: 700;
 
   text-align: center;
 }
 
-.result-box strong {
-  display: block;
-
-  color: var(--green);
-
-  font-size: 30px;
-}
-
-/* =========================================================
-   INFO CARDS
-   ========================================================= */
-
 .info-card {
-  background: var(--surface);
+  background: var(--card);
 
   border: 1px solid var(--border);
+
   border-radius: 20px;
 
-  padding: 22px;
+  padding: 28px;
 
-  margin-bottom: 20px;
+  margin-top: 25px;
 }
 
 .info-card h2 {
-  margin-top: 0;
-
-  font-size: 23px;
+  margin-bottom: 15px;
 }
 
 .info-card p {
   color: var(--muted);
-
-  font-size: 16px;
-
-  line-height: 1.7;
+  font-size: 18px;
+  line-height: 1.6;
 }
 
-/* =========================================================
+.tip {
+  margin-top: 20px;
+
+  padding: 20px;
+
+  background: #101f2e;
+
+  border-left: 4px solid var(--green);
+
+  border-radius: 10px;
+}
+
+.tip strong {
+  color: var(--green);
+}
+
+/* =====================================================
    QUIZ
-   ========================================================= */
+   ===================================================== */
 
 .quiz-card {
-  background: var(--surface);
+  background: var(--card);
 
   border: 1px solid var(--border);
+
   border-radius: 22px;
 
-  padding: 24px;
+  padding: 30px;
 }
 
 .quiz-question {
-  font-size: 23px;
+  font-size: 25px;
+  font-weight: 800;
 
-  line-height: 1.4;
-
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 
-.quiz-options {
-  display: flex;
-  flex-direction: column;
-
-  gap: 12px;
-}
-
-.quiz-option,
-.answer-btn {
+.quiz-answer {
   width: 100%;
 
-  background: #0d1727;
+  padding: 16px;
+
+  margin-bottom: 12px;
+
+  border-radius: 12px;
+
+  border: 1px solid var(--border);
+
+  background: #0d1929;
 
   color: var(--text);
 
-  border: 1px solid var(--border);
-
-  border-radius: 13px;
-
-  padding: 15px 16px;
-
   text-align: left;
 
-  font-size: 16px;
+  font-size: 17px;
 
-  transition:
-    background 0.15s ease,
-    border-color 0.15s ease;
+  cursor: pointer;
 }
 
-.quiz-option:hover,
-.answer-btn:hover {
+.quiz-answer:hover {
   border-color: var(--green);
-  background: #122137;
+  background: #122235;
 }
 
-.quiz-option.correct,
-.answer-btn.correct {
+.quiz-answer.correct {
+  background: #123b2d;
   border-color: var(--green);
-  background: rgba(37, 212, 138, 0.12);
 }
 
-.quiz-option.wrong,
-.answer-btn.wrong {
-  border-color: var(--red);
-  background: rgba(255, 107, 107, 0.1);
+.quiz-answer.wrong {
+  background: #3b2020;
+  border-color: #e85d5d;
 }
 
-/* Fix default buttons appearing white */
-
-.quiz-card button {
-  appearance: none;
-  -webkit-appearance: none;
-}
-
-/* =========================================================
+/* =====================================================
    PROGRESS PAGE
-   ========================================================= */
+   ===================================================== */
 
 .progress-big-card {
-  background: var(--surface);
+  background: var(--card);
 
   border: 1px solid var(--border);
+
   border-radius: 22px;
 
-  padding: 28px 22px;
+  padding: 35px;
 
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .big-number {
+  font-size: 70px;
+  font-weight: 850;
   color: var(--green);
 
-  font-size: 64px;
+  margin-bottom: 15px;
+}
 
+.progress-big-card p {
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 12px;
+
+  background: #091321;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  margin-top: 25px;
+}
+
+.progress-bar div {
+  width: 0%;
+  height: 100%;
+
+  background: var(--green);
+
+  border-radius: 20px;
+
+  transition: width 0.4s ease;
+}
+
+/* =====================================================
+   BOTTOM NAVIGATION
+   ===================================================== */
+
+.bottom-nav {
+  position: fixed;
+
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: 82px;
+
+  background: #0d1828;
+
+  border-top: 1px solid var(--border);
+
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+
+  z-index: 999;
+}
+
+.bottom-nav button {
+  flex: 1;
+
+  border: none;
+
+  background: transparent;
+
+  color: #9aa9bd;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+}
+
+.bottom-nav button span {
+  font-size: 24px;
   line-height: 1;
+}
 
-  font-weight: 850;
+.bottom-nav button small {
+  font-size: 13px;
+  font-weight: 600;
+}
 
-  margin-bottom: 18
+.bottom-nav button.active {
+  color: var(--green);
+}
+
+.bottom-nav button:hover {
+  color: var(--green);
+}
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 700px) {
+
+  body {
+    padding-bottom: 82px;
+  }
+
+  .topbar {
+    height: 90px;
+    padding: 0 20px;
+  }
+
+  .logo {
+    font-size: 25px;
+  }
+
+  .logo-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 25px;
+  }
+
+  .icon-btn,
+  .menu-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    font-size: 27px;
+  }
+
+  main {
+    padding: 0 20px;
+  }
+
+  .screen {
+    padding-top: 48px;
+  }
+
+  .hero {
+    padding-top: 0;
+    padding-bottom: 45px;
+  }
+
+  .hero h1 {
+    font-size: 52px;
+    letter-spacing: -1.5px;
+    margin-bottom: 25px;
+  }
+
+  .lead {
+    font-size: 19px;
+    line-height: 1.55;
+    margin-bottom: 28px;
+  }
+
+  .primary {
+    width: 100%;
+    min-height: 56px;
+    font-size: 17px;
+  }
+
+  .progress-card {
+    padding: 22px;
+  }
+
+  .progress-card strong {
+    font-size: 32px;
+  }
+
+  .progress-ring {
+    width: 70px;
+    height: 70px;
+  }
+
+  .page-heading h1 {
+    font-size: 46px;
+  }
+
+  .page-heading p {
+    font-size: 19px;
+  }
+
+  .lesson-content {
+    padding: 25px;
+  }
+
+  .lesson-content h1 {
+    font-size: 40px;
+  }
+
+  .lesson-content h2 {
+    font-size: 30px;
+  }
+
+  .lesson-content p {
+    font-size: 18px;
+  }
+
+  .calculator-card,
+  .quiz-card,
+  .progress-big-card,
+  .info-card {
+    padding: 22px;
+  }
+
+  .big-number {
+    font-size: 58px;
+  }
+
+  .bottom-nav {
+    height: 78px;
+  }
+
+  .bottom-nav button span {
+    font-size: 21px;
+  }
+
+  .bottom-nav button small {
+    font-size: 12px;
+  }
+}
+
+/* =====================================================
+   SMALL PHONES
+   ===================================================== */
+
+@media (max-width: 400px) {
+
+  .topbar {
+    padding: 0 15px;
+  }
+
+  main {
+    padding: 0 15px;
+  }
+
+  .logo {
+    font-size: 22px;
+  }
+
+  .logo-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 22px;
+  }
+
+  .hero h1 {
+    font-size: 44px;
+  }
+
+  .lead {
+    font-size: 17px;
+  }
+
+  .bottom-nav button span {
+    font-size: 19px;
+  }
+
+  .bottom-nav button small {
+    font-size: 11px;
+  }
+   }
