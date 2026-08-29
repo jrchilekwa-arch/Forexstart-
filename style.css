@@ -1,10 +1,7 @@
 /* =========================================================
-   FOREXSTART
-   COMPLETE STYLE SHEET
-   Matched to the supplied index.html
+   FOREXSTART - COMPLETE MOBILE STYLE
+   Works with the existing index.html + app.js
    ========================================================= */
-
-/* ---------- RESET ---------- */
 
 * {
   box-sizing: border-box;
@@ -17,340 +14,755 @@ html {
 }
 
 body {
-  min-height: 100vh;
-  background: #08111f;
-  color: #f4f7fb;
   font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.6;
+  background: #07111f;
+  color: #f4f7fb;
+  min-height: 100vh;
   padding-bottom: 95px;
-}
-
-button,
-input,
-select {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-/* ---------- COLORS ---------- */
-
-:root {
-  --bg: #08111f;
-  --card: #121e2e;
-  --card2: #162438;
-  --border: #263950;
-  --text: #f4f7fb;
-  --muted: #98a8bd;
-  --green: #20d487;
-  --green-dark: #12b873;
-  --dark-green: #06130d;
-  --gold: #ffc928;
-  --danger: #ff6b6b;
+  line-height: 1.5;
 }
 
 /* =========================================================
-   TOP HEADER
+   HEADER
    ========================================================= */
 
 .topbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-
-  width: 100%;
-  min-height: 105px;
-
+  height: 120px;
+  background: #0a1525;
+  border-bottom: 2px solid #1c3047;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  padding: 22px 30px;
-
-  background: #08111f;
-  border-bottom: 1px solid var(--border);
+  padding: 0 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
-
-/* Logo */
 
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  color: var(--text);
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 800;
-  letter-spacing: -1px;
+  color: #f5f7fb;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.logo-icon {
-  width: 48px;
-  height: 48px;
-
+.menu-btn {
+  width: 108px;
+  height: 108px;
+  border-radius: 26px;
+  border: 2px solid #263b54;
+  background: #111f31;
+  color: white;
+  font-size: 50px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  background: white;
-  color: #e53935;
-
-  border-radius: 6px;
-
-  font-size: 27px;
-  font-weight: 900;
-}
-
-.accent {
-  color: var(--green);
-}
-
-/* Theme / menu button */
-
-.icon-btn {
-  width: 62px;
-  height: 62px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: var(--card);
-  color: var(--text);
-
-  border: 1px solid var(--border);
-  border-radius: 18px;
-
-  font-size: 27px;
-}
-
-.icon-btn:active {
-  transform: scale(0.96);
 }
 
 /* =========================================================
-   MAIN
+   MAIN CONTENT
    ========================================================= */
 
 main {
   width: 100%;
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 65px 30px 30px;
 }
 
-/* Screens */
-
-.screen {
-  display: none;
-  min-height: calc(100vh - 105px);
-  padding-top: 70px;
-  padding-bottom: 40px;
+section {
+  width: 100%;
 }
 
-.screen.active {
-  display: block;
+h1 {
+  font-size: 64px;
+  line-height: 1.05;
+  margin: 12px 0 25px;
+  font-weight: 800;
+  color: #f7f8fb;
+}
+
+h2 {
+  font-size: 42px;
+  line-height: 1.15;
+  margin: 25px 0 18px;
+  color: #f7f8fb;
+}
+
+h3 {
+  font-size: 30px;
+  margin: 20px 0 12px;
+}
+
+p {
+  font-size: 22px;
+  color: #aeb9ca;
+  margin-bottom: 18px;
+}
+
+small {
+  color: #93a1b4;
 }
 
 /* =========================================================
-   HOME / HERO
+   GREEN LABELS
+   ========================================================= */
+
+main section > p:first-child,
+.eyebrow,
+.label {
+  color: #35d39a;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   HERO
    ========================================================= */
 
 .hero {
-  padding-top: 20px;
-  margin-bottom: 48px;
-}
-
-.eyebrow {
-  margin-bottom: 14px;
-
-  color: var(--green);
-
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
+  padding: 20px 0 45px;
 }
 
 .hero h1 {
-  margin-bottom: 28px;
-
-  font-size: clamp(48px, 9vw, 82px);
-  line-height: 0.98;
-  letter-spacing: -3px;
-  font-weight: 900;
+  max-width: 700px;
 }
 
-.lead {
-  max-width: 720px;
-  margin-bottom: 30px;
+.hero p {
+  max-width: 700px;
+  font-size: 23px;
+}
 
-  color: var(--muted);
-
-  font-size: 21px;
-  line-height: 1.65;
+.hero button {
+  margin-top: 10px;
 }
 
 /* =========================================================
-   PRIMARY BUTTON
+   GENERAL BUTTON FIX
+   This is important because your app.js creates buttons
+   without the old CSS classes.
    ========================================================= */
 
-.primary {
-  width: 100%;
-  min-height: 62px;
+button {
+  font-family: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 16px 25px;
-
-  background: var(--green);
-  color: #04120b;
-
+main button {
   border: none;
-  border-radius: 16px;
-
-  font-size: 19px;
-  font-weight: 800;
-
-  appearance: none;
-  -webkit-appearance: none;
-
-  transition:
-    background 0.2s ease,
-    transform 0.15s ease;
+  border-radius: 14px;
+  background: #35d39a;
+  color: #04130d;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 16px 22px;
+  min-height: 52px;
+  transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
-.primary:hover {
-  background: var(--green-dark);
+main button:hover {
+  opacity: 0.9;
 }
 
-.primary:active {
-  transform: scale(0.98);
+main button:active {
+  transform: scale(0.97);
 }
 
 /* =========================================================
-   HOME PROGRESS
+   STATS
    ========================================================= */
 
-.progress-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 28px;
-
-  margin-bottom: 40px;
-
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 22px;
+.stats,
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 20px 0;
 }
 
-.progress-card p {
-  color: var(--muted);
+.stat,
+.stats > div,
+.stat-grid > div {
+  background: #111e30;
+  border: 1px solid #223650;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+}
+
+.stat strong,
+.stats strong {
+  display: block;
+  font-size: 25px;
+  margin-top: 4px;
+}
+
+/* =========================================================
+   PROGRESS
+   ========================================================= */
+
+.progress,
+.progress-card,
+.course-progress {
+  background: #111e30;
+  border: 1px solid #243a55;
+  border-radius: 20px;
+  padding: 25px;
+  margin: 20px 0;
+}
+
+.progress-bar,
+.progress-track {
+  width: 100%;
+  height: 10px;
+  background: #07111f;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #35d39a;
+  border-radius: 20px;
+  transition: width 0.3s ease;
+}
+
+/* =========================================================
+   HOME CARDS
+   ========================================================= */
+
+.card-grid,
+.feature-grid,
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 25px;
+}
+
+.card,
+.feature-card,
+.tool-card {
+  background: #111e30;
+  border: 1px solid #243a55;
+  border-radius: 18px;
+  padding: 22px;
+  color: #f4f7fb;
+}
+
+.card:hover,
+.feature-card:hover,
+.tool-card:hover {
+  border-color: #35d39a;
+}
+
+.card h3,
+.feature-card h3,
+.tool-card h3 {
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+.card p,
+.feature-card p,
+.tool-card p {
+  font-size: 16px;
+}
+
+/* =========================================================
+   LESSON LIST
+   ========================================================= */
+
+.lesson-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.lesson,
+.lesson-card {
+  background: #111e30;
+  border: 1px solid #263c57;
+  border-radius: 22px;
+  padding: 25px 30px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.15s ease;
+}
+
+.lesson:hover,
+.lesson-card:hover {
+  border-color: #35d39a;
+}
+
+.lesson:active,
+.lesson-card:active {
+  transform: scale(0.99);
+}
+
+.lesson h3,
+.lesson-card h3 {
+  font-size: 25px;
   margin-bottom: 5px;
 }
 
-.progress-card strong {
-  font-size: 42px;
-}
-
-/* Circular progress */
-
-.progress-ring {
-  width: 90px;
-  height: 90px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(circle, var(--card) 58%, transparent 60%),
-    conic-gradient(
-      var(--green) 0deg,
-      var(--green) 0deg,
-      #24344b 0deg
-    );
-
-  font-weight: 800;
-}
-
-/* =========================================================
-   QUICK START
-   ========================================================= */
-
-h2 {
-  margin-bottom: 20px;
-  font-size: 28px;
-}
-
-.quick-card {
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-  gap: 16px;
-
-  margin-bottom: 14px;
-  padding: 21px;
-
-  background: var(--card);
-  color: var(--text);
-
-  border: 1px solid var(--border);
-  border-radius: 18px;
-
-  transition: transform 0.15s ease, border-color 0.15s ease;
-}
-
-.quick-card:hover {
-  border-color: var(--green);
-}
-
-.quick-card:active {
-  transform: scale(0.985);
-}
-
-.quick-icon {
-  width: 50px;
-  height: 50px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 29px;
-}
-
-.quick-card > div:nth-child(2) {
-  flex: 1;
-}
-
-.quick-card h3 {
-  margin-bottom: 2px;
-  color: var(--text);
+.lesson p,
+.lesson-card p {
+  margin: 0;
   font-size: 18px;
 }
 
-.quick-card p {
-  color: var(--muted);
-  font-size: 14px;
+/* =========================================================
+   LESSON DETAIL
+   ========================================================= */
+
+.lesson-content,
+.lesson-detail,
+.lesson-page {
+  margin-top: 20px;
 }
 
-.arrow {
-  color: var(--green);
-  font-size: 30px;
+.back,
+.back-btn {
+  color: #35d39a;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 35px;
+}
+
+.lesson-content h1,
+.lesson-detail h1,
+.lesson-page h1 {
+  font-size: 54px;
+}
+
+.lesson-content h2,
+.lesson-detail h2,
+.lesson-page h2 {
+  font-size: 40px;
+}
+
+.lesson-content p,
+.lesson-detail p,
+.lesson-page p {
+  font-size: 21px;
+  line-height: 1.7;
 }
 
 /* =========================================================
-   PAGE HEADINGS
+   BEGINNER TIP
    ========================================================= */
 
-.page-heading {
-  margin-bottom: 35px
+.tip,
+.beginner-tip {
+  background: #102336;
+  border-left: 7px solid #35d39a;
+  border-radius: 16px;
+  padding: 22px;
+  margin: 25px 0;
+}
+
+.tip strong,
+.beginner-tip strong {
+  color: #35d39a;
+  font-size: 22px;
+}
+
+.tip p,
+.beginner-tip p {
+  margin: 8px 0 0;
+}
+
+/* =========================================================
+   LESSON BUTTONS
+   ========================================================= */
+
+.lesson-content button,
+.lesson-detail button,
+.lesson-page button {
+  width: 100%;
+  margin-top: 15px;
+  font-size: 18px;
+  padding: 17px;
+}
+
+/* =========================================================
+   QUIZ
+   ========================================================= */
+
+.quiz-container,
+.quiz-card {
+  background: #111e30;
+  border: 1px solid #263c57;
+  border-radius: 24px;
+  padding: 28px;
+  margin-top: 25px;
+}
+
+.quiz-container h2,
+.quiz-card h2 {
+  font-size: 28px;
+}
+
+/* Catch quiz answer buttons even if app.js didn't give
+   them a special class. */
+
+.quiz-container button,
+.quiz-card button {
+  width: 100%;
+  display: block;
+  text-align: left;
+  margin: 12px 0;
+  background: #0b1727;
+  color: #f4f7fb;
+  border: 2px solid #263c57;
+  border-radius: 16px;
+  padding: 18px 22px;
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.quiz-container button:hover,
+.quiz-card button:hover {
+  border-color: #35d39a;
+  background: #12253a;
+}
+
+/* Next question / submit button */
+
+.quiz-container button:last-child,
+.quiz-card button:last-child {
+  background: #35d39a;
+  color: #04130d;
+  border-color: #35d39a;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* =========================================================
+   RISK CALCULATOR
+   ========================================================= */
+
+.calculator,
+.risk-calculator,
+.tool-container {
+  background: #111e30;
+  border: 1px solid #263c57;
+  border-radius: 24px;
+  padding: 35px;
+  margin-top: 25px;
+}
+
+.calculator label,
+.risk-calculator label,
+.tool-container label {
+  display: block;
+  color: #c5cfdd;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+
+/* Inputs */
+
+.calculator input,
+.risk-calculator input,
+.tool-container input,
+input[type="number"],
+input[type="text"] {
+  width: 100%;
+  height: 64px;
+  background: #07111f;
+  color: #f4f7fb;
+  border: 2px solid #263c57;
+  border-radius: 18px;
+  padding: 0 20px;
+  font-size: 20px;
+  outline: none;
+  margin-bottom: 25px;
+}
+
+.calculator input:focus,
+.risk-calculator input:focus,
+.tool-container input:focus,
+input:focus {
+  border-color: #35d39a;
+}
+
+/* Calculator button */
+
+.calculator button,
+.risk-calculator button,
+.tool-container button {
+  width: 100%;
+  margin-top: 5px;
+  background: #35d39a;
+  color: #04130d;
+  border: none;
+  border-radius: 15px;
+  padding: 17px;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+/* Calculator result */
+
+.result,
+.calculator-result,
+.risk-result {
+  min-height: 65px;
+  background: #07111f;
+  border: 2px solid #263c57;
+  border-radius: 16px;
+  padding: 18px;
+  margin-top: 25px;
+  color: #35d39a;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   GENERIC INPUTS
+   ========================================================= */
+
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+/* =========================================================
+   BOTTOM NAVIGATION
+   ========================================================= */
+
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 92px;
+  background: #0b1727;
+  border-top: 2px solid #1e334b;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  z-index: 2000;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.bottom-nav button {
+  border: none;
+  background: transparent;
+  color: #aeb9ca;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-size: 17px;
+  font-weight: 500;
+  padding: 5px;
+}
+
+.bottom-nav button span {
+  font-size: 27px;
+  line-height: 1;
+}
+
+.bottom-nav button:hover {
+  color: #35d39a;
+}
+
+.bottom-nav button.active {
+  color: #35d39a;
+}
+
+/* =========================================================
+   SCREEN / PAGE VISIBILITY
+   ========================================================= */
+
+.screen,
+.page {
+  width: 100%;
+}
+
+/* =========================================================
+   MENU
+   ========================================================= */
+
+.menu {
+  background: #111e30;
+  border: 1px solid #263c57;
+  border-radius: 18px;
+  padding: 15px;
+}
+
+.menu button {
+  width: 100%;
+  background: transparent;
+  color: #f4f7fb;
+  text-align: left;
+  border: none;
+  padding: 15px;
+  font-size: 18px;
+}
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+a {
+  color: #35d39a;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .topbar {
+    height: 120px;
+    padding: 0 30px;
+  }
+
+  .logo {
+    font-size: 30px;
+  }
+
+  .menu-btn {
+    width: 88px;
+    height: 88px;
+    font-size: 42px;
+  }
+
+  main {
+    padding: 65px 29px 30px;
+  }
+
+  h1 {
+    font-size: 55px;
+  }
+
+  h2 {
+    font-size: 38px;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  .hero p {
+    font-size: 21px;
+  }
+
+  .stats,
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-grid,
+  .feature-grid,
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .calculator,
+  .risk-calculator,
+  .tool-container {
+    padding: 30px 28px;
+  }
+
+  .lesson-content h1,
+  .lesson-detail h1,
+  .lesson-page h1 {
+    font-size: 48px;
+  }
+
+  .lesson-content h2,
+  .lesson-detail h2,
+  .lesson-page h2 {
+    font-size: 38px;
+  }
+
+  .quiz-container,
+  .quiz-card {
+    padding: 25px 28px;
+  }
+
+  .bottom-nav {
+    height: 92px;
+  }
+}
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+  .topbar {
+    height: 110px;
+    padding: 0 25px;
+  }
+
+  .logo {
+    font-size: 27px;
+  }
+
+  .menu-btn {
+    width: 82px;
+    height: 82px;
+    border-radius: 22px;
+    font-size: 38px;
+  }
+
+  main {
+    padding: 55px 28px 30px;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+
+  h2 {
+    font-size: 34px;
+  }
+
+  p {
+    font-size: 19px;
+  }
+
+  .lesson-content h1,
+  .lesson-detail h1,
+  .lesson-page h1 {
+    font-size: 43px;
+  }
+
+  .lesson-content h2,
+  .lesson-detail h2,
+  .lesson-page h2 {
+    font-size: 34px;
+  }
+
+  .bottom-nav button {
+    font-size: 16px;
+  }
+
+  .bottom-nav button span {
+    font-size: 25px;
+  }
+}
+
+/* =========================================================
+   DARK
