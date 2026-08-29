@@ -1,6 +1,10 @@
-/* =====================================================
-   FOREXSTART - COMPLETE STYLE
-   ===================================================== */
+/* =========================================================
+   FOREXSTART
+   COMPLETE STYLE SHEET
+   Matched to the supplied index.html
+   ========================================================= */
+
+/* ---------- RESET ---------- */
 
 * {
   box-sizing: border-box;
@@ -13,58 +17,73 @@ html {
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
   background: #08111f;
   color: #f4f7fb;
-  min-height: 100vh;
-  padding-bottom: 90px;
-  overflow-x: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  padding-bottom: 95px;
 }
 
-/* =====================================================
-   COLORS
-   ===================================================== */
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ---------- COLORS ---------- */
 
 :root {
   --bg: #08111f;
   --card: #121e2e;
-  --card2: #162437;
-  --border: #263850;
+  --card2: #162438;
+  --border: #263950;
   --text: #f4f7fb;
-  --muted: #9baac0;
+  --muted: #98a8bd;
   --green: #20d487;
-  --green-dark: #14b873;
-  --white: #ffffff;
+  --green-dark: #12b873;
+  --dark-green: #06130d;
+  --gold: #ffc928;
+  --danger: #ff6b6b;
 }
 
-/* =====================================================
-   HEADER
-   ===================================================== */
+/* =========================================================
+   TOP HEADER
+   ========================================================= */
 
 .topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
   width: 100%;
-  height: 105px;
-  background: #0a1423;
-  border-bottom: 1px solid var(--border);
+  min-height: 105px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  padding: 0 38px;
+  padding: 22px 30px;
 
-  position: relative;
-  z-index: 100;
+  background: #08111f;
+  border-bottom: 1px solid var(--border);
 }
+
+/* Logo */
 
 .logo {
   display: flex;
   align-items: center;
   gap: 12px;
 
-  font-size: 30px;
-  font-weight: 800;
   color: var(--text);
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -1px;
 }
 
 .logo-icon {
@@ -75,12 +94,12 @@ body {
   align-items: center;
   justify-content: center;
 
-  background: var(--green);
-  color: #06100c;
+  background: white;
+  color: #e53935;
 
-  border-radius: 12px;
+  border-radius: 6px;
 
-  font-size: 28px;
+  font-size: 27px;
   font-weight: 900;
 }
 
@@ -88,882 +107,250 @@ body {
   color: var(--green);
 }
 
-.icon-btn,
-.menu-btn {
-  width: 64px;
-  height: 64px;
+/* Theme / menu button */
 
-  border-radius: 18px;
-
-  border: 1px solid var(--border);
-
-  background: #111e30;
-  color: var(--text);
-
-  font-size: 32px;
+.icon-btn {
+  width: 62px;
+  height: 62px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  cursor: pointer;
+  background: var(--card);
+  color: var(--text);
+
+  border: 1px solid var(--border);
+  border-radius: 18px;
+
+  font-size: 27px;
 }
 
-/* =====================================================
+.icon-btn:active {
+  transform: scale(0.96);
+}
+
+/* =========================================================
    MAIN
-   ===================================================== */
+   ========================================================= */
 
 main {
   width: 100%;
-  max-width: 1100px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 0 30px;
 }
 
-/* =====================================================
-   SCREENS
-   ===================================================== */
+/* Screens */
 
 .screen {
   display: none;
+  min-height: calc(100vh - 105px);
   padding-top: 70px;
-  padding-bottom: 50px;
+  padding-bottom: 40px;
 }
 
 .screen.active {
   display: block;
 }
 
-/* =====================================================
-   HERO
-   ===================================================== */
+/* =========================================================
+   HOME / HERO
+   ========================================================= */
 
 .hero {
-  padding: 10px 0 60px;
+  padding-top: 20px;
+  margin-bottom: 48px;
 }
 
 .eyebrow {
+  margin-bottom: 14px;
+
   color: var(--green);
+
   font-size: 14px;
   font-weight: 800;
   letter-spacing: 1.5px;
-  margin-bottom: 22px;
 }
 
 .hero h1 {
-  font-size: clamp(48px, 8vw, 82px);
+  margin-bottom: 28px;
+
+  font-size: clamp(48px, 9vw, 82px);
   line-height: 0.98;
-  letter-spacing: -2px;
-  font-weight: 850;
-  margin-bottom: 35px;
+  letter-spacing: -3px;
+  font-weight: 900;
 }
 
 .lead {
   max-width: 720px;
+  margin-bottom: 30px;
+
   color: var(--muted);
-  font-size: 24px;
-  line-height: 1.55;
-  margin-bottom: 38px;
+
+  font-size: 21px;
+  line-height: 1.65;
 }
 
-/* =====================================================
-   BUTTONS
-   ===================================================== */
-
-button {
-  font-family: inherit;
-}
+/* =========================================================
+   PRIMARY BUTTON
+   ========================================================= */
 
 .primary {
-  display: inline-flex;
+  width: 100%;
+  min-height: 62px;
+
+  display: flex;
   align-items: center;
   justify-content: center;
 
-  min-height: 58px;
-  padding: 0 30px;
-
-  border: none;
-  border-radius: 14px;
+  padding: 16px 25px;
 
   background: var(--green);
-  color: #06100c;
+  color: #04120b;
 
-  font-size: 18px;
+  border: none;
+  border-radius: 16px;
+
+  font-size: 19px;
   font-weight: 800;
 
-  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
 
-  transition: 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
 }
 
 .primary:hover {
   background: var(--green-dark);
-  transform: translateY(-2px);
 }
 
 .primary:active {
-  transform: translateY(0);
+  transform: scale(0.98);
 }
 
-.back-btn {
-  background: transparent;
-  border: none;
-
-  color: var(--green);
-
-  font-size: 18px;
-  font-weight: 700;
-
-  cursor: pointer;
-
-  margin-bottom: 30px;
-}
-
-/* =====================================================
-   PROGRESS CARD
-   ===================================================== */
+/* =========================================================
+   HOME PROGRESS
+   ========================================================= */
 
 .progress-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 22px;
-
-  padding: 28px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  margin-bottom: 45px;
+  padding: 28px;
+
+  margin-bottom: 40px;
+
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
 }
 
 .progress-card p {
   color: var(--muted);
-  font-size: 17px;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 }
 
 .progress-card strong {
-  font-size: 40px;
+  font-size: 42px;
 }
+
+/* Circular progress */
 
 .progress-ring {
   width: 90px;
   height: 90px;
 
-  border-radius: 50%;
-
-  border: 8px solid #203149;
-
   display: flex;
   align-items: center;
   justify-content: center;
-}
 
-.progress-ring span {
+  border-radius: 50%;
+
+  background:
+    radial-gradient(circle, var(--card) 58%, transparent 60%),
+    conic-gradient(
+      var(--green) 0deg,
+      var(--green) 0deg,
+      #24344b 0deg
+    );
+
   font-weight: 800;
-  color: var(--green);
 }
 
-/* =====================================================
-   HEADINGS
-   ===================================================== */
-
-.page-heading {
-  margin-bottom: 45px;
-}
-
-.page-heading h1 {
-  font-size: clamp(44px, 7vw, 70px);
-  line-height: 1;
-  margin-bottom: 18px;
-}
-
-.page-heading p {
-  color: var(--muted);
-  font-size: 22px;
-  line-height: 1.5;
-}
-
-/* =====================================================
-   SECTION HEADINGS
-   ===================================================== */
+/* =========================================================
+   QUICK START
+   ========================================================= */
 
 h2 {
-  font-size: 32px;
   margin-bottom: 20px;
+  font-size: 28px;
 }
 
-/* =====================================================
-   QUICK CARDS
-   ===================================================== */
-
 .quick-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-
-  border-radius: 18px;
-
-  padding: 22px;
-
-  margin-bottom: 15px;
+  width: 100%;
 
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
 
-  cursor: pointer;
+  margin-bottom: 14px;
+  padding: 21px;
 
-  transition: 0.2s ease;
+  background: var(--card);
+  color: var(--text);
+
+  border: 1px solid var(--border);
+  border-radius: 18px;
+
+  transition: transform 0.15s ease, border-color 0.15s ease;
 }
 
 .quick-card:hover {
-  transform: translateY(-2px);
   border-color: var(--green);
+}
+
+.quick-card:active {
+  transform: scale(0.985);
 }
 
 .quick-icon {
-  font-size: 32px;
-  width: 45px;
-  text-align: center;
-}
-
-.quick-card h3 {
-  font-size: 20px;
-  margin-bottom: 5px;
-}
-
-.quick-card p {
-  color: var(--muted);
-}
-
-.arrow {
-  margin-left: auto;
-  font-size: 32px;
-  color: var(--green);
-}
-
-/* =====================================================
-   LESSON LIST
-   ===================================================== */
-
-#lessonList {
-  display: grid;
-  gap: 18px;
-}
-
-.lesson-card {
-  background: var(--card);
-
-  border: 1px solid var(--border);
-
-  border-radius: 20px;
-
-  padding: 28px;
-
-  cursor: pointer;
-
-  transition: 0.2s ease;
-}
-
-.lesson-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--green);
-}
-
-.lesson-number {
-  color: var(--green);
-  font-size: 14px;
-  font-weight: 800;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-}
-
-.lesson-card h3 {
-  font-size: 25px;
-  margin-bottom: 8px;
-}
-
-.lesson-card p {
-  color: var(--muted);
-  font-size: 17px;
-  line-height: 1.5;
-}
-
-.lesson-card .arrow {
-  float: right;
-}
-
-/* =====================================================
-   LESSON CONTENT
-   ===================================================== */
-
-.lesson-content {
-  background: var(--card);
-
-  border: 1px solid var(--border);
-
-  border-radius: 22px;
-
-  padding: 35px;
-
-  max-width: 850px;
-}
-
-.lesson-content h1 {
-  font-size: clamp(38px, 6vw, 60px);
-  line-height: 1.05;
-  margin-bottom: 25px;
-}
-
-.lesson-content h2 {
-  font-size: 34px;
-  margin-top: 35px;
-  margin-bottom: 15px;
-}
-
-.lesson-content p {
-  color: #b9c5d6;
-  font-size: 20px;
-  line-height: 1.7;
-  margin-bottom: 20px;
-}
-
-.lesson-content ul {
-  padding-left: 25px;
-  color: #b9c5d6;
-  line-height: 1.8;
-  font-size: 18px;
-}
-
-.lesson-content .tip {
-  background: #102a25;
-  border-left: 4px solid var(--green);
-
-  padding: 20px;
-  margin-top: 25px;
-
-  border-radius: 10px;
-}
-
-/* =====================================================
-   CALCULATOR
-   ===================================================== */
-
-.calculator-card {
-  background: var(--card);
-
-  border: 1px solid var(--border);
-
-  border-radius: 22px;
-
-  padding: 30px;
-
-  margin-bottom: 25px;
-}
-
-.calculator-card label {
-  display: block;
-
-  color: #c5cfdd;
-
-  font-size: 17px;
-  font-weight: 700;
-
-  margin-bottom: 9px;
-  margin-top: 20px;
-}
-
-.calculator-card label:first-child {
-  margin-top: 0;
-}
-
-.calculator-card input,
-.calculator-card select {
-  width: 100%;
-
-  height: 58px;
-
-  padding: 0 16px;
-
-  border-radius: 12px;
-
-  border: 1px solid var(--border);
-
-  background: #091321;
-
-  color: var(--text);
-
-  font-size: 18px;
-
-  outline: none;
-}
-
-.calculator-card input:focus,
-.calculator-card select:focus {
-  border-color: var(--green);
-}
-
-.calculator-card .primary {
-  width: 100%;
-  margin-top: 25px;
-}
-
-.result-box {
-  margin-top: 20px;
-
-  padding: 20px;
-
-  background: #0a1727;
-
-  border: 1px solid var(--border);
-
-  border-radius: 12px;
-
-  color: var(--green);
-
-  font-size: 20px;
-  font-weight: 700;
-
-  text-align: center;
-}
-
-.info-card {
-  background: var(--card);
-
-  border: 1px solid var(--border);
-
-  border-radius: 20px;
-
-  padding: 28px;
-
-  margin-top: 25px;
-}
-
-.info-card h2 {
-  margin-bottom: 15px;
-}
-
-.info-card p {
-  color: var(--muted);
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-.tip {
-  margin-top: 20px;
-
-  padding: 20px;
-
-  background: #101f2e;
-
-  border-left: 4px solid var(--green);
-
-  border-radius: 10px;
-}
-
-.tip strong {
-  color: var(--green);
-}
-
-/* =====================================================
-   QUIZ
-   ===================================================== */
-
-.quiz-card {
-  background: var(--card);
-
-  border: 1px solid var(--border);
-
-  border-radius: 22px;
-
-  padding: 30px;
-}
-
-.quiz-question {
-  font-size: 25px;
-  font-weight: 800;
-
-  margin-bottom: 22px;
-}
-
-.quiz-answer {
-  width: 100%;
-
-  padding: 16px;
-
-  margin-bottom: 12px;
-
-  border-radius: 12px;
-
-  border: 1px solid var(--border);
-
-  background: #0d1929;
-
-  color: var(--text);
-
-  text-align: left;
-
-  font-size: 17px;
-
-  cursor: pointer;
-}
-
-.quiz-answer:hover {
-  border-color: var(--green);
-  background: #122235;
-}
-
-.quiz-answer.correct {
-  background: #123b2d;
-  border-color: var(--green);
-}
-
-.quiz-answer.wrong {
-  background: #3b2020;
-  border-color: #e85d5d;
-}
-
-/* =====================================================
-   PROGRESS PAGE
-   ===================================================== */
-
-.progress-big-card {
-  background: var(--card);
-
-  border: 1px solid var(--border);
-
-  border-radius: 22px;
-
-  padding: 35px;
-
-  margin-bottom: 25px;
-}
-
-.big-number {
-  font-size: 70px;
-  font-weight: 850;
-  color: var(--green);
-
-  margin-bottom: 15px;
-}
-
-.progress-big-card p {
-  color: var(--muted);
-  font-size: 18px;
-  line-height: 1.5;
-}
-
-.progress-bar {
-  width: 100%;
-  height: 12px;
-
-  background: #091321;
-
-  border-radius: 20px;
-
-  overflow: hidden;
-
-  margin-top: 25px;
-}
-
-.progress-bar div {
-  width: 0%;
-  height: 100%;
-
-  background: var(--green);
-
-  border-radius: 20px;
-
-  transition: width 0.4s ease;
-}
-
-/* =====================================================
-   BOTTOM NAVIGATION
-   ===================================================== */
-
-.bottom-nav {
-  position: fixed;
-
-  bottom: 0;
-  left: 0;
-
-  width: 100%;
-  height: 82px;
-
-  background: #0d1828;
-
-  border-top: 1px solid var(--border);
+  width: 50px;
+  height: 50px;
 
   display: flex;
-  align-items: stretch;
-  justify-content: space-around;
-
-  z-index: 999;
-}
-
-.bottom-nav button {
-  flex: 1;
-
-  border: none;
-
-  background: transparent;
-
-  color: #9aa9bd;
-
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  gap: 4px;
-
-  cursor: pointer;
-
-  font-size: 14px;
+  font-size: 29px;
 }
 
-.bottom-nav button span {
-  font-size: 24px;
-  line-height: 1;
-}
-
-.bottom-nav button small {
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.bottom-nav button.active {
-  color: var(--green);
-}
-
-.bottom-nav button:hover {
-  color: var(--green);
-}
-
-/* =====================================================
-   MOBILE
-   ===================================================== */
-
-@media (max-width: 700px) {
-
-  body {
-    padding-bottom: 82px;
-  }
-
-  .topbar {
-    height: 90px;
-    padding: 0 20px;
-  }
-
-  .logo {
-    font-size: 25px;
-  }
-
-  .logo-icon {
-    width: 42px;
-    height: 42px;
-    font-size: 25px;
-  }
-
-  .icon-btn,
-  .menu-btn {
-    width: 56px;
-    height: 56px;
-    border-radius: 16px;
-    font-size: 27px;
-  }
-
-  main {
-    padding: 0 20px;
-  }
-
-  .screen {
-    padding-top: 48px;
-  }
-
-  .hero {
-    padding-top: 0;
-    padding-bottom: 45px;
-  }
-
-  .hero h1 {
-    font-size: 52px;
-    letter-spacing: -1.5px;
-    margin-bottom: 25px;
-  }
-
-  .lead {
-    font-size: 19px;
-    line-height: 1.55;
-    margin-bottom: 28px;
-  }
-
-  .primary {
-    width: 100%;
-    min-height: 56px;
-    font-size: 17px;
-  }
-
-  .progress-card {
-    padding: 22px;
-  }
-
-  .progress-card strong {
-    font-size: 32px;
-  }
-
-  .progress-ring {
-    width: 70px;
-    height: 70px;
-  }
-
-  .page-heading h1 {
-    font-size: 46px;
-  }
-
-  .page-heading p {
-    font-size: 19px;
-  }
-
-  .lesson-content {
-    padding: 25px;
-  }
-
-  .lesson-content h1 {
-    font-size: 40px;
-  }
-
-  .lesson-content h2 {
-    font-size: 30px;
-  }
-
-  .lesson-content p {
-    font-size: 18px;
-  }
-
-  .calculator-card,
-  .quiz-card,
-  .progress-big-card,
-  .info-card {
-    padding: 22px;
-  }
-
-  .big-number {
-    font-size: 58px;
-  }
-
-  .bottom-nav {
-    height: 78px;
-  }
-
-  .bottom-nav button span {
-    font-size: 21px;
-  }
-
-  .bottom-nav button small {
-    font-size: 12px;
-  }
-}
-
-/* =====================================================
-   SMALL PHONES
-   ===================================================== */
-
-@media (max-width: 400px) {
-
-  .topbar {
-    padding: 0 15px;
-  }
-
-  main {
-    padding: 0 15px;
-  }
-
-  .logo {
-    font-size: 22px;
-  }
-
-  .logo-icon {
-    width: 38px;
-    height: 38px;
-    font-size: 22px;
-  }
-
-  .hero h1 {
-    font-size: 44px;
-  }
-
-  .lead {
-    font-size: 17px;
-  }
-
-  .bottom-nav button span {
-    font-size: 19px;
-  }
-
-  .bottom-nav button small {
-    font-size: 11px;
-  }
-   }
-/* =====================================================
-   FINAL BUTTON + CARD FIX
-   ===================================================== */
-
-.hero .primary,
-.primary {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  width: 100% !important;
-  min-height: 60px !important;
-
-  padding: 16px 24px !important;
-
-  background: #20d487 !important;
-  color: #06100c !important;
-
-  border: none !important;
-  border-radius: 14px !important;
-
-  font-family: Arial, Helvetica, sans-serif !important;
-  font-size: 18px !important;
-  font-weight: 800 !important;
-
-  cursor: pointer !important;
-  box-shadow: none !important;
-  appearance: none !important;
-  -webkit-appearance: none !important;
-}
-
-.hero .primary:hover,
-.primary:hover {
-  background: #14b873 !important;
-}
-
-.hero .primary:active,
-.primary:active {
-  transform: scale(0.98);
-}
-
-/* Make quick cards look correct */
-.quick-card {
-  background: #121e2e !important;
-  color: #f4f7fb !important;
-  border: 1px solid #263850 !important;
-  border-radius: 18px !important;
+.quick-card > div:nth-child(2) {
+  flex: 1;
 }
 
 .quick-card h3 {
-  color: #f4f7fb !important;
+  margin-bottom: 2px;
+  color: var(--text);
+  font-size: 18px;
 }
 
 .quick-card p {
-  color: #9baac0 !important;
+  color: var(--muted);
+  font-size: 14px;
 }
 
-/* Make all normal buttons inherit the app font */
-button {
-  font-family: Arial, Helvetica, sans-serif;
+.arrow {
+  color: var(--green);
+  font-size: 30px;
 }
+
+/* =========================================================
+   PAGE HEADINGS
+   ========================================================= */
+
+.page-heading {
+  margin-bottom: 35px
