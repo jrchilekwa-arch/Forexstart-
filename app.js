@@ -1,39 +1,30 @@
 /* =====================================================
-   FOREXSTART - CLEAN APP.JS
-   Matches the current index.html
-===================================================== */
+   FOREXSTART - COMPLETE APP JAVASCRIPT
+   ===================================================== */
 
-let completed = JSON.parse(
-  localStorage.getItem("fxCompleted") || "[]"
-);
-
-let xp = Number(localStorage.getItem("fxXP") || 0);
-let currentLesson = 0;
-let currentQuestion = 0;
-let quizScore = 0;
-
-/* =====================================================
-   LESSONS
-===================================================== */
+/* -----------------------------
+   APP DATA
+----------------------------- */
 
 const lessons = [
   {
     title: "What is Forex?",
-    desc: "Learn what forex trading means.",
+    description: "Learn what forex trading means.",
     content: `
-      <h1>What is Forex?</h1>
       <p>
         Forex means foreign exchange. It is the global market
         where currencies are bought and sold.
       </p>
 
-      <h2>Example</h2>
-      <p>
-        When you trade EUR/USD, you are comparing the euro
-        with the US dollar.
-      </p>
+      <div class="example-box">
+        <h3>Example</h3>
+        <p>
+          When you trade EUR/USD, you are comparing the euro
+          with the US dollar.
+        </p>
+      </div>
 
-      <div class="tip">
+      <div class="tip-box">
         <strong>💡 Beginner Tip</strong>
         <p>
           Start by learning how currencies and currency pairs
@@ -45,30 +36,28 @@ const lessons = [
 
   {
     title: "Currency Pairs",
-    desc: "Understand how currency pairs work.",
+    description: "Understand how currency pairs work.",
     content: `
-      <h1>Currency Pairs</h1>
-
       <p>
-        Forex currencies are traded in pairs.
+        Forex currencies are normally traded in pairs.
+        The first currency is called the base currency and
+        the second is called the quote currency.
       </p>
 
-      <h2>Example: EUR/USD</h2>
-
-      <p>
-        EUR is the base currency and USD is the quote currency.
-      </p>
-
-      <p>
-        If EUR/USD is 1.1000, it means approximately
-        1 euro is worth 1.10 US dollars.
-      </p>
-
-      <div class="tip">
-        <strong>💡 Remember</strong>
+      <div class="example-box">
+        <h3>Example</h3>
         <p>
-          The first currency is the base currency.
-          The second currency is the quote currency.
+          In EUR/USD, EUR is the base currency and USD is
+          the quote currency.
+        </p>
+      </div>
+
+      <div class="tip-box">
+        <strong>💡 Beginner Tip</strong>
+        <p>
+          Always look at both currencies in a pair.
+          The price tells you how much of the quote currency
+          is needed for one unit of the base currency.
         </p>
       </div>
     `
@@ -76,27 +65,27 @@ const lessons = [
 
   {
     title: "What is a Pip?",
-    desc: "Learn how traders measure price movement.",
+    description: "Learn how traders measure price movement.",
     content: `
-      <h1>What is a Pip?</h1>
-
       <p>
-        A pip is a common unit used to measure small
-        price movements in forex.
+        A pip is a common unit used to measure small price
+        movements in forex.
       </p>
 
-      <h2>Example</h2>
+      <div class="example-box">
+        <h3>Example</h3>
+        <p>
+          If EUR/USD moves from 1.1000 to 1.1001,
+          that is commonly a 1-pip movement.
+        </p>
+      </div>
 
-      <p>
-        If EUR/USD moves from 1.1000 to 1.1001,
-        that is commonly a 1-pip movement.
-      </p>
-
-      <div class="tip">
+      <div class="tip-box">
         <strong>💡 Beginner Tip</strong>
         <p>
-          Pips measure price movement. They do not automatically
-          tell you how much money you gained or lost.
+          Pips measure price movement. They do not
+          automatically tell you how much money you gained
+          or lost.
         </p>
       </div>
     `
@@ -104,60 +93,115 @@ const lessons = [
 
   {
     title: "Buy & Sell",
-    desc: "Understand basic buy and sell positions.",
+    description: "Understand basic buy and sell positions.",
     content: `
-      <h1>Buy & Sell</h1>
-
       <p>
-        A BUY position generally means you expect the price
-        to rise.
+        Forex traders can potentially benefit from prices
+        moving in either direction.
       </p>
 
-      <p>
-        A SELL position generally means you expect the price
-        to fall.
-      </p>
-
-      <h2>Simple Example</h2>
-
-      <p>
-        If you buy EUR/USD at 1.1000 and the price rises,
-        the position may gain before costs.
-      </p>
-
-      <div class="tip">
-        <strong>⚠️ Important</strong>
+      <div class="example-box">
+        <h3>Buy</h3>
         <p>
-          Markets can move against you. There is no guaranteed
-          profit in forex trading.
+          A trader buys when they expect the price to rise.
+        </p>
+
+        <h3>Sell</h3>
+        <p>
+          A trader sells when they expect the price to fall.
+        </p>
+      </div>
+
+      <div class="tip-box">
+        <strong>💡 Beginner Tip</strong>
+        <p>
+          Never enter a trade simply because you think
+          the price will move. Learn risk management first.
         </p>
       </div>
     `
   },
 
   {
-    title: "Risk Management",
-    desc: "Learn how to protect your trading account.",
+    title: "Bid & Ask",
+    description: "Learn the difference between bid and ask prices.",
     content: `
-      <h1>Risk Management</h1>
-
       <p>
-        Risk management is one of the most important skills
-        for a beginner trader.
+        Forex prices normally contain a bid price and an ask
+        price.
       </p>
 
-      <h2>Why it matters</h2>
-
-      <p>
-        A trader should decide how much they are willing to risk
-        before entering a trade.
-      </p>
-
-      <div class="tip">
-        <strong>🛡️ Beginner Rule</strong>
+      <div class="example-box">
+        <h3>Bid</h3>
         <p>
-          Practice with virtual money while learning.
-          Never risk money you cannot afford to lose.
+          The price at which the market is willing to buy.
+        </p>
+
+        <h3>Ask</h3>
+        <p>
+          The price at which the market is willing to sell.
+        </p>
+      </div>
+
+      <div class="tip-box">
+        <strong>💡 Beginner Tip</strong>
+        <p>
+          The difference between the bid and ask is called
+          the spread.
+        </p>
+      </div>
+    `
+  },
+
+  {
+    title: "Spread",
+    description: "Understand one of the costs of trading.",
+    content: `
+      <p>
+        The spread is the difference between the bid price
+        and the ask price.
+      </p>
+
+      <div class="example-box">
+        <h3>Example</h3>
+        <p>
+          If the bid is 1.1000 and the ask is 1.1002,
+          the difference is 2 pips.
+        </p>
+      </div>
+
+      <div class="tip-box">
+        <strong>💡 Beginner Tip</strong>
+        <p>
+          Trading costs can affect your results, so learn
+          about spreads before trading real money.
+        </p>
+      </div>
+    `
+  },
+
+  {
+    title: "Leverage",
+    description: "Learn why leverage can increase risk.",
+    content: `
+      <p>
+        Leverage allows a trader to control a larger position
+        using a smaller amount of capital.
+      </p>
+
+      <div class="example-box">
+        <h3>Important</h3>
+        <p>
+          Leverage can increase potential gains, but it can
+          also increase potential losses.
+        </p>
+      </div>
+
+      <div class="tip-box">
+        <strong>⚠️ Beginner Warning</strong>
+        <p>
+          Never use high leverage simply because it is available.
+          Understand the risks first.
         </p>
       </div>
     `
@@ -165,135 +209,91 @@ const lessons = [
 
   {
     title: "Stop Loss",
-    desc: "Learn the purpose of a stop-loss order.",
+    description: "Learn how traders can limit potential losses.",
     content: `
-      <h1>Stop Loss</h1>
-
       <p>
-        A stop loss is designed to close a position when
-        price reaches a chosen level.
+        A stop-loss order is a trading instruction designed
+        to close a position when price reaches a specified
+        level.
       </p>
 
-      <p>
-        Traders can use stop losses to help control
-        potential losses.
-      </p>
-
-      <div class="tip">
-        <strong>💡 Practice Tip</strong>
+      <div class="example-box">
+        <h3>Purpose</h3>
         <p>
-          Decide where your trade idea is invalidated before
-          entering a practice trade.
+          Traders may use stop losses to help control how much
+          they are willing to risk on a trade.
+        </p>
+      </div>
+
+      <div class="tip-box">
+        <strong>💡 Beginner Tip</strong>
+        <p>
+          Risk management is one of the most important skills
+          a new trader can learn.
         </p>
       </div>
     `
   },
 
   {
-    title: "Take Profit",
-    desc: "Learn how traders plan a target.",
+    title: "Risk Management",
+    description: "Learn how to think about trading risk.",
     content: `
-      <h1>Take Profit</h1>
-
       <p>
-        A take-profit order is intended to close a position
-        at a chosen target.
+        Risk management means planning how much money you are
+        willing to risk before entering a trade.
       </p>
 
-      <p>
-        Planning an exit before entering can help keep
-        your trading decisions disciplined.
-      </p>
+      <div class="example-box">
+        <h3>Example</h3>
+        <p>
+          A trader might decide to risk only a small percentage
+          of their account on one trade.
+        </p>
+      </div>
+
+      <div class="tip-box">
+        <strong>💡 Beginner Tip</strong>
+        <p>
+          Protecting your trading capital is more important
+          than trying to make quick profits.
+        </p>
+      </div>
     `
   },
 
   {
     title: "Trading Psychology",
-    desc: "Understand emotions and trading decisions.",
+    description: "Understand the importance of discipline.",
     content: `
-      <h1>Trading Psychology</h1>
-
       <p>
-        Trading decisions can be affected by emotions such as
-        fear, greed, FOMO and frustration.
+        Trading psychology involves emotions, discipline,
+        patience and decision-making.
       </p>
 
-      <h2>Good habits</h2>
-
-      <p>
-        Follow a written plan, accept that losses can happen,
-        and avoid making decisions based only on emotion.
-      </p>
-
-      <div class="tip">
-        <strong>🧠 Remember</strong>
+      <div class="example-box">
+        <h3>Common emotions</h3>
         <p>
-          Your goal while learning should be discipline and
-          understanding, not quick profits.
+          Fear, greed, excitement and frustration can all
+          influence trading decisions.
         </p>
       </div>
-    `
-  },
 
-  {
-    title: "Demo Trading",
-    desc: "Practice trading without real money.",
-    content: `
-      <h1>Demo Trading</h1>
-
-      <p>
-        A demo account lets you practice using virtual money
-        instead of risking real funds.
-      </p>
-
-      <h2>Practice</h2>
-
-      <p>
-        Learn how to open and close positions, use stop losses,
-        calculate risk and keep a trading journal.
-      </p>
-
-      <div class="tip">
-        <strong>🎯 Goal</strong>
+      <div class="tip-box">
+        <strong>💡 Beginner Tip</strong>
         <p>
-          Focus on learning the platform and building good
-          habits before considering real-money trading.
-        </p>
-      </div>
-    `
-  },
-
-  {
-    title: "Trading Checklist",
-    desc: "Review the basics before a practice trade.",
-    content: `
-      <h1>Trading Checklist</h1>
-
-      <p>Before a practice trade, ask yourself:</p>
-
-      <ul>
-        <li>Do I understand the setup?</li>
-        <li>Where is my entry?</li>
-        <li>Where is my stop loss?</li>
-        <li>Where is my target?</li>
-        <li>How much am I risking?</li>
-        <li>Am I following my plan?</li>
-      </ul>
-
-      <div class="tip">
-        <strong>✅ Final Tip</strong>
-        <p>
-          Slow, planned decisions are better than impulsive
-          decisions while learning.
+          Build your knowledge and practice with a demo account
+          before considering real-money trading.
         </p>
       </div>
     `
   }
 ];
 
-/* =====================================================
-   QUIZ
-===================================================== */
+
+/* -----------------------------
+   QUIZ DATA
+----------------------------- */
 
 const questions = [
   {
@@ -308,165 +308,199 @@ const questions = [
   },
 
   {
-    question: "What is EUR/USD?",
+    question: "What does EUR/USD represent?",
     answers: [
+      "Two stocks",
       "A currency pair",
-      "A stock",
       "A cryptocurrency",
       "A bank account"
     ],
-    correct: 0
+    correct: 1
   },
 
   {
-    question: "What does a pip measure?",
+    question: "What is a pip commonly used to measure?",
     answers: [
-      "Account balance",
+      "Account age",
       "Price movement",
-      "Trading time",
+      "Trading hours",
       "Broker fees"
     ],
     correct: 1
   },
 
   {
-    question: "What does BUY generally mean?",
+    question: "What is the spread?",
     answers: [
-      "You expect price to rise",
-      "You expect price to fall",
-      "You close the account",
-      "You stop trading"
+      "The difference between bid and ask",
+      "Your account balance",
+      "Your trading password",
+      "A type of currency"
     ],
     correct: 0
   },
 
   {
-    question: "Why use a demo account?",
+    question: "What can leverage do?",
     answers: [
-      "To guarantee profits",
-      "To practice without real money",
-      "To avoid learning",
-      "To borrow money"
+      "Remove all trading risk",
+      "Increase buying power and risk",
+      "Guarantee profit",
+      "Prevent losses"
+    ],
+    correct: 1
+  },
+
+  {
+    question: "What is risk management?",
+    answers: [
+      "Trying to make money quickly",
+      "Planning and controlling potential losses",
+      "Using maximum leverage",
+      "Trading without a plan"
     ],
     correct: 1
   }
 ];
 
-/* =====================================================
-   START APP
-===================================================== */
 
-document.addEventListener("DOMContentLoaded", function () {
+/* -----------------------------
+   APP STATE
+----------------------------- */
 
-  setupTheme();
+let currentLesson = 0;
+let completedLessons =
+  JSON.parse(localStorage.getItem("forexCompletedLessons")) || [];
 
-  renderLessons();
+let xp =
+  Number(localStorage.getItem("forexXP")) || 100;
 
-  renderQuiz();
+let quizIndex = 0;
+let quizScore = 0;
+let quizAnswered = false;
 
-  updateProgress();
 
-  updateHomeProgress();
-
-});
-
-/* =====================================================
-   NAVIGATION
-===================================================== */
+/* -----------------------------
+   SCREEN NAVIGATION
+----------------------------- */
 
 function showScreen(screenName) {
 
   const screens = document.querySelectorAll(".screen");
 
-  screens.forEach(function (screen) {
-    screen.classList.remove("active");
+  screens.forEach(screen => {
+    screen.classList.add("hidden");
   });
 
   const target = document.getElementById(screenName);
 
   if (target) {
-    target.classList.add("active");
+    target.classList.remove("hidden");
   }
 
-  window.scrollTo(0, 0);
+  updateNavigation(screenName);
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 
   if (screenName === "lessons") {
     renderLessons();
   }
 
   if (screenName === "quiz") {
-    renderQuiz();
+    startQuiz();
   }
+
+  updateStats();
+}
+
+
+/* -----------------------------
+   NAVIGATION ACTIVE STATE
+----------------------------- */
+
+function updateNavigation(screenName) {
+
+  document.querySelectorAll(".bottom-nav button")
+    .forEach(button => {
+      button.classList.remove("active");
+    });
 
   if (screenName === "home") {
-    updateHomeProgress();
+    document.getElementById("nav-home").classList.add("active");
   }
 
+  if (screenName === "lessons" ||
+      screenName === "lessonDetail") {
+    document.getElementById("nav-lessons").classList.add("active");
+  }
+
+  if (screenName === "quiz") {
+    document.getElementById("nav-quiz").classList.add("active");
+  }
+
+  if (screenName === "calculator") {
+    document.getElementById("nav-calculator").classList.add("active");
+  }
 }
 
-/* =====================================================
-   THEME
-===================================================== */
 
-function setupTheme() {
+/* -----------------------------
+   MENU
+----------------------------- */
 
-  const button = document.querySelector(".menu-btn");
+function toggleMenu() {
 
-  if (!button) return;
+  const menu = document.getElementById("menu");
 
-  button.addEventListener("click", function () {
-
-    alert(
-      "ForexStart\n\nUse the Lessons, Quiz, Tools and Demo Trade sections to practice."
-    );
-
-  });
-
+  menu.classList.toggle("show");
 }
 
-/* =====================================================
-   LESSONS
-===================================================== */
+
+/* -----------------------------
+   LESSON LIST
+----------------------------- */
 
 function renderLessons() {
 
   const list = document.getElementById("lessonList");
 
-  if (!list) return;
-
   list.innerHTML = "";
 
-  lessons.forEach(function (lesson, index) {
+  lessons.forEach((lesson, index) => {
+
+    const completed =
+      completedLessons.includes(index);
 
     const card = document.createElement("div");
 
     card.className = "lesson-card";
 
+    card.onclick = () => openLesson(index);
+
     card.innerHTML = `
-      <div>
-        <small>LESSON ${index + 1}</small>
-        <h3>${lesson.title}</h3>
-        <p>${lesson.desc}</p>
+      <div class="lesson-number">
+        LESSON ${index + 1} OF ${lessons.length}
       </div>
 
-      <span>→</span>
+      <h3>
+        ${lesson.title}
+        ${completed ? " ✓" : ""}
+      </h3>
+
+      <p>${lesson.description}</p>
     `;
 
-    card.addEventListener("click", function () {
-
-      openLesson(index);
-
-    });
-
     list.appendChild(card);
-
   });
-
 }
 
-/* =====================================================
+
+/* -----------------------------
    OPEN LESSON
-===================================================== */
+----------------------------- */
 
 function openLesson(index) {
 
@@ -474,454 +508,359 @@ function openLesson(index) {
 
   const lesson = lessons[index];
 
-  const number = document.getElementById("lessonNumber");
-  const title = document.getElementById("lessonTitle");
-  const content = document.getElementById("lessonContent");
-  const completeButton =
-    document.getElementById("completeLessonBtn");
+  const container =
+    document.getElementById("lessonContent");
 
-  if (!lesson || !title || !content) return;
+  container.innerHTML = `
 
-  if (number) {
-    number.textContent =
-      "LESSON " + (index + 1) + " OF " + lessons.length;
-  }
+    <div class="eyebrow">
+      LESSON ${index + 1} OF ${lessons.length}
+    </div>
 
-  title.textContent = lesson.title;
+    <div class="lesson-box">
 
-  content.innerHTML = lesson.content;
+      <h2>${lesson.title}</h2>
 
-  if (completeButton) {
+      ${lesson.content}
 
-    completeButton.textContent =
-      completed.includes(index)
-        ? "✓ Lesson Completed"
-        : "Complete Lesson +100 XP";
+      <button
+        class="complete-btn"
+        onclick="completeLesson(${index})"
+      >
+        ${
+          completedLessons.includes(index)
+          ? "✓ Lesson Completed"
+          : "Complete Lesson +100 XP"
+        }
+      </button>
 
-    completeButton.onclick = function () {
-      completeLesson(index);
-    };
-
-  }
+    </div>
+  `;
 
   showScreen("lessonDetail");
-
 }
 
-/* =====================================================
+
+/* -----------------------------
    COMPLETE LESSON
-===================================================== */
+----------------------------- */
 
 function completeLesson(index) {
 
-  if (!completed.includes(index)) {
+  if (!completedLessons.includes(index)) {
 
-    completed.push(index);
+    completedLessons.push(index);
 
     xp += 100;
 
     localStorage.setItem(
-      "fxCompleted",
-      JSON.stringify(completed)
+      "forexCompletedLessons",
+      JSON.stringify(completedLessons)
     );
 
     localStorage.setItem(
-      "fxXP",
+      "forexXP",
       xp
     );
-
   }
 
-  updateProgress();
-
-  updateHomeProgress();
+  updateStats();
 
   openLesson(index);
-
 }
 
-/* =====================================================
-   PROGRESS
-===================================================== */
 
-function updateProgress() {
+/* -----------------------------
+   UPDATE STATS
+----------------------------- */
 
-  const percentage =
-    Math.round(
-      (completed.length / lessons.length) * 100
+function updateStats() {
+
+  const xpHome =
+    document.getElementById("xpHome");
+
+  const xpProgress =
+    document.getElementById("xpProgress");
+
+  const progressPercent =
+    document.getElementById("progressPercent");
+
+  const xpBar =
+    document.getElementById("xpBar");
+
+  const streakHome =
+    document.getElementById("streakHome");
+
+  if (xpHome) {
+    xpHome.textContent = xp;
+  }
+
+  if (xpProgress) {
+    xpProgress.textContent = xp;
+  }
+
+  const progress =
+    Math.min(
+      100,
+      Math.round(
+        (completedLessons.length / lessons.length) * 100
+      )
     );
 
-  const progressText =
-    document.getElementById("progressText");
-
-  const progressBar =
-    document.getElementById("progressBar");
-
-  if (progressText) {
-    progressText.textContent = percentage + "%";
+  if (progressPercent) {
+    progressPercent.textContent =
+      progress + "%";
   }
 
-  if (progressBar) {
-    progressBar.style.width = percentage + "%";
+  if (xpBar) {
+
+    const xpPercent =
+      Math.min(100, (xp / 1000) * 100);
+
+    xpBar.style.width =
+      xpPercent + "%";
   }
 
-  const xpNumber =
-    document.getElementById("xpNumber");
-
-  const levelNumber =
-    document.getElementById("levelNumber");
-
-  const levelProgress =
-    document.getElementById("levelProgress");
-
-  const levelBar =
-    document.getElementById("levelBar");
-
-  if (xpNumber) {
-    xpNumber.textContent = xp;
+  if (streakHome) {
+    streakHome.textContent = 0;
   }
-
-  const level =
-    Math.floor(xp / 500) + 1;
-
-  if (levelNumber) {
-    levelNumber.textContent = level;
-  }
-
-  const currentXP = xp % 500;
-
-  if (levelProgress) {
-    levelProgress.textContent =
-      currentXP + " / 500 XP";
-  }
-
-  if (levelBar) {
-    levelBar.style.width =
-      (currentXP / 500 * 100) + "%";
-  }
-
 }
 
-/* =====================================================
-   HOME PROGRESS
-===================================================== */
 
-function updateHomeProgress() {
-
-  const percentage =
-    Math.round(
-      (completed.length / lessons.length) * 100
-    );
-
-  const progressText =
-    document.getElementById("progressText");
-
-  const progressMessage =
-    document.getElementById("progressMessage");
-
-  if (progressText) {
-    progressText.textContent =
-      percentage + "%";
-  }
-
-  if (progressMessage) {
-
-    if (percentage === 0) {
-      progressMessage.textContent =
-        "Start your first lesson today.";
-    }
-
-    else if (percentage < 100) {
-      progressMessage.textContent =
-        "Keep going — you're making progress!";
-    }
-
-    else {
-      progressMessage.textContent =
-        "🎉 Course completed! Great work.";
-    }
-
-  }
-
-}
-
-/* =====================================================
+/* -----------------------------
    QUIZ
-===================================================== */
+----------------------------- */
 
-function renderQuiz() {
+function startQuiz() {
 
-  const questionBox =
-    document.getElementById("quizQuestion");
+  quizIndex = 0;
+  quizScore = 0;
+  quizAnswered = false;
 
-  const answersBox =
-    document.getElementById("quizAnswers");
+  renderQuestion();
+}
 
-  const resultBox =
-    document.getElementById("quizResult");
 
-  const nextButton =
-    document.getElementById("nextQuizBtn");
+/* -----------------------------
+   RENDER QUESTION
+----------------------------- */
 
-  if (!questionBox || !answersBox) return;
+function renderQuestion() {
 
-  if (currentQuestion >= questions.length) {
+  const container =
+    document.getElementById("quizContent");
 
-    questionBox.innerHTML =
-      "<h2>Quiz Complete! 🎉</h2>";
+  if (quizIndex >= questions.length) {
 
-    answersBox.innerHTML =
-      "<p>You scored " +
-      quizScore +
-      " out of " +
-      questions.length +
-      ".</p>";
-
-    if (resultBox) {
-      resultBox.textContent =
-        "Great job! Keep learning.";
-    }
-
-    if (nextButton) {
-      nextButton.classList.add("hidden");
-    }
+    showQuizResult();
 
     return;
   }
 
-  const q = questions[currentQuestion];
+  const q = questions[quizIndex];
 
-  questionBox.innerHTML =
-    "<h3>" +
-    (currentQuestion + 1) +
-    ". " +
-    q.question +
-    "</h3>";
+  quizAnswered = false;
 
-  answersBox.innerHTML = "";
+  let html = `
 
-  if (resultBox) {
-    resultBox.textContent = "";
-  }
+    <div class="question-count">
+      QUESTION ${quizIndex + 1} OF ${questions.length}
+    </div>
 
-  if (nextButton) {
-    nextButton.classList.add("hidden");
-  }
+    <div class="question">
+      ${quizIndex + 1}. ${q.question}
+    </div>
+  `;
 
-  q.answers.forEach(function (answer, index) {
+  q.answers.forEach((answer, index) => {
 
-    const button =
-      document.createElement("button");
-
-    button.className = "quiz-answer";
-
-    button.textContent = answer;
-
-    button.addEventListener("click", function () {
-
-      checkAnswer(index);
-
-    });
-
-    answersBox.appendChild(button);
-
+    html += `
+      <button
+        class="answer-btn"
+        onclick="selectAnswer(${index})"
+      >
+        ${answer}
+      </button>
+    `;
   });
 
+  html += `
+    <button
+      id="nextQuestionBtn"
+      class="next-btn"
+      onclick="nextQuestion()"
+      style="display:none"
+    >
+      Next Question →
+    </button>
+  `;
+
+  container.innerHTML = html;
 }
 
-/* =====================================================
-   CHECK ANSWER
-===================================================== */
 
-function checkAnswer(answerIndex) {
+/* -----------------------------
+   SELECT ANSWER
+----------------------------- */
 
-  const q = questions[currentQuestion];
+function selectAnswer(index) {
 
-  const resultBox =
-    document.getElementById("quizResult");
+  if (quizAnswered) return;
+
+  quizAnswered = true;
+
+  const question =
+    questions[quizIndex];
+
+  const buttons =
+    document.querySelectorAll(".answer-btn");
+
+  buttons.forEach((button, i) => {
+
+    button.disabled = true;
+
+    if (i === question.correct) {
+      button.classList.add("correct");
+    }
+
+    if (
+      i === index &&
+      i !== question.correct
+    ) {
+      button.classList.add("wrong");
+    }
+  });
+
+  if (index === question.correct) {
+    quizScore++;
+  }
 
   const nextButton =
-    document.getElementById("nextQuizBtn");
-
-  const answerButtons =
-    document.querySelectorAll(".quiz-answer");
-
-  answerButtons.forEach(function (button) {
-    button.disabled = true;
-  });
-
-  if (answerIndex === q.correct) {
-
-    quizScore++;
-
-    if (resultBox) {
-      resultBox.textContent =
-        "✅ Correct!";
-    }
-
-  } else {
-
-    if (resultBox) {
-      resultBox.textContent =
-        "❌ Not quite. Keep learning!";
-    }
-
-  }
+    document.getElementById("nextQuestionBtn");
 
   if (nextButton) {
-
-    nextButton.classList.remove("hidden");
-
-    nextButton.onclick = function () {
-
-      currentQuestion++;
-
-      renderQuiz();
-
-    };
-
+    nextButton.style.display = "block";
   }
-
 }
 
-/* =====================================================
+
+/* -----------------------------
+   NEXT QUESTION
+----------------------------- */
+
+function nextQuestion() {
+
+  quizIndex++;
+
+  renderQuestion();
+}
+
+
+/* -----------------------------
+   QUIZ RESULT
+----------------------------- */
+
+function showQuizResult() {
+
+  const container =
+    document.getElementById("quizContent");
+
+  const percentage =
+    Math.round(
+      (quizScore / questions.length) * 100
+    );
+
+  container.innerHTML = `
+
+    <div class="quiz-result">
+
+      <h2>Quiz Complete! 🎉</h2>
+
+      <div class="quiz-score">
+        ${quizScore}/${questions.length}
+      </div>
+
+      <p>
+        You scored ${percentage}%.
+      </p>
+
+      <button
+        class="next-btn"
+        onclick="startQuiz()"
+      >
+        Try Again
+      </button>
+
+      <button
+        class="next-btn"
+        onclick="showScreen('lessons')"
+      >
+        Continue Learning →
+      </button>
+
+    </div>
+  `;
+}
+
+
+/* -----------------------------
    RISK CALCULATOR
-===================================================== */
+----------------------------- */
 
 function calculateRisk() {
 
   const balance =
-    parseFloat(
-      document.getElementById("balance").value
-    );
+    Number(document.getElementById("balance").value);
 
   const risk =
-    parseFloat(
-      document.getElementById("riskPercent").value
-    );
+    Number(document.getElementById("risk").value);
 
   const result =
-    document.getElementById("calculatorResult");
-
-  if (!result) return;
+    document.getElementById("riskResult");
 
   if (
-    isNaN(balance) ||
-    isNaN(risk) ||
+    !balance ||
     balance <= 0 ||
+    !risk ||
     risk <= 0
   ) {
 
     result.textContent =
-      "Enter a valid balance and risk percentage.";
+      "Please enter valid numbers.";
 
     return;
+  }
 
+  if (risk > 100) {
+
+    result.textContent =
+      "Risk percentage cannot be above 100%.";
+
+    return;
   }
 
   const riskAmount =
     balance * (risk / 100);
 
-  result.innerHTML =
-    "<strong>Maximum planned risk: $" +
-    riskAmount.toFixed(2) +
-    "</strong><br><br>" +
-    "Example: " +
-    risk +
-    "% of a $" +
-    balance.toFixed(2) +
-    " account is $" +
-    riskAmount.toFixed(2) +
-    ".";
-
+  result.innerHTML = `
+    Maximum planned risk:
+    <strong>$${riskAmount.toFixed(2)}</strong>
+    <br><br>
+    This is ${risk}% of your $${balance.toFixed(2)} account.
+  `;
 }
 
-/* =====================================================
-   DEMO TRADING
-===================================================== */
 
-let demoBalance =
-  Number(
-    localStorage.getItem("demoBalance") ||
-    10000
-  );
+/* -----------------------------
+   START APP
+----------------------------- */
 
-function demoTrade(type) {
+document.addEventListener("DOMContentLoaded", () => {
 
-  const balanceElement =
-    document.getElementById("demoBalance");
+  renderLessons();
 
-  const message =
-    document.getElementById("tradeMessage");
+  updateStats();
 
-  const priceElement =
-    document.getElementById("demoPrice");
+  showScreen("home");
 
-  if (!balanceElement || !message) return;
-
-  const oldPrice =
-    priceElement
-      ? parseFloat(priceElement.textContent)
-      : 1.1000;
-
-  const movement =
-    (Math.random() * 0.004 - 0.002);
-
-  const newPrice =
-    oldPrice + movement;
-
-  const change =
-    type === "buy"
-      ? movement * 100000
-      : -movement * 100000;
-
-  demoBalance += change;
-
-  if (demoBalance < 0) {
-    demoBalance = 0;
-  }
-
-  localStorage.setItem(
-    "demoBalance",
-    demoBalance
-  );
-
-  balanceElement.textContent =
-    "$" +
-    demoBalance.toFixed(2);
-
-  if (priceElement) {
-    priceElement.textContent =
-      newPrice.toFixed(4);
-  }
-
-  if (change >= 0) {
-
-    message.textContent =
-      "📈 Demo BUY completed. Virtual result: +$" +
-      change.toFixed(2);
-
-  } else {
-
-    message.textContent =
-      "📉 Demo " +
-      type.toUpperCase() +
-      " result: $" +
-      change.toFixed(2);
-
-  }
-
-}
-
-/* =====================================================
-   PRO MESSAGE
-===================================================== */
-
-function showUpgradeMessage() {
-
-  alert(
-    "ForexStart PRO\n\n" +
-    "Premium lessons are coming soon."
-  );
-
-   }
+});
