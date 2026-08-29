@@ -1,6 +1,9 @@
-/* =========================================
-   FOREXSTART - COMPLETE STYLE SHEET
-   ========================================= */
+/* =========================================================
+   FOREXSTART
+   Complete Mobile-First Stylesheet
+   ========================================================= */
+
+/* ---------- RESET ---------- */
 
 * {
   box-sizing: border-box;
@@ -8,48 +11,78 @@
   padding: 0;
 }
 
-:root {
-  --bg: #07111f;
-  --surface: #111d2d;
-  --surface-2: #162337;
-  --border: #263750;
-  --text: #f4f7fb;
-  --muted: #9aa8bd;
-  --green: #22d486;
-  --green-dark: #18b96f;
-  --danger: #ff6678;
-  --yellow: #ffc928;
-  --max-width: 900px;
-}
-
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: var(--bg);
-  color: var(--text);
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+
+  background: #08111f;
+  color: #f5f7fb;
   min-height: 100vh;
-  padding-bottom: 95px;
   line-height: 1.6;
+  padding-bottom: 90px;
 }
 
-/* =========================================
-   HEADER
-   ========================================= */
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------- COLORS ---------- */
+
+:root {
+  --bg: #08111f;
+  --surface: #121d2d;
+  --surface-2: #172337;
+  --border: #263750;
+
+  --text: #f5f7fb;
+  --muted: #9aa8bd;
+
+  --green: #25d48a;
+  --green-dark: #19b978;
+
+  --yellow: #ffc928;
+  --red: #ff6b6b;
+
+  --max-width: 760px;
+}
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
 
 .topbar {
   width: 100%;
-  height: 88px;
-  background: rgba(7, 17, 31, 0.97);
-  border-bottom: 1px solid var(--border);
+  height: 86px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   padding: 0 24px;
+
+  background: rgba(8, 17, 31, 0.96);
+  border-bottom: 1px solid var(--border);
 
   position: sticky;
   top: 0;
@@ -59,27 +92,27 @@ body {
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 
-  font-size: 25px;
+  font-size: 24px;
   font-weight: 800;
   color: var(--text);
 }
 
 .logo-icon {
-  width: 46px;
-  height: 46px;
+  width: 42px;
+  height: 42px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
+  border-radius: 10px;
+
   background: var(--green);
-  color: #06130d;
+  color: #06120d;
 
-  border-radius: 12px;
-
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 900;
 }
 
@@ -89,29 +122,35 @@ body {
 
 .icon-btn,
 .menu-btn {
-  width: 52px;
-  height: 52px;
+  width: 54px;
+  height: 54px;
 
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 16px;
 
   background: var(--surface);
   color: var(--text);
 
-  font-size: 24px;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 26px;
 }
 
-/* =========================================
-   MAIN
-   ========================================= */
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
 
 main {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 40px 24px;
+
+  padding: 34px 20px 50px;
 }
+
+/* Screens */
 
 .screen {
   display: none;
@@ -121,96 +160,155 @@ main {
   display: block;
 }
 
-/* =========================================
-   HOME / HERO
-   ========================================= */
+/* =========================================================
+   HERO
+   ========================================================= */
 
 .hero {
-  padding: 35px 0 45px;
+  padding: 34px 0 20px;
 }
 
 .eyebrow {
   color: var(--green);
+
   font-size: 13px;
   font-weight: 800;
-  letter-spacing: 1.5px;
-  margin-bottom: 16px;
+
+  letter-spacing: 1.2px;
+
+  margin-bottom: 12px;
 }
 
 .hero h1 {
-  font-size: clamp(42px, 8vw, 72px);
-  line-height: 1.05;
+  font-size: clamp(42px, 10vw, 72px);
+
+  line-height: 1.03;
+
   letter-spacing: -2px;
-  margin-bottom: 25px;
+
+  font-weight: 850;
+
+  margin-bottom: 26px;
 }
 
 .lead {
-  max-width: 700px;
   color: var(--muted);
+
   font-size: 20px;
-  line-height: 1.7;
-  margin-bottom: 30px;
+  line-height: 1.65;
+
+  max-width: 650px;
+
+  margin-bottom: 28px;
 }
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
 
 .primary {
   width: 100%;
+
   min-height: 58px;
 
   border: none;
-  border-radius: 14px;
+  border-radius: 16px;
 
   background: var(--green);
-  color: #06130d;
+  color: #06120d;
 
   font-size: 17px;
   font-weight: 800;
 
   padding: 15px 22px;
 
-  cursor: pointer;
-
-  transition: 0.2s ease;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
 }
 
 .primary:hover {
   background: var(--green-dark);
-  transform: translateY(-1px);
 }
 
 .primary:active {
   transform: scale(0.98);
 }
 
-/* =========================================
-   PROGRESS
-   ========================================= */
+.back-btn {
+  border: none;
+  background: transparent;
+
+  color: var(--green);
+
+  font-size: 16px;
+  font-weight: 700;
+
+  margin-bottom: 22px;
+
+  padding: 8px 0;
+}
+
+/* =========================================================
+   HEADINGS
+   ========================================================= */
+
+.page-heading {
+  padding: 24px 0 30px;
+}
+
+.page-heading h1 {
+  font-size: clamp(38px, 9vw, 58px);
+
+  line-height: 1.08;
+
+  letter-spacing: -1.5px;
+
+  margin-bottom: 12px;
+}
+
+.page-heading p:not(.eyebrow) {
+  color: var(--muted);
+
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   PROGRESS CARD
+   ========================================================= */
 
 .progress-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-
-  padding: 24px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  margin-bottom: 35px;
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+  border-radius: 20px;
+
+  padding: 22px;
+
+  margin: 20px 0 32px;
 }
 
 .progress-card p {
   color: var(--muted);
-  margin-bottom: 5px;
+  font-size: 15px;
 }
 
 .progress-card strong {
-  font-size: 30px;
+  display: block;
+
+  font-size: 32px;
+
+  color: var(--text);
 }
 
 .progress-ring {
-  width: 80px;
-  height: 80px;
+  width: 72px;
+  height: 72px;
 
   border-radius: 50%;
 
@@ -221,211 +319,263 @@ main {
   justify-content: center;
 
   color: var(--green);
+
   font-weight: 800;
 }
 
-/* =========================================
-   HEADINGS
-   ========================================= */
-
-.page-heading {
-  padding: 25px 0 35px;
-}
-
-.page-heading h1 {
-  font-size: clamp(38px, 8vw, 58px);
-  line-height: 1.1;
-  margin-bottom: 12px;
-}
-
-.page-heading p {
-  color: var(--muted);
-  font-size: 19px;
-}
-
-/* =========================================
-   QUICK CARDS
-   ========================================= */
+/* =========================================================
+   QUICK START
+   ========================================================= */
 
 h2 {
-  font-size: 28px;
-  margin-bottom: 18px;
+  font-size: 27px;
+  line-height: 1.2;
+
+  margin: 26px 0 16px;
 }
 
 .quick-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-
-  padding: 20px;
+  width: 100%;
 
   display: flex;
   align-items: center;
-  gap: 15px;
 
-  margin-bottom: 14px;
+  gap: 16px;
 
-  cursor: pointer;
+  background: var(--surface);
 
-  transition: 0.2s ease;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+
+  padding: 19px;
+
+  margin-bottom: 12px;
+
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .quick-card:hover {
   border-color: var(--green);
-  transform: translateY(-2px);
+}
+
+.quick-card:active {
+  transform: scale(0.98);
 }
 
 .quick-icon {
-  font-size: 30px;
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 27px;
+
+  flex-shrink: 0;
 }
 
 .quick-card h3 {
   font-size: 18px;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
 }
 
 .quick-card p {
   color: var(--muted);
+  font-size: 14px;
 }
 
 .arrow {
   margin-left: auto;
+
   font-size: 28px;
-  color: var(--green);
+  color: var(--muted);
 }
 
-/* =========================================
+/* =========================================================
    LESSON LIST
-   ========================================= */
+   ========================================================= */
 
 #lessonList {
-  display: grid;
-  gap: 16px;
-}
-
-.lesson-card,
-.quick-card {
-  user-select: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .lesson-card {
+  position: relative;
+
   background: var(--surface);
+
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 20px;
 
   padding: 24px;
 
   cursor: pointer;
 
-  transition: 0.2s ease;
+  transition:
+    transform 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .lesson-card:hover {
   border-color: var(--green);
-  transform: translateY(-2px);
 }
 
-.lesson-number {
-  color: var(--green);
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  margin-bottom: 5px;
+.lesson-card:active {
+  transform: scale(0.985);
 }
 
 .lesson-card h3 {
   font-size: 22px;
-  margin-bottom: 5px;
+  line-height: 1.3;
+
+  margin: 5px 35px 7px;
 }
 
 .lesson-card p {
   color: var(--muted);
+
+  font-size: 16px;
+
+  margin-left: 35px;
+}
+
+.lesson-number {
+  color: var(--green);
+
+  font-size: 13px;
+  font-weight: 800;
+
+  letter-spacing: 0.8px;
 }
 
 .lesson-card .arrow {
-  float: right;
+  position: absolute;
+
+  right: 22px;
+  top: 50%;
+
+  transform: translateY(-50%);
 }
 
-/* =========================================
-   LESSON CONTENT
-   ========================================= */
+/* Support alternate lesson-card markup */
 
-.back-btn {
-  background: transparent;
-  border: none;
-
-  color: var(--green);
-
-  font-size: 16px;
-  font-weight: 700;
-
-  cursor: pointer;
-
-  margin-bottom: 25px;
-}
-
-.lesson-content {
+.lesson {
   background: var(--surface);
+
   border: 1px solid var(--border);
   border-radius: 20px;
 
-  padding: 28px;
+  padding: 24px;
+
+  margin-bottom: 14px;
+}
+
+.lesson h3 {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+.lesson p {
+  color: var(--muted);
+}
+
+/* =========================================================
+   LESSON CONTENT
+   ========================================================= */
+
+.lesson-content {
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+  border-radius: 22px;
+
+  padding: 28px 22px;
+
+  margin-bottom: 30px;
+}
+
+.lesson-content h1,
+.lesson-content h2 {
+  margin-top: 0;
+  margin-bottom: 16px;
 }
 
 .lesson-content h1 {
-  font-size: clamp(34px, 7vw, 52px);
+  font-size: clamp(34px, 8vw, 52px);
   line-height: 1.1;
-  margin-bottom: 25px;
 }
 
 .lesson-content h2 {
-  margin-top: 30px;
-  margin-bottom: 12px;
+  font-size: 30px;
+  margin-top: 28px;
+}
+
+.lesson-content h3 {
+  font-size: 22px;
+  margin: 24px 0 8px;
 }
 
 .lesson-content p {
-  color: var(--muted);
+  color: #b7c2d3;
+
   font-size: 18px;
-  line-height: 1.8;
+
+  line-height: 1.75;
+
   margin-bottom: 18px;
+}
+
+.lesson-content ul,
+.lesson-content ol {
+  padding-left: 24px;
+
+  color: #b7c2d3;
+
+  font-size: 17px;
+}
+
+.lesson-content li {
+  margin-bottom: 10px;
 }
 
 .lesson-content strong {
   color: var(--text);
 }
 
-.lesson-complete {
-  width: 100%;
+.lesson-content .tip,
+.tip {
+  background: #0d1828;
 
-  margin-top: 25px;
+  border-left: 4px solid var(--green);
 
-  padding: 16px;
+  border-radius: 12px;
 
-  border: none;
-  border-radius: 14px;
+  padding: 18px;
 
-  background: var(--green);
-  color: #06130d;
-
-  font-size: 17px;
-  font-weight: 800;
-
-  cursor: pointer;
+  margin-top: 24px;
 }
 
-/* =========================================
+.lesson-content .tip p,
+.tip p {
+  margin-bottom: 0;
+}
+
+/* =========================================================
    CALCULATOR
-   ========================================= */
+   ========================================================= */
 
-.calculator-card,
-.quiz-card,
-.progress-big-card,
-.info-card {
+.calculator-card {
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 20px;
 
-  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+
+  padding: 24px;
 
   margin-bottom: 20px;
 }
@@ -433,33 +583,42 @@ h2 {
 .calculator-card label {
   display: block;
 
-  color: var(--muted);
+  color: #c0cada;
 
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
 
   margin: 18px 0 8px;
 }
 
+.calculator-card label:first-child {
+  margin-top: 0;
+}
+
 .calculator-card input,
-.calculator-card select {
+.calculator-card select,
+input,
+select {
   width: 100%;
 
-  background: var(--bg);
-  color: var(--text);
+  min-height: 54px;
+
+  background: #0b1423;
 
   border: 1px solid var(--border);
   border-radius: 12px;
 
-  padding: 15px;
+  color: var(--text);
 
-  font-size: 17px;
+  padding: 13px 15px;
 
   outline: none;
 }
 
 .calculator-card input:focus,
-.calculator-card select:focus {
+.calculator-card select:focus,
+input:focus,
+select:focus {
   border-color: var(--green);
 }
 
@@ -468,333 +627,157 @@ h2 {
 }
 
 .result-box {
-  margin-top: 18px;
+  background: #0b1423;
 
-  background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 14px;
 
   padding: 18px;
 
+  margin-top: 18px;
+
+  color: var(--muted);
+
+  font-size: 17px;
+
   text-align: center;
+}
+
+.result-box strong {
+  display: block;
 
   color: var(--green);
 
-  font-size: 20px;
-  font-weight: 800;
+  font-size: 30px;
+}
+
+/* =========================================================
+   INFO CARDS
+   ========================================================= */
+
+.info-card {
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+  border-radius: 20px;
+
+  padding: 22px;
+
+  margin-bottom: 20px;
 }
 
 .info-card h2 {
-  margin-bottom: 12px;
+  margin-top: 0;
+
+  font-size: 23px;
 }
 
 .info-card p {
   color: var(--muted);
+
+  font-size: 16px;
+
   line-height: 1.7;
 }
 
-.tip {
-  margin-top: 20px;
-
-  padding: 18px;
-
-  border-left: 4px solid var(--green);
-
-  background: var(--bg);
-  border-radius: 8px;
-}
-
-.tip strong {
-  color: var(--green);
-}
-
-/* =========================================
+/* =========================================================
    QUIZ
-   ========================================= */
+   ========================================================= */
 
-.quiz-card h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
+.quiz-card {
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+  border-radius: 22px;
+
+  padding: 24px;
 }
 
 .quiz-question {
-  margin-bottom: 30px;
+  font-size: 23px;
+
+  line-height: 1.4;
+
+  margin-bottom: 20px;
 }
 
-.quiz-question h3 {
-  font-size: 21px;
-  margin-bottom: 15px;
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
 }
 
-.quiz-answer {
-  display: block;
-
+.quiz-option,
+.answer-btn {
   width: 100%;
 
-  background: var(--bg);
+  background: #0d1727;
+
   color: var(--text);
 
   border: 1px solid var(--border);
-  border-radius: 12px;
 
-  padding: 15px;
+  border-radius: 13px;
 
-  margin: 10px 0;
+  padding: 15px 16px;
 
   text-align: left;
 
   font-size: 16px;
 
-  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
 }
 
-.quiz-answer:hover {
+.quiz-option:hover,
+.answer-btn:hover {
   border-color: var(--green);
+  background: #122137;
 }
 
-.quiz-answer.correct {
-  background: rgba(34, 212, 134, 0.15);
+.quiz-option.correct,
+.answer-btn.correct {
   border-color: var(--green);
+  background: rgba(37, 212, 138, 0.12);
 }
 
-.quiz-answer.wrong {
-  background: rgba(255, 102, 120, 0.15);
-  border-color: var(--danger);
+.quiz-option.wrong,
+.answer-btn.wrong {
+  border-color: var(--red);
+  background: rgba(255, 107, 107, 0.1);
 }
 
-.quiz-result {
-  margin-top: 20px;
+/* Fix default buttons appearing white */
 
-  padding: 18px;
-
-  border-radius: 12px;
-
-  background: var(--bg);
-
-  text-align: center;
-
-  font-size: 20px;
-  font-weight: 800;
+.quiz-card button {
+  appearance: none;
+  -webkit-appearance: none;
 }
 
-/* =========================================
+/* =========================================================
    PROGRESS PAGE
-   ========================================= */
+   ========================================================= */
 
 .progress-big-card {
-  text-align: center;
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+  border-radius: 22px;
+
+  padding: 28px 22px;
+
+  margin-bottom: 20px;
 }
 
 .big-number {
-  font-size: 70px;
-  font-weight: 900;
   color: var(--green);
 
-  margin-bottom: 15px;
-}
+  font-size: 64px;
 
-#progressText {
-  color: var(--muted);
-  margin-bottom: 25px;
-}
-
-.progress-bar {
-  width: 100%;
-  height: 12px;
-
-  background: var(--bg);
-
-  border-radius: 20px;
-
-  overflow: hidden;
-}
-
-#progressBar {
-  height: 100%;
-  width: 0%;
-
-  background: var(--green);
-
-  border-radius: 20px;
-
-  transition: width 0.4s ease;
-}
-
-/* =========================================
-   BOTTOM NAVIGATION
-   ========================================= */
-
-.bottom-nav {
-  position: fixed;
-
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  height: 82px;
-
-  background: rgba(12, 25, 42, 0.98);
-
-  border-top: 1px solid var(--border);
-
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-
-  z-index: 200;
-
-  padding: 6px 8px;
-}
-
-.bottom-nav button {
-  flex: 1;
-
-  max-width: 150px;
-
-  background: transparent;
-  border: none;
-
-  color: var(--muted);
-
-  cursor: pointer;
-
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 2px;
-
-  font-family: inherit;
-}
-
-.bottom-nav button span {
-  font-size: 22px;
   line-height: 1;
-}
 
-.bottom-nav button small {
-  font-size: 12px;
-  font-weight: 700;
-}
+  font-weight: 850;
 
-.bottom-nav button.active,
-.bottom-nav button:hover {
-  color: var(--green);
-}
-
-/* =========================================
-   MOBILE
-   ========================================= */
-
-@media (max-width: 600px) {
-
-  body {
-    padding-bottom: 85px;
-  }
-
-  .topbar {
-    height: 72px;
-    padding: 0 16px;
-  }
-
-  .logo {
-    font-size: 20px;
-  }
-
-  .logo-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 24px;
-  }
-
-  .icon-btn {
-    width: 44px;
-    height: 44px;
-  }
-
-  main {
-    padding: 25px 18px;
-  }
-
-  .hero {
-    padding-top: 20px;
-  }
-
-  .hero h1 {
-    font-size: 44px;
-  }
-
-  .lead {
-    font-size: 17px;
-  }
-
-  .page-heading h1 {
-    font-size: 40px;
-  }
-
-  .page-heading p {
-    font-size: 17px;
-  }
-
-  .progress-card {
-    padding: 18px;
-  }
-
-  .lesson-content,
-  .calculator-card,
-  .quiz-card,
-  .progress-big-card,
-  .info-card {
-    padding: 20px;
-  }
-
-  .lesson-content h1 {
-    font-size: 36px;
-  }
-
-  .lesson-content p {
-    font-size: 17px;
-  }
-
-  .bottom-nav {
-    height: 76px;
-  }
-
-  .bottom-nav button span {
-    font-size: 20px;
-  }
-
-  .bottom-nav button small {
-    font-size: 11px;
-  }
-}
-
-/* =========================================
-   VERY SMALL PHONES
-   ========================================= */
-
-@media (max-width: 380px) {
-
-  main {
-    padding-left: 14px;
-    padding-right: 14px;
-  }
-
-  .hero h1 {
-    font-size: 38px;
-  }
-
-  .page-heading h1 {
-    font-size: 34px;
-  }
-
-  .quick-card {
-    padding: 16px;
-  }
-
-  .lesson-card {
-    padding: 18px;
-  }
-   }
+  margin-bottom: 18
