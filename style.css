@@ -1,6 +1,6 @@
-/* =========================================================
-   FOREXSTART — COMPLETE STYLE
-   ========================================================= */
+/* =========================================
+   FOREXSTART - COMPLETE STYLE SHEET
+   ========================================= */
 
 * {
   box-sizing: border-box;
@@ -9,17 +9,17 @@
 }
 
 :root {
-  --bg: #08111f;
-  --card: #121d2d;
-  --card2: #172337;
+  --bg: #07111f;
+  --surface: #111d2d;
+  --surface-2: #162337;
   --border: #263750;
-  --text: #f5f7fb;
+  --text: #f4f7fb;
   --muted: #9aa8bd;
-  --accent: #20d486;
-  --accent-dark: #13b86d;
-  --danger: #ff5c5c;
-  --gold: #ffc857;
-  --nav: #0d1828;
+  --green: #22d486;
+  --green-dark: #18b96f;
+  --danger: #ff6678;
+  --yellow: #ffc928;
+  --max-width: 900px;
 }
 
 html {
@@ -30,80 +30,87 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
   min-height: 100vh;
-  padding-bottom: 90px;
+  padding-bottom: 95px;
+  line-height: 1.6;
 }
 
-/* =========================================================
+/* =========================================
    HEADER
-   ========================================================= */
+   ========================================= */
 
 .topbar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  height: 76px;
-  background: rgba(8, 17, 31, 0.97);
+  width: 100%;
+  height: 88px;
+  background: rgba(7, 17, 31, 0.97);
   border-bottom: 1px solid var(--border);
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 22px;
+
+  padding: 0 24px;
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 24px;
+  gap: 12px;
+
+  font-size: 25px;
   font-weight: 800;
   color: var(--text);
 }
 
 .logo-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  background: var(--accent);
-  color: #07110d;
+  width: 46px;
+  height: 46px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  background: var(--green);
+  color: #06130d;
+
+  border-radius: 12px;
+
+  font-size: 28px;
   font-weight: 900;
-  font-size: 23px;
 }
 
 .accent {
-  color: var(--accent);
+  color: var(--green);
 }
 
 .icon-btn,
 .menu-btn {
+  width: 52px;
+  height: 52px;
+
   border: 1px solid var(--border);
-  background: var(--card);
+  border-radius: 14px;
+
+  background: var(--surface);
   color: var(--text);
-  border-radius: 12px;
-  min-width: 48px;
-  min-height: 48px;
-  font-size: 22px;
+
+  font-size: 24px;
   cursor: pointer;
 }
 
-.icon-btn:hover,
-.menu-btn:hover {
-  background: var(--card2);
-}
-
-/* =========================================================
+/* =========================================
    MAIN
-   ========================================================= */
+   ========================================= */
 
 main {
   width: 100%;
-  max-width: 900px;
+  max-width: var(--max-width);
   margin: 0 auto;
-  padding: 45px 20px 110px;
+  padding: 40px 24px;
 }
 
 .screen {
@@ -114,59 +121,59 @@ main {
   display: block;
 }
 
-/* =========================================================
-   HERO / HOME
-   ========================================================= */
+/* =========================================
+   HOME / HERO
+   ========================================= */
 
 .hero {
-  padding: 35px 0 25px;
+  padding: 35px 0 45px;
 }
 
 .eyebrow {
-  color: var(--accent);
+  color: var(--green);
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 1.5px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .hero h1 {
   font-size: clamp(42px, 8vw, 72px);
-  line-height: 1.03;
+  line-height: 1.05;
   letter-spacing: -2px;
   margin-bottom: 25px;
 }
 
 .lead {
-  color: var(--muted);
-  font-size: 19px;
   max-width: 700px;
+  color: var(--muted);
+  font-size: 20px;
+  line-height: 1.7;
   margin-bottom: 30px;
-}
-
-/* =========================================================
-   BUTTONS
-   ========================================================= */
-
-button {
-  font-family: inherit;
 }
 
 .primary {
   width: 100%;
+  min-height: 58px;
+
   border: none;
-  border-radius: 15px;
-  padding: 18px 22px;
-  background: var(--accent);
-  color: #06120d;
+  border-radius: 14px;
+
+  background: var(--green);
+  color: #06130d;
+
   font-size: 17px;
   font-weight: 800;
+
+  padding: 15px 22px;
+
   cursor: pointer;
+
   transition: 0.2s ease;
 }
 
 .primary:hover {
-  background: var(--accent-dark);
+  background: var(--green-dark);
   transform: translateY(-1px);
 }
 
@@ -174,48 +181,22 @@ button {
   transform: scale(0.98);
 }
 
-.back-btn {
-  border: none;
-  background: transparent;
-  color: var(--accent);
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  padding: 5px 0 25px;
-}
-
-/* =========================================================
-   HEADINGS
-   ========================================================= */
-
-.page-heading {
-  margin-bottom: 30px;
-}
-
-.page-heading h1 {
-  font-size: clamp(38px, 7vw, 58px);
-  line-height: 1.1;
-  margin-bottom: 12px;
-}
-
-.page-heading p {
-  color: var(--muted);
-  font-size: 18px;
-}
-
-/* =========================================================
-   PROGRESS CARD
-   ========================================================= */
+/* =========================================
+   PROGRESS
+   ========================================= */
 
 .progress-card {
-  background: var(--card);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 18px;
-  padding: 22px;
-  margin: 20px 0 35px;
+
+  padding: 24px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  margin-bottom: 35px;
 }
 
 .progress-card p {
@@ -224,49 +205,73 @@ button {
 }
 
 .progress-card strong {
-  font-size: 28px;
+  font-size: 30px;
 }
 
 .progress-ring {
-  width: 70px;
-  height: 70px;
-  border: 6px solid var(--border);
-  border-top-color: var(--accent);
+  width: 80px;
+  height: 80px;
+
   border-radius: 50%;
+
+  border: 7px solid var(--border);
+
   display: flex;
   align-items: center;
   justify-content: center;
-}
 
-.progress-ring span {
-  font-size: 14px;
+  color: var(--green);
   font-weight: 800;
 }
 
-/* =========================================================
+/* =========================================
+   HEADINGS
+   ========================================= */
+
+.page-heading {
+  padding: 25px 0 35px;
+}
+
+.page-heading h1 {
+  font-size: clamp(38px, 8vw, 58px);
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.page-heading p {
+  color: var(--muted);
+  font-size: 19px;
+}
+
+/* =========================================
    QUICK CARDS
-   ========================================================= */
+   ========================================= */
 
 h2 {
-  font-size: 27px;
-  margin: 28px 0 16px;
+  font-size: 28px;
+  margin-bottom: 18px;
 }
 
 .quick-card {
-  background: var(--card);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
+
   padding: 20px;
-  margin-bottom: 14px;
+
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 15px;
+
+  margin-bottom: 14px;
+
   cursor: pointer;
+
   transition: 0.2s ease;
 }
 
 .quick-card:hover {
-  background: var(--card2);
+  border-color: var(--green);
   transform: translateY(-2px);
 }
 
@@ -281,267 +286,300 @@ h2 {
 
 .quick-card p {
   color: var(--muted);
-  font-size: 14px;
 }
 
 .arrow {
   margin-left: auto;
   font-size: 28px;
-  color: var(--muted);
+  color: var(--green);
 }
 
-/* =========================================================
+/* =========================================
    LESSON LIST
-   ========================================================= */
+   ========================================= */
 
 #lessonList {
   display: grid;
   gap: 16px;
 }
 
+.lesson-card,
+.quick-card {
+  user-select: none;
+}
+
 .lesson-card {
-  background: var(--card);
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 25px;
+  border-radius: 18px;
+
+  padding: 24px;
+
   cursor: pointer;
+
   transition: 0.2s ease;
 }
 
 .lesson-card:hover {
-  background: var(--card2);
-  border-color: var(--accent);
+  border-color: var(--green);
   transform: translateY(-2px);
+}
+
+.lesson-number {
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
 }
 
 .lesson-card h3 {
   font-size: 22px;
-  margin: 6px 0;
+  margin-bottom: 5px;
 }
 
 .lesson-card p {
   color: var(--muted);
 }
 
-.lesson-number {
-  color: var(--accent);
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 1px;
+.lesson-card .arrow {
+  float: right;
 }
 
-/* =========================================================
+/* =========================================
    LESSON CONTENT
-   ========================================================= */
+   ========================================= */
+
+.back-btn {
+  background: transparent;
+  border: none;
+
+  color: var(--green);
+
+  font-size: 16px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  margin-bottom: 25px;
+}
 
 .lesson-content {
-  background: var(--card);
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 22px;
-  padding: 30px;
+  border-radius: 20px;
+
+  padding: 28px;
 }
 
 .lesson-content h1 {
   font-size: clamp(34px, 7vw, 52px);
   line-height: 1.1;
-  margin: 10px 0 25px;
+  margin-bottom: 25px;
 }
 
 .lesson-content h2 {
-  font-size: 30px;
   margin-top: 30px;
+  margin-bottom: 12px;
 }
 
 .lesson-content p {
-  color: #c1ccdc;
+  color: var(--muted);
   font-size: 18px;
+  line-height: 1.8;
   margin-bottom: 18px;
 }
 
-.lesson-content ul {
-  margin: 15px 0 20px 25px;
-  color: #c1ccdc;
+.lesson-content strong {
+  color: var(--text);
 }
 
-.lesson-content li {
-  margin-bottom: 10px;
+.lesson-complete {
+  width: 100%;
+
+  margin-top: 25px;
+
+  padding: 16px;
+
+  border: none;
+  border-radius: 14px;
+
+  background: var(--green);
+  color: #06130d;
+
+  font-size: 17px;
+  font-weight: 800;
+
+  cursor: pointer;
 }
 
-.lesson-content button {
-  margin-top: 20px;
-}
-
-/* =========================================================
+/* =========================================
    CALCULATOR
-   ========================================================= */
+   ========================================= */
 
 .calculator-card,
-.info-card,
+.quiz-card,
 .progress-big-card,
-.quiz-card {
-  background: var(--card);
+.info-card {
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 20px;
-  padding: 25px;
+
+  padding: 28px;
+
   margin-bottom: 20px;
 }
 
 .calculator-card label {
   display: block;
-  color: #c6d0df;
+
+  color: var(--muted);
+
+  font-size: 16px;
   font-weight: 700;
+
   margin: 18px 0 8px;
 }
 
 .calculator-card input,
 .calculator-card select {
   width: 100%;
-  min-height: 54px;
-  padding: 14px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
+
   background: var(--bg);
   color: var(--text);
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  padding: 15px;
+
   font-size: 17px;
+
   outline: none;
 }
 
 .calculator-card input:focus,
 .calculator-card select:focus {
-  border-color: var(--accent);
+  border-color: var(--green);
 }
 
 .calculator-card .primary {
-  margin-top: 25px;
+  margin-top: 22px;
 }
 
 .result-box {
-  margin-top: 20px;
-  padding: 18px;
-  border-radius: 12px;
+  margin-top: 18px;
+
   background: var(--bg);
   border: 1px solid var(--border);
-  color: var(--text);
-  font-weight: 700;
+  border-radius: 12px;
+
+  padding: 18px;
+
+  text-align: center;
+
+  color: var(--green);
+
+  font-size: 20px;
+  font-weight: 800;
 }
 
 .info-card h2 {
-  margin-top: 0;
+  margin-bottom: 12px;
 }
 
 .info-card p {
   color: var(--muted);
+  line-height: 1.7;
 }
 
 .tip {
   margin-top: 20px;
-  padding: 17px;
-  border-left: 4px solid var(--accent);
+
+  padding: 18px;
+
+  border-left: 4px solid var(--green);
+
   background: var(--bg);
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .tip strong {
-  color: var(--accent);
+  color: var(--green);
 }
 
-/* =========================================================
-   QUIZ — FIXED BUTTON STYLING
-   ========================================================= */
+/* =========================================
+   QUIZ
+   ========================================= */
 
-.quiz-card {
-  min-height: 220px;
-}
-
-.quiz-card h2,
-.quiz-card h3 {
-  margin-top: 0;
+.quiz-card h2 {
+  font-size: 24px;
   margin-bottom: 20px;
-  color: var(--text);
 }
 
-/* Every quiz answer button */
+.quiz-question {
+  margin-bottom: 30px;
+}
 
-.quiz-card button {
+.quiz-question h3 {
+  font-size: 21px;
+  margin-bottom: 15px;
+}
+
+.quiz-answer {
   display: block;
+
   width: 100%;
-  min-height: 55px;
-  margin: 12px 0;
-  padding: 14px 18px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: var(--card2);
+
+  background: var(--bg);
   color: var(--text);
-  font-size: 16px;
-  font-weight: 600;
-  text-align: left;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
 
-/* Hover */
-
-.quiz-card button:hover {
-  background: #1d2c43;
-  border-color: var(--accent);
-  color: white;
-  transform: translateY(-1px);
-}
-
-/* Correct answer */
-
-.quiz-card button.correct,
-.quiz-card button.correct-answer {
-  background: rgba(32, 212, 134, 0.15);
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-/* Wrong answer */
-
-.quiz-card button.wrong,
-.quiz-card button.incorrect {
-  background: rgba(255, 92, 92, 0.12);
-  border-color: var(--danger);
-  color: #ff8b8b;
-}
-
-/* Disabled answers */
-
-.quiz-card button:disabled {
-  cursor: default;
-  opacity: 0.85;
-  transform: none;
-}
-
-/* Quiz feedback */
-
-.quiz-feedback {
-  margin-top: 18px;
-  padding: 15px;
+  border: 1px solid var(--border);
   border-radius: 12px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  font-weight: 700;
+
+  padding: 15px;
+
+  margin: 10px 0;
+
+  text-align: left;
+
+  font-size: 16px;
+
+  cursor: pointer;
 }
 
-.quiz-score {
+.quiz-answer:hover {
+  border-color: var(--green);
+}
+
+.quiz-answer.correct {
+  background: rgba(34, 212, 134, 0.15);
+  border-color: var(--green);
+}
+
+.quiz-answer.wrong {
+  background: rgba(255, 102, 120, 0.15);
+  border-color: var(--danger);
+}
+
+.quiz-result {
   margin-top: 20px;
-  padding: 20px;
-  text-align: center;
+
+  padding: 18px;
+
+  border-radius: 12px;
+
   background: var(--bg);
-  border-radius: 14px;
-  border: 1px solid var(--border);
+
+  text-align: center;
+
+  font-size: 20px;
+  font-weight: 800;
 }
 
-.quiz-score strong {
-  color: var(--accent);
-  font-size: 30px;
-}
-
-/* =========================================================
+/* =========================================
    PROGRESS PAGE
-   ========================================================= */
+   ========================================= */
 
 .progress-big-card {
   text-align: center;
@@ -550,97 +588,115 @@ h2 {
 .big-number {
   font-size: 70px;
   font-weight: 900;
-  color: var(--accent);
-  line-height: 1;
-  margin-bottom: 20px;
+  color: var(--green);
+
+  margin-bottom: 15px;
 }
 
-.progress-big-card p {
+#progressText {
   color: var(--muted);
+  margin-bottom: 25px;
 }
 
 .progress-bar {
   width: 100%;
   height: 12px;
+
   background: var(--bg);
+
   border-radius: 20px;
+
   overflow: hidden;
-  margin-top: 20px;
 }
 
-.progress-bar div {
-  width: 0%;
+#progressBar {
   height: 100%;
-  background: var(--accent);
+  width: 0%;
+
+  background: var(--green);
+
   border-radius: 20px;
+
   transition: width 0.4s ease;
 }
 
-/* =========================================================
+/* =========================================
    BOTTOM NAVIGATION
-   ========================================================= */
+   ========================================= */
 
 .bottom-nav {
   position: fixed;
-  z-index: 200;
+
   left: 0;
   right: 0;
   bottom: 0;
-  height: 78px;
-  background: rgba(13, 24, 40, 0.98);
+
+  height: 82px;
+
+  background: rgba(12, 25, 42, 0.98);
+
   border-top: 1px solid var(--border);
+
   display: flex;
-  justify-content: space-around;
   align-items: stretch;
-  padding: 5px 8px;
+  justify-content: center;
+
+  z-index: 200;
+
+  padding: 6px 8px;
 }
 
 .bottom-nav button {
   flex: 1;
-  border: none;
+
+  max-width: 150px;
+
   background: transparent;
+  border: none;
+
   color: var(--muted);
+
   cursor: pointer;
-  font-size: 22px;
-  border-radius: 12px;
+
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
   align-items: center;
+  justify-content: center;
+
   gap: 2px;
+
+  font-family: inherit;
 }
 
-.bottom-nav button:hover {
-  background: var(--card);
-}
-
-.bottom-nav button.active {
-  color: var(--accent);
-  background: rgba(32, 212, 134, 0.08);
-}
-
-.bottom-nav span {
+.bottom-nav button span {
+  font-size: 22px;
   line-height: 1;
 }
 
-.bottom-nav small {
-  font-size: 11px;
+.bottom-nav button small {
+  font-size: 12px;
   font-weight: 700;
 }
 
-/* =========================================================
+.bottom-nav button.active,
+.bottom-nav button:hover {
+  color: var(--green);
+}
+
+/* =========================================
    MOBILE
-   ========================================================= */
+   ========================================= */
 
 @media (max-width: 600px) {
 
   body {
-    padding-bottom: 82px;
+    padding-bottom: 85px;
   }
 
   .topbar {
-    height: 68px;
-    padding: 0 15px;
+    height: 72px;
+    padding: 0 16px;
   }
 
   .logo {
@@ -648,13 +704,18 @@ h2 {
   }
 
   .logo-icon {
-    width: 34px;
-    height: 34px;
-    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+
+  .icon-btn {
+    width: 44px;
+    height: 44px;
   }
 
   main {
-    padding: 32px 15px 100px;
+    padding: 25px 18px;
   }
 
   .hero {
@@ -662,7 +723,7 @@ h2 {
   }
 
   .hero h1 {
-    font-size: 45px;
+    font-size: 44px;
   }
 
   .lead {
@@ -673,86 +734,67 @@ h2 {
     font-size: 40px;
   }
 
-  .lesson-content {
-    padding: 23px;
+  .page-heading p {
+    font-size: 17px;
+  }
+
+  .progress-card {
+    padding: 18px;
+  }
+
+  .lesson-content,
+  .calculator-card,
+  .quiz-card,
+  .progress-big-card,
+  .info-card {
+    padding: 20px;
   }
 
   .lesson-content h1 {
-    font-size: 38px;
+    font-size: 36px;
   }
 
   .lesson-content p {
     font-size: 17px;
   }
 
-  .calculator-card,
-  .info-card,
-  .progress-big-card,
-  .quiz-card {
-    padding: 20px;
-  }
-
-  .quiz-card button {
-    min-height: 58px;
-    font-size: 15px;
-  }
-
   .bottom-nav {
-    height: 72px;
+    height: 76px;
+  }
+
+  .bottom-nav button span {
+    font-size: 20px;
+  }
+
+  .bottom-nav button small {
+    font-size: 11px;
   }
 }
 
-/* =========================================================
-   LARGE SCREENS
-   ========================================================= */
+/* =========================================
+   VERY SMALL PHONES
+   ========================================= */
 
-@media (min-width: 800px) {
+@media (max-width: 380px) {
 
-  #lessonList {
-    grid-template-columns: repeat(2, 1fr);
+  main {
+    padding-left: 14px;
+    padding-right: 14px;
   }
 
-  .primary {
-    max-width: 500px;
+  .hero h1 {
+    font-size: 38px;
   }
-}
 
-/* =========================================================
-   LIGHT THEME SUPPORT
-   ========================================================= */
-
-body.light {
-  --bg: #f4f7fb;
-  --card: #ffffff;
-  --card2: #eef3f8;
-  --border: #d7e0eb;
-  --text: #101827;
-  --muted: #64748b;
-  --nav: #ffffff;
-}
-
-body.light .topbar {
-  background: rgba(244, 247, 251, 0.97);
-}
-
-body.light .bottom-nav {
-  background: rgba(255, 255, 255, 0.98);
-}
-
-body.light .calculator-card input,
-body.light .calculator-card select,
-body.light .result-box,
-body.light .progress-bar,
-body.light .quiz-feedback,
-body.light .quiz-score {
-  background: #f4f7fb;
-}
-
-body.light .quiz-card button {
-  background: #ffffff;
-  color: #101827;
-}
-
-body.light .quiz-card button:hover {
-  background: #eef3f8;
+  .page-heading h1 {
+    font-size: 34px;
   }
+
+  .quick-card {
+    padding: 16px;
+  }
+
+  .lesson-card {
+    padding: 18px;
+  }
+   }
