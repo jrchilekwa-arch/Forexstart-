@@ -1,243 +1,1089 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#07111f">
-  <title>ForexStart</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050b16">
+<title>ForexStart</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#050b16;
+  color:#fff;
+  min-height:100vh;
+}
+
+.app{
+  max-width:500px;
+  margin:auto;
+  min-height:100vh;
+  background:linear-gradient(180deg,#091221,#050b16);
+  padding-bottom:80px;
+}
+
+/* HEADER */
+
+.header{
+  padding:24px 20px 15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:800;
+}
+
+.logo span{
+  color:#35d04f;
+}
+
+.bell{
+  font-size:23px;
+}
+
+/* PAGES */
+
+.page{
+  display:none;
+  padding:0 20px;
+}
+
+.page.active{
+  display:block;
+}
+
+h1{
+  font-size:25px;
+  margin:8px 0;
+}
+
+h2{
+  font-size:19px;
+  margin:20px 0 12px;
+}
+
+.subtitle{
+  color:#9ca8b8;
+  font-size:14px;
+  margin-bottom:20px;
+}
+
+/* CARDS */
+
+.card{
+  background:linear-gradient(145deg,#121d2d,#0c1523);
+  border:1px solid #1d2a3c;
+  border-radius:15px;
+  padding:16px;
+  margin-bottom:12px;
+  box-shadow:0 5px 20px rgba(0,0,0,.18);
+}
+
+.card-title{
+  font-weight:bold;
+  margin-bottom:7px;
+}
+
+.small{
+  color:#9ca8b8;
+  font-size:13px;
+}
+
+/* PROGRESS */
+
+.progress-header{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:14px;
+}
+
+.progress-circle{
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  border:5px solid #35d04f;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+}
+
+.progress-bar{
+  height:7px;
+  background:#253344;
+  border-radius:10px;
+  overflow:hidden;
+  margin-top:12px;
+}
+
+.progress-fill{
+  height:100%;
+  width:35%;
+  background:#35d04f;
+}
+
+/* BUTTONS */
+
+button{
+  border:none;
+  cursor:pointer;
+  color:white;
+  font-size:15px;
+}
+
+.green-btn{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  background:#35d04f;
+  color:#061008;
+  font-weight:bold;
+  margin-top:15px;
+}
+
+.green-btn:active{
+  transform:scale(.98);
+}
+
+/* MARKET */
+
+.market-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 0;
+  border-bottom:1px solid #1d2939;
+}
+
+.market-row:last-child{
+  border-bottom:none;
+}
+
+.price{
+  text-align:right;
+}
+
+.up{
+  color:#35d04f;
+}
+
+.down{
+  color:#ff4d5c;
+}
+
+/* LESSONS */
+
+.lesson{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.lesson-number{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#1677d2;
+  font-weight:bold;
+  flex-shrink:0;
+}
+
+.lesson.completed .lesson-number{
+  background:#35d04f;
+}
+
+.lesson.locked .lesson-number{
+  background:#7947c7;
+}
+
+.lesson-info{
+  flex:1;
+}
+
+.lesson-info h3{
+  font-size:15px;
+  margin-bottom:5px;
+}
+
+.lesson-info p{
+  font-size:12px;
+  color:#8e9aaa;
+}
+
+.arrow{
+  color:#8e9aaa;
+}
+
+/* LESSON SCREEN */
+
+.lesson-top{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.back{
+  background:none;
+  font-size:25px;
+}
+
+.lesson-progress{
+  display:flex;
+  gap:4px;
+  flex:1;
+}
+
+.lesson-progress span{
+  height:5px;
+  flex:1;
+  border-radius:5px;
+  background:#263447;
+}
+
+.lesson-progress span.done{
+  background:#35d04f;
+}
+
+.pair-box{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:15px;
+  margin:25px 0;
+}
+
+.currency{
+  width:110px;
+  height:130px;
+  border-radius:15px;
+  background:#102d4d;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+.currency.usd{
+  background:#123921;
+}
+
+.flag{
+  font-size:45px;
+}
+
+.currency strong{
+  font-size:22px;
+  margin-top:7px;
+}
+
+.slash{
+  font-size:28px;
+}
+
+/* TRADING */
+
+.balance{
+  font-size:25px;
+  color:#35d04f;
+  font-weight:bold;
+  margin-top:6px;
+}
+
+.trade-pair{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.chart{
+  height:180px;
+  margin:20px 0;
+  border-radius:12px;
+  background:
+    linear-gradient(90deg,transparent 49%,#172536 50%,transparent 51%),
+    linear-gradient(0deg,transparent 49%,#172536 50%,transparent 51%);
+  background-size:50px 50px;
+  position:relative;
+  overflow:hidden;
+}
+
+.chart-line{
+  position:absolute;
+  width:100%;
+  height:100%;
+}
+
+svg{
+  width:100%;
+  height:100%;
+}
+
+.trade-controls{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.trade-input{
+  background:#101b2a;
+  border:1px solid #263549;
+  border-radius:10px;
+  padding:13px;
+  color:white;
+  width:100%;
+}
+
+.buy{
+  background:#35d04f;
+  color:#061008;
+  padding:15px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+.sell{
+  background:#e6313c;
+  padding:15px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+/* JOURNAL */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.stat{
+  background:#121d2d;
+  border-radius:10px;
+  padding:13px 7px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  margin-top:5px;
+  color:#35d04f;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  max-width:500px;
+  height:72px;
+  background:#08111e;
+  border-top:1px solid #1b2939;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:100;
+}
+
+.nav-btn{
+  background:none;
+  color:#8290a1;
+  font-size:11px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:5px;
+}
+
+.nav-icon{
+  font-size:21px;
+}
+
+.nav-btn.active{
+  color:#35d04f;
+}
+
+/* JOURNAL TRADE */
+
+.trade-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.trade-name{
+  font-weight:bold;
+}
+
+.trade-date{
+  color:#7f8c9d;
+  font-size:11px;
+  margin-top:5px;
+}
+
+/* PROFILE */
+
+.profile{
+  text-align:center;
+  padding:20px;
+}
+
+.avatar{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  background:#35d04f;
+  color:#061008;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  font-weight:bold;
+  margin:10px auto 15px;
+}
+
+/* DESKTOP */
+
+@media(min-width:700px){
+  body{
+    padding:20px;
+  }
+
+  .app{
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 0 50px rgba(0,0,0,.5);
+  }
+}
+</style>
 </head>
 
 <body>
 
-<header class="topbar">
-  <div class="logo">
-    <span>📈</span>
-    <strong>ForexStart</strong>
-  </div>
+<div class="app">
 
-  <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">
-    ☰
-  </button>
+<header class="header">
+  <div class="logo">Forex<span>Start</span></div>
+  <div class="bell">♧</div>
 </header>
 
-<div id="menu" class="mobile-menu">
-  <button onclick="showScreen('home'); toggleMenu()">🏠 Home</button>
-  <button onclick="showScreen('lessons'); toggleMenu()">📚 Learn</button>
-  <button onclick="showScreen('quiz'); toggleMenu()">🧠 Quiz</button>
-  <button onclick="showScreen('calculator'); toggleMenu()">🧮 Risk Calculator</button>
+
+<!-- HOME -->
+
+<section id="home" class="page active">
+
+<h1>Welcome back, Jr! 👋</h1>
+<p class="subtitle">Keep learning, keep growing.</p>
+
+<div class="card">
+
+<div class="progress-header">
+<div>
+<div class="card-title">Your Progress</div>
+<p class="small">Beginner Level</p>
 </div>
 
-<main>
+<div class="progress-circle">35%</div>
+</div>
 
-  <!-- HOME -->
-  <section id="home" class="screen">
+<p class="small">5 of 14 Lessons Completed</p>
 
-    <div class="hero">
-      <div class="eyebrow">BEGINNER FRIENDLY</div>
+<div class="progress-bar">
+<div class="progress-fill"></div>
+</div>
 
-      <h1>Learn Forex.<br>Start Smart.</h1>
+<button class="green-btn" onclick="showPage('learn')">
+Continue Learning →
+</button>
 
-      <p>
-        Learn the basics of forex trading step by step —
-        without risking real money.
-      </p>
-
-      <button class="primary-btn" onclick="showScreen('lessons')">
-        Start Learning →
-      </button>
-    </div>
-
-    <div class="stats">
-      <div>
-        <span>🏆</span>
-        <strong>LEVEL 1</strong>
-      </div>
-
-      <div>
-        <span>⭐</span>
-        <strong>XP <span id="xpHome">100</span></strong>
-      </div>
-
-      <div>
-        <span>🔥</span>
-        <strong>STREAK <span id="streakHome">0</span></strong>
-      </div>
-    </div>
-
-    <div class="xp-text">
-      Beginner <strong><span id="xpProgress">100</span> / 500 XP</strong>
-    </div>
-
-    <div class="xp-bar">
-      <div id="xpBar" class="xp-fill"></div>
-    </div>
-
-    <div class="progress-card">
-      <div>
-        <span>Your Course</span>
-        <span>Progress</span>
-        <strong id="progressPercent">10%</strong>
-      </div>
-
-      <div class="progress-message">
-        Keep going — you're making progress!
-      </div>
-    </div>
-
-    <div class="feature-card" onclick="showScreen('lessons')">
-      <span class="feature-icon">📚</span>
-      <div>
-        <strong>Lessons</strong>
-        <p>Learn Forex</p>
-      </div>
-      <span class="arrow">→</span>
-    </div>
-
-    <div class="feature-card" onclick="showScreen('quiz')">
-      <span class="feature-icon">🧠</span>
-      <div>
-        <strong>Quiz</strong>
-        <p>Test yourself</p>
-      </div>
-      <span class="arrow">→</span>
-    </div>
-
-    <div class="feature-card" onclick="showScreen('calculator')">
-      <span class="feature-icon">🧮</span>
-      <div>
-        <strong>Risk Calculator</strong>
-        <p>Practice risk management</p>
-      </div>
-      <span class="arrow">→</span>
-    </div>
-
-  </section>
+</div>
 
 
-  <!-- LESSONS -->
-  <section id="lessons" class="screen hidden">
+<h2>Quick Market Overview <span class="up" style="float:right;font-size:12px;">● Live</span></h2>
 
-    <div class="eyebrow">FOREX COURSE</div>
+<div class="card">
 
-    <h1>Start with the basics</h1>
+<div class="market-row">
+<span>EUR/USD</span>
+<div class="price">
+<strong>1.08945</strong>
+<div class="up">+0.35% ↗</div>
+</div>
+</div>
 
-    <p>Complete each lesson in order.</p>
+<div class="market-row">
+<span>GBP/USD</span>
+<div class="price">
+<strong>1.26872</strong>
+<div class="down">-0.12% ↘</div>
+</div>
+</div>
 
-    <div id="lessonList"></div>
+<div class="market-row">
+<span>XAU/USD</span>
+<div class="price">
+<strong>2,330.45</strong>
+<div class="up">+0.48% ↗</div>
+</div>
+</div>
 
-  </section>
+</div>
 
-
-  <!-- LESSON DETAIL -->
-  <section id="lessonDetail" class="screen hidden">
-
-    <button class="back-btn" onclick="showScreen('lessons')">
-      ← Back to lessons
-    </button>
-
-    <div id="lessonContent"></div>
-
-  </section>
-
-
-  <!-- QUIZ -->
-  <section id="quiz" class="screen hidden">
-
-    <div class="eyebrow">KNOWLEDGE CHECK</div>
-
-    <h1>Forex Quiz</h1>
-
-    <p>Test what you've learned.</p>
-
-    <div class="quiz-card">
-
-      <div id="quizContent"></div>
-
-    </div>
-
-  </section>
+</section>
 
 
-  <!-- CALCULATOR -->
-  <section id="calculator" class="screen hidden">
+<!-- LEARN -->
 
-    <div class="eyebrow">PRACTICE TOOL</div>
+<section id="learn" class="page">
 
-    <h1>Risk Calculator</h1>
+<h1>Learn Forex</h1>
+<p class="subtitle">Master forex step by step.</p>
 
-    <p>Learn how risk affects your trades.</p>
+<div class="card">
 
-    <div class="calculator-card">
+<div class="lesson completed">
+<div class="lesson-number">1</div>
 
-      <label for="balance">Account Balance ($)</label>
-      <input
-        id="balance"
-        type="number"
-        value="1000"
-        min="0"
-        placeholder="1000"
-      >
+<div class="lesson-info">
+<h3>What is Forex?</h3>
+<p>Introduction to the forex market</p>
+</div>
 
-      <label for="risk">Risk Percentage (%)</label>
-      <input
-        id="risk"
-        type="number"
-        value="1"
-        min="0"
-        max="100"
-        step="0.1"
-        placeholder="1"
-      >
+<span class="up">✓</span>
+</div>
 
-      <button class="primary-btn" onclick="calculateRisk()">
-        Calculate Risk
-      </button>
-
-      <div id="riskResult" class="risk-result">
-        Enter your balance and risk percentage.
-      </div>
-
-    </div>
-
-    <div class="warning-box">
-      ⚠️ <strong>Remember:</strong>
-      This calculator is for education and practice.
-      It does not guarantee trading profits.
-    </div>
-
-  </section>
-
-</main>
+</div>
 
 
-<!-- BOTTOM NAV -->
+<div class="card" onclick="showPage('lesson')">
+
+<div class="lesson">
+<div class="lesson-number">2</div>
+
+<div class="lesson-info">
+<h3>Currency Pairs</h3>
+<p>Understanding base and quote currency</p>
+</div>
+
+<span class="arrow">›</span>
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="lesson">
+<div class="lesson-number" style="background:#7141c7;">3</div>
+
+<div class="lesson-info">
+<h3>Pips Explained</h3>
+<p>What is a pip and how it works</p>
+</div>
+
+<span class="arrow">›</span>
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="lesson locked">
+<div class="lesson-number">4</div>
+
+<div class="lesson-info">
+<h3>Spread</h3>
+<p>What is spread and how it affects you</p>
+</div>
+
+<span>🔒</span>
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="lesson locked">
+<div class="lesson-number">5</div>
+
+<div class="lesson-info">
+<h3>Leverage</h3>
+<p>How leverage works in forex trading</p>
+</div>
+
+<span>🔒</span>
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="lesson">
+<div class="lesson-number">6</div>
+
+<div class="lesson-info">
+<h3>Lots & Lot Sizes</h3>
+<p>Understanding lot sizes in trading</p>
+</div>
+
+<span>🔒</span>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LESSON -->
+
+<section id="lesson" class="page">
+
+<div class="lesson-top">
+
+<button class="back" onclick="showPage('learn')">‹</button>
+
+<strong>Lesson 2 of 14</strong>
+
+</div>
+
+<div class="lesson-progress">
+<span class="done"></span>
+<span class="done"></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<h1 style="margin-top:25px;">Currency Pairs</h1>
+
+<p class="subtitle">
+Understanding base and quote currency
+</p>
+
+
+<div class="pair-box">
+
+<div class="currency">
+<div class="flag">🇪🇺</div>
+<strong>EUR</strong>
+<span class="small">Euro</span>
+</div>
+
+<div class="slash">/</div>
+
+<div class="currency usd">
+<div class="flag">🇺🇸</div>
+<strong>USD</strong>
+<span class="small">US Dollar</span>
+</div>
+
+</div>
+
+
+<p class="subtitle">
+In a currency pair, the first currency is the base currency and the second is the quote currency.
+</p>
+
+<h2 class="up">Example: EUR/USD</h2>
+
+<p class="subtitle">
+If EUR/USD = 1.1000, it means 1 Euro can buy 1.1000 US Dollars.
+</p>
+
+<button class="green-btn" onclick="showPage('demo')">
+Next Lesson →
+</button>
+
+</section>
+
+
+<!-- DEMO TRADING -->
+
+<section id="demo" class="page">
+
+<h1>Demo Trading</h1>
+<p class="subtitle">Practice with virtual money.</p>
+
+<div class="card">
+
+<p class="small">Virtual Balance</p>
+<div class="balance" id="balance">$10,000.00</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="trade-pair">
+<strong>EUR/USD</strong>
+
+<div>
+<span class="up">1.08945</span>
+<br>
+<span class="up">+0.35%</span>
+</div>
+</div>
+
+
+<div class="chart">
+
+<svg viewBox="0 0 400 180" preserveAspectRatio="none">
+
+<polyline
+points="0,130 25,110 45,140 70,90 95,105 120,65 145,80 170,50 195,90 220,115 245,80 270,95 295,55 320,75 345,40 370,65 400,30"
+fill="none"
+stroke="#35d04f"
+stroke-width="3"
+/>
+
+</svg>
+
+</div>
+
+
+<p class="small">Amount (Lots)</p>
+
+<input
+class="trade-input"
+id="lots"
+type="number"
+value="0.10"
+step="0.01"
+min="0.01"
+>
+
+<div class="trade-controls">
+
+<button class="buy" onclick="buyTrade()">BUY ↗</button>
+
+<button class="sell" onclick="sellTrade()">SELL ↓</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<p class="small">⚠️ Demo account only</p>
+<p class="small">
+Trades use virtual money and do not involve real funds.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- JOURNAL -->
+
+<section id="journal" class="page">
+
+<h1>Trading Journal</h1>
+<p class="subtitle">Record and review your demo trades.</p>
+
+
+<div class="stats">
+
+<div class="stat">
+<span>Total Trades</span>
+<strong id="totalTrades">0</strong>
+</div>
+
+<div class="stat">
+<span>Win Rate</span>
+<strong id="winRate">0%</strong>
+</div>
+
+<div class="stat">
+<span>Total P/L</span>
+<strong id="profit">+$0</strong>
+</div>
+
+</div>
+
+
+<h2>Recent Trades</h2>
+
+<div id="trades">
+
+<div class="card">
+
+<div class="trade-item">
+
+<div>
+<div class="trade-name">No trades yet</div>
+<div class="trade-date">
+Make a demo trade to see it here.
+</div>
+</div>
+
+<span>📒</span>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PROFILE -->
+
+<section id="profile" class="page">
+
+<div class="profile">
+
+<div class="avatar">J</div>
+
+<h1>Jr</h1>
+
+<p class="subtitle">ForexStart Beginner</p>
+
+</div>
+
+<div class="card">
+<div class="card-title">Learning Progress</div>
+<p class="small">5 / 14 lessons completed</p>
+</div>
+
+<div class="card">
+<div class="card-title">Account</div>
+<p class="small">Demo Balance: $10,000</p>
+</div>
+
+</section>
+
+
+<!-- NAVIGATION -->
+
 <nav class="bottom-nav">
 
-  <button id="nav-home" onclick="showScreen('home')">
-    <span>🏠</span>
-    Home
-  </button>
+<button class="nav-btn active" onclick="showPage('home',this)">
+<span class="nav-icon">⌂</span>
+Home
+</button>
 
-  <button id="nav-lessons" onclick="showScreen('lessons')">
-    <span>📚</span>
-    Learn
-  </button>
+<button class="nav-btn" onclick="showPage('learn',this)">
+<span class="nav-icon">▣</span>
+Learn
+</button>
 
-  <button id="nav-quiz" onclick="showScreen('quiz')">
-    <span>🧠</span>
-    Quiz
-  </button>
+<button class="nav-btn" onclick="showPage('demo',this)">
+<span class="nav-icon">↗</span>
+Trade
+</button>
 
-  <button id="nav-calculator" onclick="showScreen('calculator')">
-    <span>🧮</span>
-    Tools
-  </button>
+<button class="nav-btn" onclick="showPage('journal',this)">
+<span class="nav-icon">▤</span>
+Journal
+</button>
+
+<button class="nav-btn" onclick="showPage('profile',this)">
+<span class="nav-icon">♙</span>
+Profile
+</button>
 
 </nav>
 
+</div>
 
-<script src="app.js"></script>
+
+<script>
+
+let balance = 10000;
+let trades = [];
+
+function showPage(pageId,button){
+
+  document.querySelectorAll('.page')
+    .forEach(page => page.classList.remove('active'));
+
+  document.getElementById(pageId)
+    .classList.add('active');
+
+  if(button){
+
+    document.querySelectorAll('.nav-btn')
+      .forEach(btn => btn.classList.remove('active'));
+
+    button.classList.add('active');
+
+  }
+
+  window.scrollTo(0,0);
+}
+
+
+function buyTrade(){
+
+  let lots = parseFloat(
+    document.getElementById("lots").value
+  );
+
+  if(!lots || lots <= 0){
+    alert("Enter a valid lot size.");
+    return;
+  }
+
+  let profit = Math.round(
+    (Math.random() * 200 - 70) * lots * 10
+  ) / 10;
+
+  balance += profit;
+
+  addTrade("BUY",profit);
+
+}
+
+
+function sellTrade(){
+
+  let lots = parseFloat(
+    document.getElementById("lots").value
+  );
+
+  if(!lots || lots <= 0){
+    alert("Enter a valid lot size.");
+    return;
+  }
+
+  let profit = Math.round(
+    (Math.random() * 200 - 70) * lots * 10
+  ) / 10;
+
+  balance += profit;
+
+  addTrade("SELL",profit);
+
+}
+
+
+function addTrade(type,profit){
+
+  trades.unshift({
+    type:type,
+    profit:profit,
+    date:new Date().toLocaleString()
+  });
+
+  document.getElementById("balance").textContent =
+    "$" + balance.toLocaleString(
+      undefined,
+      {
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+      }
+    );
+
+  updateJournal();
+
+  alert(
+    type + " EUR/USD demo trade placed!\n" +
+    "P/L: $" + profit.toFixed(2)
+  );
+}
+
+
+function updateJournal(){
+
+  document.getElementById("totalTrades")
+    .textContent = trades.length;
+
+  let wins = trades.filter(
+    trade => trade.profit > 0
+  ).length;
+
+  let winRate = trades.length
+    ? Math.round((wins / trades.length) * 100)
+    : 0;
+
+  document.getElementById("winRate")
+    .textContent = winRate + "%";
+
+  let totalProfit = trades.reduce(
+    (sum,trade) => sum + trade.profit,
+    0
+  );
+
+  document.getElementById("profit")
+    .textContent =
+    (totalProfit >= 0 ? "+$" : "-$") +
+    Math.abs(totalProfit).toFixed(2);
+
+
+  let html = "";
+
+  trades.forEach(trade => {
+
+    html += `
+      <div class="card">
+
+        <div class="trade-item">
+
+          <div>
+
+            <div class="trade-name">
+              🇪🇺 EUR/USD
+            </div>
+
+            <div class="trade-date">
+              ${trade.type} • ${trade.date}
+            </div>
+
+          </div>
+
+          <strong class="${trade.profit >= 0 ? 'up':'down'}">
+            ${trade.profit >= 0 ? '+$':'-$'}
+            ${Math.abs(trade.profit).toFixed(2)}
+          </strong>
+
+        </div>
+
+      </div>
+    `;
+
+  });
+
+  if(!html){
+
+    html = `
+      <div class="card">
+        <div class="trade-name">
+          No trades yet
+        </div>
+        <p class="small">
+          Make a demo trade to see it here.
+        </p>
+      </div>
+    `;
+
+  }
+
+  document.getElementById("trades").innerHTML = html;
+
+}
+
+</script>
 
 </body>
   </html>
