@@ -1,13 +1,19 @@
 {
-  "name": "ForexStart - Learn Forex",
+  "name": "ForexStart - Learn Forex Trading",
   "short_name": "ForexStart",
-  "description": "Learn the fundamentals of forex trading with lessons, quizzes, a demo account and calculator.",
-  "start_url": "./",
+  "description": "Learn the fundamentals of forex trading with beginner lessons, quizzes, a demo account and calculator.",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#f3f7f5",
+  "background_color": "#ffffff",
   "theme_color": "#087f3f",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": [
+    "education",
+    "finance"
+  ],
   "icons": [
     {
       "src": "./icon-192.png",
