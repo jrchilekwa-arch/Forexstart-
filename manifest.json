@@ -1,8 +1,9 @@
 {
+  "id": "./",
   "name": "ForexStart - Learn Forex Trading",
   "short_name": "ForexStart",
   "description": "Learn the fundamentals of forex trading with beginner lessons, quizzes, a demo account and calculator.",
-  "start_url": "./index.html",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
