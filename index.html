@@ -1,1024 +1,973 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#087f3f">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#07140f">
+  <meta name="description" content="ForexStart - Learn forex trading with beginner lessons, quizzes, demo trading and tools.">
 
-<link rel="manifest" href="manifest.json">
+  <title>ForexStart</title>
 
-<title>ForexStart</title>
+  <link rel="manifest" href="./manifest.json">
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-body{
-  font-family:Arial,sans-serif;
-  background:#f3f7f5;
-  color:#17231d;
-}
+    :root {
+      --bg: #07140f;
+      --bg2: #0b1c15;
+      --card: #10251c;
+      --card2: #143023;
+      --green: #19d477;
+      --green2: #0e9f59;
+      --text: #f4fff9;
+      --muted: #8fa99c;
+      --red: #ff5c67;
+      --yellow: #ffc857;
+      --border: rgba(255,255,255,.08);
+      --shadow: 0 15px 40px rgba(0,0,0,.25);
+    }
 
-.app{
-  max-width:520px;
-  margin:auto;
-  min-height:100vh;
-  padding-bottom:80px;
-}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(25,212,119,.12), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding-bottom: 90px;
+    }
 
-header{
-  background:#087f3f;
-  color:white;
-  padding:25px 20px;
-  border-radius:0 0 25px 25px;
-}
+    button,
+    input,
+    select {
+      font: inherit;
+    }
 
-header h1{font-size:28px}
-header p{margin-top:8px;opacity:.9}
+    button {
+      cursor: pointer;
+    }
 
-.content{padding:18px}
+    .app {
+      width: 100%;
+      max-width: 650px;
+      margin: auto;
+    }
 
-.card{
-  background:white;
-  border-radius:18px;
-  padding:18px;
-  margin-bottom:15px;
-  box-shadow:0 4px 15px rgba(0,0,0,.06);
-}
+    /* HEADER */
 
-.progress{
-  background:#dce9e1;
-  height:10px;
-  border-radius:20px;
-  overflow:hidden;
-  margin-top:12px;
-}
+    header {
+      padding: 22px 18px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-.progress-bar{
-  height:100%;
-  width:0;
-  background:#087f3f;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
 
-.lesson{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  cursor:pointer;
-}
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #20e887, #087d47);
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+      box-shadow: 0 8px 25px rgba(25,212,119,.25);
+    }
 
-.icon{
-  width:52px;
-  height:52px;
-  background:#e5f5eb;
-  border-radius:15px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:25px;
-}
+    .brand h1 {
+      font-size: 20px;
+      letter-spacing: -.5px;
+    }
 
-.lesson-info{flex:1}
+    .brand small {
+      color: var(--muted);
+      font-size: 11px;
+    }
 
-.lesson-info h3{font-size:16px}
-.lesson-info p{
-  color:#718078;
-  font-size:13px;
-  margin-top:5px;
-}
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: var(--card);
+      display: grid;
+      place-items: center;
+      font-size: 19px;
+    }
 
-.btn{
-  width:100%;
-  border:0;
-  background:#087f3f;
-  color:white;
-  padding:14px;
-  border-radius:13px;
-  font-size:15px;
-  font-weight:bold;
-  margin-top:10px;
-  cursor:pointer;
-}
+    /* CONTENT */
 
-.btn.red{background:#d9534f}
+    main {
+      padding: 10px 16px;
+    }
 
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-}
+    .screen {
+      display: none;
+      animation: fade .25s ease;
+    }
 
-.stat{
-  background:white;
-  padding:15px 5px;
-  border-radius:15px;
-  text-align:center;
-}
+    .screen.active {
+      display: block;
+    }
 
-.stat strong{
-  display:block;
-  color:#087f3f;
-  font-size:20px;
-}
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-.stat span{
-  font-size:11px;
-  color:#718078;
-}
+    .welcome {
+      margin: 12px 2px 18px;
+    }
 
-.screen{display:none}
-.screen.active{display:block}
+    .welcome p {
+      color: var(--muted);
+      margin-top: 5px;
+      font-size: 14px;
+    }
 
-.back{
-  border:0;
-  background:none;
-  color:#087f3f;
-  font-size:15px;
-  font-weight:bold;
-  margin-bottom:15px;
-}
+    /* BALANCE CARD */
 
-.lesson-text{
-  line-height:1.6;
-  color:#58665e;
-}
+    .balance-card {
+      position: relative;
+      overflow: hidden;
+      padding: 22px;
+      border-radius: 24px;
+      background:
+        linear-gradient(145deg, rgba(25,212,119,.2), rgba(8,70,43,.15)),
+        var(--card);
+      border: 1px solid rgba(25,212,119,.15);
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
 
-.example{
-  background:#eef8f2;
-  border-left:4px solid #087f3f;
-  padding:14px;
-  margin:15px 0;
-  border-radius:10px;
-}
+    .balance-card:after {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      right: -70px;
+      top: -70px;
+      border-radius: 50%;
+      background: rgba(25,212,119,.08);
+    }
 
-.option{
-  display:block;
-  width:100%;
-  padding:14px;
-  margin:8px 0;
-  background:white;
-  border:2px solid #e0e8e3;
-  border-radius:12px;
-  text-align:left;
-  cursor:pointer;
-}
+    .balance-label {
+      color: var(--muted);
+      font-size: 13px;
+    }
 
-.option.correct{
-  background:#e5f5eb;
-  border-color:#087f3f;
-}
+    .balance {
+      font-size: 34px;
+      font-weight: 800;
+      margin: 7px 0;
+      letter-spacing: -1px;
+    }
 
-.option.wrong{
-  background:#fff0ef;
-  border-color:#d9534f;
-}
+    .profit {
+      color: var(--green);
+      font-size: 13px;
+      font-weight: bold;
+    }
 
-.balance{
-  background:#087f3f;
-  color:white;
-  text-align:center;
-  padding:25px;
-  border-radius:20px;
-  margin-bottom:15px;
-}
+    .balance-actions {
+      display: flex;
+      gap: 9px;
+      margin-top: 18px;
+    }
 
-.balance h2{
-  font-size:30px;
-  margin-top:8px;
-}
+    .mini-btn {
+      border: 0;
+      padding: 10px 14px;
+      border-radius: 11px;
+      background: rgba(255,255,255,.07);
+      color: white;
+      font-size: 12px;
+    }
 
-.price{
-  text-align:center;
-  background:white;
-  padding:20px;
-  border-radius:18px;
-  margin-bottom:15px;
-}
+    /* QUICK ACTIONS */
 
-.price strong{
-  display:block;
-  font-size:28px;
-  margin:8px;
-}
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 22px 2px 11px;
+    }
 
-.trade-buttons{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
+    .section-title h2 {
+      font-size: 17px;
+    }
 
-.buy,.sell{
-  padding:16px;
-  border:0;
-  border-radius:13px;
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-}
+    .section-title span {
+      color: var(--green);
+      font-size: 12px;
+    }
 
-.buy{background:#087f3f}
-.sell{background:#d9534f}
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 11px;
+    }
 
-input,select{
-  width:100%;
-  padding:14px;
-  margin:8px 0 15px;
-  border:1px solid #d5dfd9;
-  border-radius:10px;
-  font-size:16px;
-}
+    .quick {
+      padding: 17px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: white;
+      text-align: left;
+      transition: .2s;
+    }
 
-nav{
-  position:fixed;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:100%;
-  max-width:520px;
-  background:white;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  padding:9px;
-  box-shadow:0 -4px 15px rgba(0,0,0,.08);
-}
+    .quick:active {
+      transform: scale(.97);
+    }
 
-nav button{
-  border:0;
-  background:none;
-  color:#718078;
-  padding:7px;
-  font-size:11px;
-}
+    .quick-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(25,212,119,.1);
+      margin-bottom: 12px;
+      font-size: 19px;
+    }
 
-nav button.active{
-  color:#087f3f;
-  font-weight:bold;
-}
+    .quick strong {
+      display: block;
+      font-size: 14px;
+    }
 
-nav span{
-  display:block;
-  font-size:20px;
-  margin-bottom:3px;
-}
+    .quick small {
+      display: block;
+      color: var(--muted);
+      margin-top: 4px;
+      font-size: 11px;
+    }
 
-.dark{
-  background:#101713;
-  color:#eee;
-}
+    /* LESSON CARDS */
 
-.dark .card,
-.dark .stat,
-.dark .price,
-.dark .option,
-.dark nav{
-  background:#1b2520;
-  color:#eee;
-}
+    .lesson-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 10px;
+    }
 
-.dark .lesson-info p,
-.dark .stat span,
-.dark .lesson-text{
-  color:#aab7af;
-}
+    .lesson-top {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
 
-.dark input,
-.dark select{
-  background:#1b2520;
-  color:white;
-  border-color:#39463f;
-}
+    .lesson-number {
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: rgba(25,212,119,.12);
+      color: var(--green);
+      font-weight: bold;
+    }
 
-.toast{
-  position:fixed;
-  bottom:90px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#17231d;
-  color:white;
-  padding:12px 18px;
-  border-radius:30px;
-  opacity:0;
-  pointer-events:none;
-}
+    .lesson-info {
+      flex: 1;
+    }
 
-.toast.show{
-  opacity:1;
-}
-</style>
+    .lesson-info h3 {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .lesson-info p {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .lesson-button {
+      border: 0;
+      background: var(--green);
+      color: #04120b;
+      font-weight: bold;
+      border-radius: 10px;
+      padding: 9px 11px;
+      font-size: 11px;
+    }
+
+    .progress-track {
+      height: 5px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.07);
+      margin-top: 14px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--green);
+      border-radius: inherit;
+      transition: .4s;
+    }
+
+    /* LESSON DETAIL */
+
+    .lesson-detail {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+      margin-top: 15px;
+    }
+
+    .lesson-detail h2 {
+      margin-bottom: 12px;
+    }
+
+    .lesson-detail p {
+      color: #bfd0c7;
+      line-height: 1.65;
+      font-size: 14px;
+      margin-bottom: 13px;
+    }
+
+    .lesson-detail ul {
+      margin-left: 20px;
+      color: #bfd0c7;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .back-btn {
+      border: 0;
+      background: transparent;
+      color: var(--green);
+      padding: 5px 0;
+      margin-bottom: 8px;
+    }
+
+    /* QUIZ */
+
+    .quiz-card {
+      background: var(--card);
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      padding: 20px;
+      margin-top: 15px;
+    }
+
+    .quiz-question {
+      font-size: 18px;
+      line-height: 1.4;
+      margin: 15px 0;
+    }
+
+    .option {
+      width: 100%;
+      text-align: left;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      color: white;
+      padding: 14px;
+      border-radius: 13px;
+      margin-bottom: 9px;
+    }
+
+    .option.correct {
+      border-color: var(--green);
+      background: rgba(25,212,119,.12);
+    }
+
+    .option.wrong {
+      border-color: var(--red);
+      background: rgba(255,92,103,.1);
+    }
+
+    /* TRADING */
+
+    .pair-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      margin: 14px 0;
+    }
+
+    .pair-top {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .pair-name {
+      font-weight: bold;
+      font-size: 17px;
+    }
+
+    .pair-price {
+      text-align: right;
+      font-weight: bold;
+    }
+
+    .chart {
+      height: 130px;
+      margin: 18px 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 13px;
+      background:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 35px 35px;
+    }
+
+    .chart svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .trade-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .buy,
+    .sell {
+      border: 0;
+      padding: 14px;
+      border-radius: 13px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .buy {
+      background: #087d47;
+    }
+
+    .sell {
+      background: #b72f3b;
+    }
+
+    .trade-message {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 12px;
+      min-height: 18px;
+    }
+
+    /* CALCULATOR */
+
+    .calculator {
+      background: var(--card);
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      padding: 20px;
+      margin-top: 15px;
+    }
+
+    .input-group {
+      margin-bottom: 14px;
+    }
+
+    .input-group label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
+
+    .input-group input,
+    .input-group select {
+      width: 100%;
+      padding: 13px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #081811;
+      color: white;
+      outline: none;
+    }
+
+    .calculate-btn {
+      width: 100%;
+      padding: 14px;
+      border: 0;
+      border-radius: 13px;
+      background: var(--green);
+      color: #031009;
+      font-weight: bold;
+    }
+
+    .calc-result {
+      margin-top: 15px;
+      padding: 15px;
+      border-radius: 14px;
+      background: rgba(25,212,119,.08);
+      color: var(--green);
+      font-weight: bold;
+      text-align: center;
+    }
+
+    /* PROGRESS */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+      margin-top: 15px;
+    }
+
+    .stat {
+      padding: 15px 8px;
+      border-radius: 15px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 20px;
+    }
+
+    .stat small {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    /* BUTTON */
+
+    .primary {
+      width: 100%;
+      border: 0;
+      border-radius: 13px;
+      padding: 14px;
+      background: var(--green);
+      color: #031009;
+      font-weight: bold;
+      margin-top: 12px;
+    }
+
+    /* BOTTOM NAV */
+
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 650px;
+      padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+      background: rgba(7,20,15,.94);
+      backdrop-filter: blur(18px);
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      z-index: 100;
+    }
+
+    .nav-btn {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      padding: 6px 2px;
+      font-size: 10px;
+    }
+
+    .nav-btn span {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 3px;
+    }
+
+    .nav-btn.active {
+      color: var(--green);
+    }
+
+    /* TOAST */
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 85px;
+      transform: translateX(-50%) translateY(20px);
+      background: #163426;
+      color: white;
+      border: 1px solid rgba(25,212,119,.2);
+      padding: 12px 17px;
+      border-radius: 12px;
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: .25s;
+      z-index: 200;
+      width: max-content;
+      max-width: 90%;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (min-width: 600px) {
+      body {
+        padding-bottom: 100px;
+      }
+
+      main {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
 <div class="app">
 
-<!-- HOME -->
-<section id="home" class="screen active">
+  <!-- HEADER -->
+  <header>
+    <div class="brand">
+      <div class="logo">📈</div>
+      <div>
+        <h1>ForexStart</h1>
+        <small>Learn. Practice. Improve.</small>
+      </div>
+    </div>
+
+    <div class="avatar">👤</div>
+  </header>
 
-<header>
-<h1>ForexStart 📈</h1>
-<p>Learn Forex. Practice. Start smart.</p>
-</header>
+  <main>
 
-<div class="content">
+    <!-- HOME -->
+    <section id="home" class="screen active">
 
-<div class="card">
-<h3>Your Progress</h3>
-<h2 id="progressText">0%</h2>
+      <div class="welcome">
+        <h2>Welcome back 👋</h2>
+        <p>Build your forex knowledge one step at a time.</p>
+      </div>
 
-<div class="progress">
-<div class="progress-bar" id="progressBar"></div>
-</div>
-</div>
+      <div class="balance-card">
+        <div class="balance-label">Demo Account Balance</div>
+        <div class="balance" id="balance">$10,000.00</div>
+        <div class="profit" id="profit">+$0.00 today</div>
 
-<h2 style="margin-bottom:12px">Learn Forex</h2>
+        <div class="balance-actions">
+          <button class="mini-btn" onclick="showScreen('trade')">💹 Trade</button>
+          <button class="mini-btn" onclick="showScreen('calculator')">🧮 Calculator</button>
+        </div>
+      </div>
 
-<div class="card lesson" onclick="openLesson(1)">
-<div class="icon">💱</div>
-<div class="lesson-info">
-<h3>What is Forex?</h3>
-<p>Learn the basics of currency trading.</p>
-</div>
-</div>
+      <div class="section-title">
+        <h2>Quick Actions</h2>
+      </div>
 
-<div class="card lesson" onclick="openLesson(2)">
-<div class="icon">📊</div>
-<div class="lesson-info">
-<h3>Currency Pairs</h3>
-<p>Understand EUR/USD and other pairs.</p>
-</div>
-</div>
+      <div class="quick-grid">
 
-<div class="card lesson" onclick="openLesson(3)">
-<div class="icon">📈</div>
-<div class="lesson-info">
-<h3>Buy & Sell</h3>
-<p>Understand buying and selling.</p>
-</div>
-</div>
+        <button class="quick" onclick="showScreen('lessons')">
+          <div class="quick-icon">📚</div>
+          <strong>Learn Forex</strong>
+          <small>Beginner lessons</small>
+        </button>
 
-<div class="card lesson" onclick="openLesson(4)">
-<div class="icon">🛡️</div>
-<div class="lesson-info">
-<h3>Risk Management</h3>
-<p>Learn how traders manage risk.</p>
-</div>
-</div>
+        <button class="quick" onclick="showScreen('quiz')">
+          <div class="quick-icon">🧠</div>
+          <strong>Take a Quiz</strong>
+          <small>Test your knowledge</small>
+        </button>
 
-<h2 style="margin:20px 0 12px">Your Stats</h2>
+        <button class="quick" onclick="showScreen('trade')">
+          <div class="quick-icon">📊</div>
+          <strong>Demo Trading</strong>
+          <small>Practice safely</small>
+        </button>
 
-<div class="stats">
-<div class="stat">
-<strong id="lessonStat">0</strong>
-<span>Lessons</span>
-</div>
+        <button class="quick" onclick="showScreen('calculator')">
+          <div class="quick-icon">🧮</div>
+          <strong>Calculator</strong>
+          <small>Calculate risk</small>
+        </button>
 
-<div class="stat">
-<strong id="quizStat">0</strong>
-<span>Quiz</span>
-</div>
+      </div>
 
-<div class="stat">
-<strong id="tradeStat">0</strong>
-<span>Trades</span>
-</div>
-</div>
+      <div class="section-title">
+        <h2>Your Progress</h2>
+        <span onclick="showScreen('progress')">View all</span>
+      </div>
 
-</div>
-</section>
+      <div class="lesson-card">
+        <div class="lesson-top">
+          <div class="lesson-number">1</div>
 
+          <div class="lesson-info">
+            <h3>Forex Fundamentals</h3>
+            <p>Start here if you're new to forex.</p>
+          </div>
 
-<!-- LESSON -->
-<section id="lesson" class="screen">
+          <button class="lesson-button" onclick="openLesson(0)">Start</button>
+        </div>
 
-<div class="content">
+        <div class="progress-track">
+          <div class="progress-fill" id="homeProgress"></div>
+        </div>
+      </div>
 
-<button class="back" onclick="show('home')">← Back</button>
+    </section>
 
-<div class="card">
 
-<h2 id="lessonTitle"></h2>
+    <!-- LESSONS -->
+    <section id="lessons" class="screen">
 
-<div id="lessonContent" class="lesson-text"></div>
+      <div class="section-title">
+        <h2>Forex Academy 📚</h2>
+        <span>Beginner</span>
+      </div>
 
-<button class="btn" onclick="completeLesson()">
-Mark Complete ✓
-</button>
+      <p style="color:var(--muted);font-size:13px;margin-bottom:15px;">
+        Learn the fundamentals before putting your knowledge into practice.
+      </p>
 
-</div>
+      <div id="lessonList"></div>
 
-</div>
-</section>
+    </section>
 
 
-<!-- QUIZ -->
-<section id="quiz" class="screen">
+    <!-- LESSON DETAIL -->
+    <section id="lessonDetail" class="screen">
 
-<div class="content">
+      <button class="back-btn" onclick="showScreen('lessons')">← Back to lessons</button>
 
-<h2 style="margin-bottom:15px">Forex Quiz 🧠</h2>
+      <div class="lesson-detail">
 
-<div class="card">
+        <h2 id="detailTitle">Lesson</h2>
 
-<div id="quizBox"></div>
+        <div id="detailContent"></div>
 
-</div>
+        <button class="primary" onclick="completeCurrentLesson()">
+          ✓ Mark Lesson Complete
+        </button>
 
-</div>
-</section>
+      </div>
 
+    </section>
 
-<!-- DEMO -->
-<section id="demo" class="screen">
 
-<div class="content">
+    <!-- QUIZ -->
+    <section id="quiz" class="screen">
 
-<h2 style="margin-bottom:15px">Demo Trading 📈</h2>
+      <div class="section-title">
+        <h2>Forex Quiz 🧠</h2>
+        <span id="quizScore">Score: 0</span>
+      </div>
 
-<div class="balance">
+      <div class="quiz-card">
 
-<small>Virtual Balance</small>
+        <div style="color:var(--muted);font-size:12px;" id="quizNumber">
+          Question 1
+        </div>
 
-<h2 id="balance">$10,000.00</h2>
+        <div class="quiz-question" id="question">
+          What does Forex stand for?
+        </div>
 
-</div>
+        <div id="options"></div>
 
-<div class="price">
+        <button class="primary" id="nextQuestion" style="display:none;" onclick="nextQuizQuestion()">
+          Next Question →
+        </button>
 
-<small>EUR/USD</small>
+      </div>
 
-<strong id="price">1.0850</strong>
+    </section>
 
-<span id="movement">Market simulation</span>
 
-</div>
+    <!-- TRADE -->
+    <section id="trade" class="screen">
 
-<div class="card">
+      <div class="section-title">
+        <h2>Demo Trading 💹</h2>
+        <span>Practice Mode</span>
+      </div>
 
-<h3>Choose Trade</h3>
+      <p style="color:var(--muted);font-size:12px;">
+        This is a simulated account. No real money is involved.
+      </p>
 
-<p style="color:#718078;margin:8px 0 15px">
-This uses virtual money only.
-</p>
+      <div class="pair-card">
 
-<div class="trade-buttons">
+        <div class="pair-top">
 
-<button class="buy" onclick="trade('buy')">
-BUY ↑
-</button>
+          <div>
+            <div class="pair-name">EUR/USD</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:4px;">
+              Euro / US Dollar
+            </div>
+          </div>
 
-<button class="sell" onclick="trade('sell')">
-SELL ↓
-</button>
+          <div class="pair-price">
+            <div id="price">1.08452</div>
+            <div style="color:var(--green);font-size:11px;" id="change">
+              +0.12%
+            </div>
+          </div>
 
-</div>
+        </div>
 
-<button class="btn red" onclick="resetDemo()">
-Reset Demo Account
-</button>
+        <div class="chart">
 
-</div>
+          <svg viewBox="0 0 500 130" preserveAspectRatio="none">
+            <polyline
+              id="priceLine"
+              points="0,100 30,92 60,105 90,76 120,82 150,60 180,68 210,45 240,57 270,38 300,50 330,31 360,43 390,25 420,37 450,18 500,28"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+            />
+          </svg>
 
-</div>
-</section>
+        </div>
 
+        <div class="trade-buttons">
+          <button class="buy" onclick="demoTrade('buy')">BUY</button>
+          <button class="sell" onclick="demoTrade('sell')">SELL</button>
+        </div>
 
-<!-- CALCULATOR -->
-<section id="calculator" class="screen">
+        <div class="trade-message" id="tradeMessage">
+          Choose BUY or SELL to practice.
+        </div>
 
-<div class="content">
+      </div>
 
-<h2 style="margin-bottom:15px">Profit Calculator 🧮</h2>
+    </section>
 
-<div class="card">
 
-<label>Entry Price</label>
-<input id="entry" type="number" value="1.0800" step="0.0001">
+    <!-- CALCULATOR -->
+    <section id="calculator" class="screen">
 
-<label>Exit Price</label>
-<input id="exit" type="number" value="1.0850" step="0.0001">
+      <div class="section-title">
+        <h2>Risk Calculator 🧮</h2>
+      </div>
 
-<label>Lot Size</label>
-<input id="lot" type="number" value="0.10" step="0.01">
+      <div class="calculator">
 
-<label>Direction</label>
+        <div class="input-group">
+          <label>Account Balance ($)</label>
+          <input id="account" type="number" value="10000">
+        </div>
 
-<select id="direction">
-<option value="buy">BUY</option>
-<option value="sell">SELL</option>
-</select>
+        <div class="input-group">
+          <label>Risk Percentage (%)</label>
+          <input id="risk" type="number" value="1">
+        </div>
 
-<button class="btn" onclick="calculate()">
-Calculate
-</button>
+        <div class="input-group">
+          <label>Stop Loss (pips)</label>
+          <input id="stopLoss" type="number" value="20">
+        </div>
 
-<div class="example">
-<h3 id="result">Estimated Result: $0.00</h3>
-</div>
+        <button class="calculate-btn" onclick="calculateRisk()">
+          Calculate Risk
+        </button>
 
-</div>
+        <div class="calc-result" id="calcResult">
+          Your maximum risk will appear here.
+        </div>
 
-</div>
-</section>
+      </div>
 
+    </section>
 
-<!-- NAV -->
-<nav>
 
-<button class="active" onclick="nav('home',this)">
-<span>🏠</span>
-Home
-</button>
+    <!-- PROGRESS -->
+    <section id="progress" class="screen">
 
-<button onclick="nav('quiz',this)">
-<span>🧠</span>
-Quiz
-</button>
+      <div class="section-title">
+        <h2>Your Progress 🏆</h2>
+      </div>
 
-<button onclick="nav('demo',this)">
-<span>📈</span>
-Demo
-</button>
+      <div class="stats">
 
-<button onclick="nav('calculator',this)">
-<span>🧮</span>
-Calculator
-</button>
+        <div class="stat">
+          <strong id="completedStat">0</strong>
+          <small>Lessons</small>
+        </div>
 
-</nav>
+        <div class="stat">
+          <strong id="quizStat">0</strong>
+          <small>Quiz Score</small>
+        </div>
 
-<div class="toast" id="toast"></div>
+        <div class="stat">
+          <strong id="tradeStat">0</strong>
+          <small>Trades</small>
+        </div>
 
-</div>
+      </div>
 
+      <div class="lesson-card" style="margin-top:15px;">
 
-<script>
+        <h3 style="font-size:15px;">Learning progress</h3>
 
-let state=JSON.parse(
-localStorage.getItem("forexStart")
-)||{
-completed:[],
-score:0,
-trades:0,
-balance:10000
-};
+        <div class="progress-track" style="margin-top:15px;">
+          <div class="progress-fill" id="overallProgress"></div>
+        </div>
 
-let currentLesson=1;
-let quizIndex=0;
+        <p id="progressText" style="color:var(--muted);font-size:12px;margin-top:10px;">
+          0% completed
+        </p>
 
-const lessons={
+      </div>
 
-1:{
-title:"What is Forex? 💱",
-text:`
-<p>
-Forex means <strong>foreign exchange</strong>.
-It is the market where currencies are exchanged.
-</p>
+    </section>
 
-<div class="example">
-<strong>Example:</strong><br>
-EUR/USD = 1.0850 means approximately
-1 euro equals 1.085 US dollars.
-</div>
+  </main>
 
-<p>
-Forex traders try to benefit from changes
-in currency prices. However, trading involves
-significant risk.
-</p>
-`
-},
-
-2:{
-title:"Currency Pairs 📊",
-text:`
-<p>
-Forex currencies are normally traded in pairs.
-</p>
-
-<div class="example">
-<strong>EUR/USD</strong><br><br>
-EUR = Base currency<br>
-USD = Quote currency
-</div>
-
-<p>
-Other examples include GBP/USD,
-USD/JPY and USD/CHF.
-</p>
-`
-},
-
-3:{
-title:"Buy & Sell 📈",
-text:`
-<p>
-When a trader expects a currency pair to rise,
-they may consider a <strong>buy</strong>.
-</p>
-
-<p>
-When they expect it to fall,
-they may consider a <strong>sell</strong>.
-</p>
-
-<div class="example">
-Buy → expecting price to rise.<br>
-Sell → expecting price to fall.
-</div>
-`
-},
-
-4:{
-title:"Risk Management 🛡️",
-text:`
-<p>
-Risk management helps traders control
-potential losses.
-</p>
-
-<div class="example">
-• Use appropriate position sizes.<br>
-• Consider stop-losses.<br>
-• Avoid excessive leverage.<br>
-• Don't risk money you cannot afford to lose.
 </div>
 
-<p>
-There is no trading strategy that guarantees
-profit.
-</p>
-`
-}
 
-};
+<!-- BOTTOM NAV -->
 
+<nav class="bottom-nav">
 
-const questions=[
+  <button class="nav-btn active" data-screen="home" onclick="showScreen('home')">
+    <span>⌂</span>
+    Home
+  </button>
 
-{
-q:"What does Forex mean?",
-a:["Foreign Exchange","Future Exchange","Financial Export","Foreign Expense"],
-correct:0
-},
+  <button class="nav-btn" data-screen="lessons" onclick="showScreen('lessons')">
+    <span>📚</span>
+    Learn
+  </button>
 
-{
-q:"In EUR/USD, which is the base currency?",
-a:["USD","EUR","GBP","JPY"],
-correct:1
-},
+  <button class="nav-btn" data-screen="trade" onclick="showScreen('trade')">
+    <span>📈</span>
+    Trade
+  </button>
 
-{
-q:"If you expect a currency pair to rise, you may consider a...",
-a:["Buy","Sell","Delete","Reset"],
-correct:0
-},
+  <button class="nav-btn" data-screen="calculator" onclick="showScreen('calculator')">
+    <span>🧮</span>
+    Tools
+  </button>
 
-{
-q:"Which is part of risk management?",
-a:["Risk everything","Use appropriate position sizing","Ignore losses","Always use maximum leverage"],
-correct:1
-}
-
-];
-
-
-function save(){
-localStorage.setItem(
-"forexStart",
-JSON.stringify(state)
-);
-
-update();
-}
-
-
-function show(id){
-
-document.querySelectorAll(".screen")
-.forEach(x=>x.classList.remove("active"));
-
-document.getElementById(id)
-.classList.add("active");
-
-window.scrollTo(0,0);
-}
-
-
-function nav(id,button){
-
-show(id);
-
-document.querySelectorAll("nav button")
-.forEach(x=>x.classList.remove("active"));
-
-button.classList.add("active");
-}
-
-
-function openLesson(id){
-
-currentLesson=id;
-
-document.getElementById("lessonTitle")
-.innerHTML=lessons[id].title;
-
-document.getElementById("lessonContent")
-.innerHTML=lessons[id].text;
-
-show("lesson");
-}
-
-
-function completeLesson(){
-
-if(!state.completed.includes(currentLesson)){
-
-state.completed.push(currentLesson);
-
-save();
-
-toast("Lesson completed! 🎉");
-
-}else{
-
-toast("Already completed.");
-
-}
-
-}
-
-
-function loadQuiz(){
-
-if(quizIndex>=questions.length){
-
-document.getElementById("quizBox").innerHTML=`
-
-<div style="text-align:center">
-
-<div style="font-size:50px">🎉</div>
-
-<h2>Quiz Complete!</h2>
-
-<p style="margin:12px 0">
-Score: ${state.score}/${questions.length}
-</p>
-
-<button class="btn" onclick="restartQuiz()">
-Try Again
-</button>
-
-</div>
-`;
-
-return;
-}
-
-let q=questions[quizIndex];
-
-let html=`
-<h3>Question ${quizIndex+1} of ${questions.length}</h3>
-
-<p style="font-weight:bold;margin:20px 0">
-${q.q}
-</p>
-`;
-
-q.a.forEach((answer,i)=>{
-
-html+=`
-<button class="option"
-onclick="answer(${i})">
-${answer}
-</button>
-`;
-
-});
-
-document.getElementById("quizBox").innerHTML=html;
-
-}
-
-
-function answer(choice){
-
-let q=questions[quizIndex];
-
-document.querySelectorAll(".option")
-.forEach((button,i)=>{
-
-button.disabled=true;
-
-if(i===q.correct)
-button.classList.add("correct");
-
-if(i===choice && choice!==q.correct)
-button.classList.add("wrong");
-
-});
-
-if(choice===q.correct){
-
-state.score++;
-
-save();
-
-toast("Correct! 🎯");
-
-}else{
-
-toast("Keep learning!");
-
-}
-
-setTimeout(()=>{
-
-quizIndex++;
-
-loadQuiz();
-
-},700);
-
-}
-
-
-function restartQuiz(){
-
-quizIndex=0;
-state.score=0;
-
-save();
-
-loadQuiz();
-
-}
-
-
-let price=1.0850;
-
-setInterval(()=>{
-
-let move=(Math.random()-.5)*.002;
-
-price+=move;
-
-document.getElementById("price")
-.innerText=price.toFixed(4);
-
-document.getElementById("movement")
-.innerText=
-move>=0
-?"▲ Price moving up"
-:"▼ Price moving down";
-
-},2500);
-
-
-function trade(direction){
-
-let movement=(Math.random()-.5)*.004;
-
-let profit;
-
-if(direction==="buy")
-profit=movement*100000*.1;
-else
-profit=-movement*100000*.1;
-
-profit=Math.round(profit*100)/100;
-
-state.balance+=profit;
-state.trades++;
-
-save();
-
-toast(
-direction.toUpperCase()+" "+
-(profit>=0?"+":"")+
-"$"+profit.toFixed(2)
-);
-
-}
-
-
-function resetDemo(){
-
-state.balance=10000;
-state.trades=0;
-
-save();
-
-toast("Demo account reset.");
-}
-
-
-function calculate(){
-
-let entry=parseFloat(
-document.getElementById("entry").value
-);
-
-let exit=parseFloat(
-document.getElementById("exit").value
-);
-
-let lot=parseFloat(
-document.getElementById("lot").value
-);
-
-let direction=document
-.getElementById("direction").value;
-
-let difference=exit-entry;
-
-if(direction==="sell")
-difference=-difference;
-
-let result=difference*100000*lot;
-
-document.getElementById("result")
-.innerText=
-"Estimated Result: "+
-(result>=0?"+":"")+
-"$"+result.toFixed(2);
-
-}
-
-
-function update(){
-
-let percent=Math.round(
-state.completed.length/4*100
-);
-
-document.getElementById("progressText")
-.innerText=percent+"%";
-
-document.getElementById("progressBar")
-.style.width=percent+"%";
-
-document.getElementById("lessonStat")
-.innerText=state.completed.length;
-
-document.getElementById("quizStat")
-.innerText=
-state.score+"/"+questions.length;
-
-document.getElementById("tradeStat")
-.innerText=state.trades;
-
-document.getElementById("balance")
-.innerText=
-"$"+
-state.balance.toLocaleString(
-"en-US",
-{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-}
-);
-
-}
-
-
-function toast(message){
-
-let t=document.getElementById("toast");
-
-t.innerText=message;
-t.classList.add("show");
-
-setTimeout(()=>{
-t.classList.remove("show");
-},1800);
-
-}
-
-
-loadQuiz();
-update();
-
-</script>
-
-<!-- Service Worker -->
-<script>
-if("serviceWorker" in navigator){
-
-window.addEventListener("load",function(){
-
-navigator.serviceWorker
-.register("./sw.js")
-.then(function(){
-console.log("ForexStart offline mode enabled");
-})
-.catch(function(error){
-console.log("Service worker error:",error);
-});
-
-});
-
-}
-</script>
-
-</body>
-  </html>
+  <button cl
