@@ -1,154 +1,787 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#07140f">
-<meta name="description" content="ForexStart - Learn forex trading, test your knowledge and practice safely with virtual money.">
-<title>ForexStart</title>
-<link rel="manifest" href="./manifest.json">
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#07140f;--bg2:#0b1c15;--card:#10251c;--card2:#143023;--green:#19d477;--green2:#0e9f59;--text:#f4fff9;--muted:#8fa99c;--red:#ff5c67;--yellow:#ffc857;--border:rgba(255,255,255,.08);--shadow:0 15px 40px rgba(0,0,0,.28)}
-body{font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 90% 0,rgba(25,212,119,.13),transparent 32%),var(--bg);color:var(--text);min-height:100vh;padding-bottom:92px}
-button,input,select{font:inherit}button{cursor:pointer}.app{width:100%;max-width:650px;margin:auto}
-header{padding:20px 18px 10px;display:flex;justify-content:space-between;align-items:center}
-.brand{display:flex;align-items:center;gap:11px}.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,#22e989,#087d47);display:grid;place-items:center;font-size:24px;font-weight:900;box-shadow:0 8px 25px rgba(25,212,119,.24)}
-.brand h1{font-size:20px}.brand small{color:var(--muted);font-size:11px}.avatar{width:40px;height:40px;border:1px solid var(--border);border-radius:50%;background:var(--card);display:grid;place-items:center;font-size:18px}
-main{padding:10px 16px}.screen{display:none;animation:fade .25s ease}.screen.active{display:block}@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-.hero{padding:18px 2px 16px}.eyebrow{font-size:10px;letter-spacing:1.5px;color:var(--green);font-weight:800;margin-bottom:8px}.hero h1,h1{font-size:29px;line-height:1.08;letter-spacing:-.8px}.accent{color:var(--green)}.lead{color:var(--muted);font-size:13px;line-height:1.6;margin-top:9px}
-.primary{width:100%;border:0;border-radius:14px;padding:14px;background:var(--green);color:#031009;font-weight:800;margin-top:14px}.primary:active,.quick-card:active,.lesson-card:active{transform:scale(.985)}
-.card,.lesson-card,.quick-card,.pair-card,.form-card{background:linear-gradient(145deg,rgba(255,255,255,.025),rgba(255,255,255,.005)),var(--card);border:1px solid var(--border);box-shadow:var(--shadow);border-radius:20px}
-.progress-card{display:flex;justify-content:space-between;align-items:center;padding:18px;margin:4px 0 20px}.muted{color:var(--muted)}.progress-card strong{display:block;font-size:27px;margin-top:5px}
-.progress-ring{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--green) var(--p,0%),rgba(255,255,255,.07) 0);position:relative}.progress-ring:after{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--card)}.progress-ring span{position:relative;z-index:1;font-size:12px;font-weight:800}
-h2{font-size:17px}.quick-card{width:100%;border-radius:17px;padding:16px;margin-top:10px;color:white;text-align:left;display:flex;align-items:center;gap:13px;transition:.15s}.quick-card>span:last-child{flex:1}.quick-card b{display:block;font-size:14px}.quick-card small{display:block;color:var(--muted);font-size:11px;margin-top:4px}.arrow{font-size:22px;color:var(--muted)}
-.section-head{display:flex;justify-content:space-between;align-items:center;margin:16px 2px 11px}.section-head span{font-size:11px;color:var(--green)}
-.lesson-card{display:block;width:100%;padding:16px;margin:10px 0;color:white;text-align:left}.lesson-card .num{display:inline-block;color:var(--green);font-size:10px;font-weight:800;letter-spacing:.8px;margin-bottom:8px}.lesson-card h2{font-size:15px;margin-bottom:5px}.lesson-card p{font-size:12px;color:var(--muted);line-height:1.5}.lesson-card.done{border-color:rgba(25,212,119,.28)}.check{float:right;color:var(--green);font-size:18px}
-.back{border:0;background:transparent;color:var(--green);padding:8px 0;margin-bottom:8px}.lesson-body{padding:20px;border-radius:20px;background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow)}.lesson-body h1{font-size:25px;margin-bottom:14px}.lesson-body h2{margin:18px 0 8px}.lesson-body p{color:#bfd0c7;line-height:1.7;font-size:14px;margin:10px 0}.lesson-body ul{margin:8px 0 8px 20px;color:#bfd0c7;line-height:1.8;font-size:13px}.tip{margin-top:15px;padding:14px;border-radius:14px;background:rgba(25,212,119,.08);border:1px solid rgba(25,212,119,.14)}.tip p{margin:6px 0 0}
-.form-card{padding:19px;margin-top:16px}.form-card label{display:block;color:var(--muted);font-size:12px;margin-bottom:14px}.form-card input,.form-card select{width:100%;margin-top:7px;padding:13px;border-radius:12px;border:1px solid var(--border);background:#081811;color:white;outline:none}.result{margin-top:14px;padding:14px;border-radius:13px;background:rgba(25,212,119,.08);color:var(--green);font-weight:800;text-align:center}.info{padding:17px;margin-top:12px}.info p{color:var(--muted);font-size:12px;line-height:1.6;margin-top:7px}
-.quiz-card{padding:20px;margin-top:16px}.question{font-size:19px;line-height:1.4;margin:14px 0}.answer{width:100%;text-align:left;border:1px solid var(--border);background:rgba(255,255,255,.025);color:white;padding:14px;border-radius:13px;margin:5px 0}.answer.correct{border-color:var(--green);background:rgba(25,212,119,.12)}.answer.wrong{border-color:var(--red);background:rgba(255,92,103,.1)}.answer:disabled{cursor:default}.score-big{font-size:48px;font-weight:900;color:var(--green);text-align:center;margin:15px}
-.pair-card{padding:18px;margin-top:16px}.pair-top{display:flex;justify-content:space-between}.pair-name{font-weight:900;font-size:17px}.price{text-align:right;font-weight:800}.change{color:var(--green);font-size:11px;margin-top:4px}.chart{height:135px;margin:18px 0;border-radius:14px;overflow:hidden;background:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:35px 35px}.chart svg{width:100%;height:100%;color:var(--green)}.trade-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px}.buy,.sell{border:0;padding:14px;border-radius:13px;color:white;font-weight:900}.buy{background:#087d47}.sell{background:#b72f3b}.trade-message{text-align:center;color:var(--muted);font-size:12px;margin-top:12px;min-height:18px}.trade-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:11px}.trade-stat{padding:13px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.025)}.trade-stat small{color:var(--muted);font-size:10px}.trade-stat strong{display:block;margin-top:4px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:16px}.stat{padding:15px 7px;border-radius:15px;background:var(--card);border:1px solid var(--border);text-align:center}.stat strong{display:block;font-size:20px}.stat small{color:var(--muted);font-size:10px}.bar{height:7px;border-radius:10px;background:rgba(255,255,255,.07);overflow:hidden;margin-top:14px}.bar span{display:block;height:100%;width:0;background:var(--green);transition:.4s}.center{text-align:center;padding:20px;margin-top:14px}.big-number{font-size:42px;font-weight:900;color:var(--green)}.danger-outline{width:100%;padding:13px;border-radius:13px;background:transparent;border:1px solid rgba(255,92,103,.45);color:#ff7c84;margin-top:13px}
-.bottom-nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:650px;padding:8px 9px calc(8px + env(safe-area-inset-bottom));background:rgba(7,20,15,.94);backdrop-filter:blur(18px);border-top:1px solid var(--border);display:grid;grid-template-columns:repeat(5,1fr);z-index:100}.nav-btn{border:0;background:transparent;color:var(--muted);padding:6px 2px;font-size:10px}.nav-btn span{display:block;font-size:19px;margin-bottom:3px}.nav-btn.active{color:var(--green)}
-.toast{position:fixed;left:50%;bottom:88px;transform:translateX(-50%) translateY(15px);background:#163426;color:white;border:1px solid rgba(25,212,119,.2);padding:12px 16px;border-radius:12px;font-size:12px;opacity:0;pointer-events:none;transition:.25s;z-index:200}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-@media(min-width:600px){main{padding:10px 22px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="ForexStart - Learn forex trading, practice with a demo account and build your trading knowledge.">
+
+  <title>ForexStart</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
 </head>
+
 <body>
-<div class="app">
-<header>
-  <div class="brand"><div class="logo">F</div><div><h1>ForexStart</h1><small>Learn. Practice. Improve.</small></div></div>
-  <div class="avatar">👤</div>
-</header>
 
-<main>
-<section id="home" class="screen active" data-screen="home">
-  <div class="hero"><p class="eyebrow">YOUR FOREX JOURNEY</p><h1>Learn Forex.<br><span class="accent">Build Confidence.</span></h1><p class="lead">Understand the basics, test your knowledge and practice trading without risking real money.</p></div>
-  <div class="card progress-card"><div><p class="muted">Learning progress</p><strong id="homeProgress">0%</strong></div><div class="progress-ring" id="ring"><span id="homeProgressRing">0%</span></div></div>
-  <h2>Quick Start</h2>
-  <button class="quick-card" onclick="showScreen('learn')">📚 <span><b>Learn Forex</b><small>Start with the fundamentals</small></span><span class="arrow">›</span></button>
-  <button class="quick-card" onclick="showScreen('trade')">📊 <span><b>Demo Trading</b><small>Practice with virtual money</small></span><span class="arrow">›</span></button>
-  <button class="quick-card" onclick="showScreen('quiz')">🧠 <span><b>Knowledge Quiz</b><small>Check what you remember</small></span><span class="arrow">›</span></button>
-  <div class="section-head"><h2>Continue Learning</h2><span id="homeLessonStatus">Lesson 1</span></div>
-  <button class="lesson-card" id="continueCard" onclick="openNextLesson()"><span class="num">NEXT LESSON</span><h2 id="continueTitle">What is Forex?</h2><p id="continueDesc">Learn what the foreign exchange market is and how it works.</p></button>
-</section>
+  <div class="app">
 
-<section id="learn" class="screen" data-screen="learn">
-  <p class="eyebrow">LEARNING PATH</p><h1>Learn Forex</h1><p class="lead">Master the fundamentals one lesson at a time.</p>
-  <div id="lessonList"></div>
-</section>
+    <!-- TOP BAR -->
+    <header class="topbar">
 
-<section id="lesson" class="screen" data-screen="lesson">
-  <button class="back" onclick="showScreen('learn')">← Back to lessons</button>
-  <div id="lessonContent"></div>
-</section>
+      <div class="brand">
+        <div class="brand-icon">F</div>
 
-<section id="calculator" class="screen" data-screen="calculator">
-  <p class="eyebrow">PRACTICE TOOL</p><h1>Pip Calculator</h1><p class="lead">Calculate how many pips price moved.</p>
-  <div class="form-card">
-    <label>Currency Pair<select id="calcPair"><option>EUR/USD</option><option>GBP/USD</option><option>USD/JPY</option><option>EUR/GBP</option></select></label>
-    <label>Entry Price<input id="entryPrice" type="number" step="0.00001" placeholder="Example: 1.10000"></label>
-    <label>Exit Price<input id="exitPrice" type="number" step="0.00001" placeholder="Example: 1.10500"></label>
-    <button class="primary" onclick="calculatePips()">Calculate Pips</button>
-    <div id="pipResult" class="result">Enter your prices above.</div>
+        <div>
+          <div class="brand-name">ForexStart</div>
+          <div class="brand-subtitle">Learn • Practice • Grow</div>
+        </div>
+      </div>
+
+      <button
+        id="menuBtn"
+        class="icon-btn"
+        aria-label="Open menu">
+        ☰
+      </button>
+
+    </header>
+
+
+    <!-- SIDE MENU -->
+    <div id="mobileMenu" class="mobile-menu">
+
+      <div class="menu-header">
+        <strong>ForexStart</strong>
+
+        <button id="closeMenu" class="icon-btn">
+          ×
+        </button>
+      </div>
+
+      <button class="menu-item" data-screen="quiz">
+        🧠 Knowledge Quiz
+      </button>
+
+      <button class="menu-item" data-screen="tools">
+        🧮 Forex Tools
+      </button>
+
+      <button class="menu-item" data-screen="profile">
+        👤 My Progress
+      </button>
+
+      <div class="menu-note">
+        ForexStart is an educational demo app.
+        Trading involves risk.
+      </div>
+
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+
+      <!-- HOME -->
+      <section id="home" class="screen active">
+
+        <div class="welcome">
+          <span class="eyebrow">WELCOME BACK</span>
+
+          <h1>
+            Learn Forex.<br>
+            <span>Build Confidence.</span>
+          </h1>
+
+          <p>
+            Learn the basics, practice safely and improve your trading knowledge.
+          </p>
+        </div>
+
+
+        <!-- XP CARD -->
+        <div class="xp-card">
+
+          <div class="xp-top">
+
+            <div>
+              <span class="small-label">YOUR PROGRESS</span>
+              <h2><span id="homeXp">0</span> XP</h2>
+            </div>
+
+            <div class="level-badge">
+              LEVEL <span id="homeLevel">1</span>
+            </div>
+
+          </div>
+
+          <div class="progress-track">
+            <div id="homeProgressBar" class="progress-fill"></div>
+          </div>
+
+          <div class="progress-info">
+            <span id="homeProgressText">0 of 10 lessons completed</span>
+            <span id="homeProgressPercent">0%</span>
+          </div>
+
+        </div>
+
+
+        <!-- MARKET SNAPSHOT -->
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">MARKET SNAPSHOT</span>
+            <h2>Demo Market</h2>
+          </div>
+
+          <span class="live-pill">
+            SIMULATED
+          </span>
+        </div>
+
+
+        <div class="market-grid">
+
+          <div class="market-card">
+            <div class="market-name">EUR/USD</div>
+            <div class="market-price">1.0850</div>
+            <div class="market-change positive">+0.24%</div>
+          </div>
+
+          <div class="market-card">
+            <div class="market-name">GBP/USD</div>
+            <div class="market-price">1.2740</div>
+            <div class="market-change positive">+0.18%</div>
+          </div>
+
+          <div class="market-card">
+            <div class="market-name">USD/JPY</div>
+            <div class="market-price">148.20</div>
+            <div class="market-change negative">-0.12%</div>
+          </div>
+
+        </div>
+
+
+        <!-- QUICK ACTIONS -->
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">GET STARTED</span>
+            <h2>Quick Actions</h2>
+          </div>
+        </div>
+
+
+        <div class="action-grid">
+
+          <button class="action-card" data-screen="learn">
+            <div class="action-icon green">📚</div>
+            <div>
+              <strong>Start Learning</strong>
+              <span>Forex lessons</span>
+            </div>
+            <b>›</b>
+          </button>
+
+
+          <button class="action-card" data-screen="trade">
+            <div class="action-icon blue">📈</div>
+            <div>
+              <strong>Demo Trading</strong>
+              <span>Practice with $10,000</span>
+            </div>
+            <b>›</b>
+          </button>
+
+
+          <button class="action-card" data-screen="quiz">
+            <div class="action-icon purple">🧠</div>
+            <div>
+              <strong>Take Quiz</strong>
+              <span>Test your knowledge</span>
+            </div>
+            <b>›</b>
+          </button>
+
+
+          <button class="action-card" data-screen="tools">
+            <div class="action-icon orange">🧮</div>
+            <div>
+              <strong>Forex Tools</strong>
+              <span>Calculate risk & pips</span>
+            </div>
+            <b>›</b>
+          </button>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- LEARN -->
+      <section id="learn" class="screen">
+
+        <div class="page-header">
+
+          <span class="eyebrow">FOREX EDUCATION</span>
+
+          <h1>Learn Forex</h1>
+
+          <p>
+            Start with the basics and work your way up.
+          </p>
+
+        </div>
+
+
+        <div class="learn-summary">
+
+          <div>
+            <strong id="learnCompleted">0</strong>
+            <span>Completed</span>
+          </div>
+
+          <div>
+            <strong>10</strong>
+            <span>Lessons</span>
+          </div>
+
+          <div>
+            <strong id="learnXp">0</strong>
+            <span>XP</span>
+          </div>
+
+        </div>
+
+
+        <div id="lessonList" class="lesson-list"></div>
+
+      </section>
+
+
+
+      <!-- LESSON DETAIL -->
+      <section id="lessonDetail" class="screen">
+
+        <button id="backToLessons" class="back-btn">
+          ← Back to Lessons
+        </button>
+
+        <div id="lessonContent"></div>
+
+      </section>
+
+
+
+      <!-- TRADE -->
+      <section id="trade" class="screen">
+
+        <div class="page-header">
+
+          <span class="eyebrow">PRACTICE ACCOUNT</span>
+
+          <h1>Demo Trading</h1>
+
+          <p>
+            Practice trading using simulated prices. No real money is involved.
+          </p>
+
+        </div>
+
+
+        <div class="balance-card">
+
+          <span>DEMO BALANCE</span>
+
+          <strong id="demoBalance">
+            $10,000.00
+          </strong>
+
+          <div class="balance-bottom">
+            <span>Trades: <b id="tradeCount">0</b></span>
+            <span class="demo-status">● DEMO</span>
+          </div>
+
+        </div>
+
+
+        <!-- TRADING PAIR -->
+        <div class="trade-pair-card">
+
+          <div class="pair-top">
+
+            <div>
+              <span class="small-label">CURRENCY PAIR</span>
+              <h2>EUR/USD</h2>
+            </div>
+
+            <div class="pair-price">
+              <strong id="demoPrice">1.08500</strong>
+              <span id="priceMovement">+0.00000</span>
+            </div>
+
+          </div>
+
+
+          <div class="chart">
+
+            <svg
+              viewBox="0 0 400 150"
+              preserveAspectRatio="none">
+
+              <defs>
+
+                <linearGradient
+                  id="chartGradient"
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1">
+
+                  <stop
+                    offset="0%"
+                    stop-opacity=".35"/>
+
+                  <stop
+                    offset="100%"
+                    stop-opacity="0"/>
+
+                </linearGradient>
+
+              </defs>
+
+              <path
+                id="chartArea"
+                d="M0 120 L40 110 L80 115 L120 90 L160 100 L200 70 L240 82 L280 50 L320 62 L360 35 L400 45 L400 150 L0 150 Z"
+                fill="url(#chartGradient)"
+                stroke="none"/>
+
+              <polyline
+                id="chartLine"
+                points="0,120 40,110 80,115 120,90 160,100 200,70 240,82 280,50 320,62 360,35 400,45"
+                fill="none"
+                stroke-width="3"/>
+
+            </svg>
+
+          </div>
+
+
+          <div class="trade-info">
+
+            <div>
+              <span>Spread</span>
+              <strong>1.2 pips</strong>
+            </div>
+
+            <div>
+              <span>Market</span>
+              <strong>Open</strong>
+            </div>
+
+          </div>
+
+
+          <div id="positionBox" class="position-box hidden"></div>
+
+
+          <div class="trade-buttons">
+
+            <button
+              id="sellBtn"
+              class="trade-btn sell">
+              SELL
+            </button>
+
+            <button
+              id="buyBtn"
+              class="trade-btn buy">
+              BUY
+            </button>
+
+          </div>
+
+          <p class="demo-warning">
+            ⚠️ This is a simulated market for learning purposes.
+          </p>
+
+        </div>
+
+
+        <button
+          id="resetDemo"
+          class="secondary-btn">
+          Reset Demo Account
+        </button>
+
+      </section>
+
+
+
+      <!-- JOURNAL -->
+      <section id="journal" class="screen">
+
+        <div class="page-header">
+
+          <span class="eyebrow">YOUR RECORD</span>
+
+          <h1>Trading Journal</h1>
+
+          <p>
+            Keep track of your demo trades and notes.
+          </p>
+
+        </div>
+
+
+        <div class="journal-note-card">
+
+          <label for="journalNote">
+            Add a trading note
+          </label>
+
+          <textarea
+            id="journalNote"
+            placeholder="What did you learn today?"></textarea>
+
+          <button
+            id="saveNote"
+            class="primary-btn">
+            Save Note
+          </button>
+
+        </div>
+
+
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">HISTORY</span>
+            <h2>Recent Activity</h2>
+          </div>
+        </div>
+
+
+        <div id="journalList" class="journal-list"></div>
+
+      </section>
+
+
+
+      <!-- QUIZ -->
+      <section id="quiz" class="screen">
+
+        <div class="page-header">
+
+          <span class="eyebrow">TEST YOUR KNOWLEDGE</span>
+
+          <h1>Forex Quiz</h1>
+
+          <p>
+            Answer the questions and see how much you've learned.
+          </p>
+
+        </div>
+
+
+        <div id="quizContent"></div>
+
+      </section>
+
+
+
+      <!-- TOOLS -->
+      <section id="tools" class="screen">
+
+        <div class="page-header">
+
+          <span class="eyebrow">FOREX TOOLS</span>
+
+          <h1>Trading Tools</h1>
+
+          <p>
+            Simple calculators for learning and practice.
+          </p>
+
+        </div>
+
+
+        <!-- PIP CALCULATOR -->
+        <div class="tool-card">
+
+          <div class="tool-title">
+            <div class="tool-icon">01</div>
+
+            <div>
+              <h2>Pip Calculator</h2>
+              <p>Calculate the number of pips.</p>
+            </div>
+          </div>
+
+
+          <label>Currency Pair</label>
+
+          <select id="calcPair">
+
+            <option value="normal">
+              EUR/USD
+            </option>
+
+            <option value="normal">
+              GBP/USD
+            </option>
+
+            <option value="jpy">
+              USD/JPY
+            </option>
+
+          </select>
+
+
+          <label>Entry Price</label>
+
+          <input
+            id="entryPrice"
+            type="number"
+            step="0.00001"
+            placeholder="1.08500">
+
+
+          <label>Exit Price</label>
+
+          <input
+            id="exitPrice"
+            type="number"
+            step="0.00001"
+            placeholder="1.09000">
+
+
+          <button
+            id="pipCalculate"
+            class="primary-btn">
+            Calculate Pips
+          </button>
+
+
+          <div
+            id="pipResult"
+            class="calculator-result">
+            Enter your prices above.
+          </div>
+
+        </div>
+
+
+        <!-- RISK CALCULATOR -->
+        <div class="tool-card">
+
+          <div class="tool-title">
+            <div class="tool-icon">02</div>
+
+            <div>
+              <h2>Risk Calculator</h2>
+              <p>Learn how much you are risking.</p>
+            </div>
+          </div>
+
+
+          <label>Account Balance</label>
+
+          <input
+            id="riskBalance"
+            type="number"
+            value="10000"
+            placeholder="10000">
+
+
+          <label>Risk Percentage</label>
+
+          <input
+            id="riskPercent"
+            type="number"
+            value="1"
+            step="0.1"
+            placeholder="1">
+
+
+          <button
+            id="riskCalculate"
+            class="primary-btn">
+            Calculate Risk
+          </button>
+
+
+          <div
+            id="riskResult"
+            class="calculator-result">
+            Your result will appear here.
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- PROFILE -->
+      <section id="profile" class="screen">
+
+        <div class="profile-header">
+
+          <div class="profile-avatar">
+            F
+          </div>
+
+          <div>
+            <span class="eyebrow">YOUR ACCOUNT</span>
+            <h1>My Progress</h1>
+            <p>Keep learning and improving.</p>
+          </div>
+
+        </div>
+
+
+        <div class="profile-stats">
+
+          <div class="profile-stat">
+            <strong id="profileXp">0</strong>
+            <span>XP</span>
+          </div>
+
+          <div class="profile-stat">
+            <strong id="profileLessons">0</strong>
+            <span>Lessons</span>
+          </div>
+
+          <div class="profile-stat">
+            <strong id="profileQuiz">0%</strong>
+            <span>Best Quiz</span>
+          </div>
+
+          <div class="profile-stat">
+            <strong id="profileTrades">0</strong>
+            <span>Trades</span>
+          </div>
+
+        </div>
+
+
+        <div class="achievement-card">
+
+          <div class="achievement-icon">
+            🏆
+          </div>
+
+          <div>
+
+            <strong id="levelTitle">
+              Forex Beginner
+            </strong>
+
+            <span id="levelDescription">
+              Complete lessons to unlock higher levels.
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="profile-progress">
+
+          <div class="progress-info">
+            <span>Learning Progress</span>
+            <strong id="profilePercent">0%</strong>
+          </div>
+
+          <div class="progress-track">
+            <div
+              id="profileProgressBar"
+              class="progress-fill">
+            </div>
+          </div>
+
+        </div>
+
+
+        <button
+          id="resetProgress"
+          class="danger-btn">
+          Reset All Progress
+        </button>
+
+
+        <div class="disclaimer">
+
+          <strong>Important</strong>
+
+          <p>
+            ForexStart is an educational application.
+            Demo trading is simulated and does not use real money.
+            This app does not provide financial advice.
+          </p>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bottom-nav">
+
+      <button
+        class="nav-item active"
+        data-screen="home">
+
+        <span>⌂</span>
+        <small>Home</small>
+
+      </button>
+
+
+      <button
+        class="nav-item"
+        data-screen="learn">
+
+        <span>▣</span>
+        <small>Learn</small>
+
+      </button>
+
+
+      <button
+        class="nav-item"
+        data-screen="trade">
+
+        <span>↗</span>
+        <small>Trade</small>
+
+      </button>
+
+
+      <button
+        class="nav-item"
+        data-screen="journal">
+
+        <span>☷</span>
+        <small>Journal</small>
+
+      </button>
+
+
+      <button
+        class="nav-item"
+        data-screen="profile">
+
+        <span>●</span>
+        <small>Profile</small>
+
+      </button>
+
+    </nav>
+
+
+    <!-- TOAST -->
+    <div id="toast" class="toast"></div>
+
   </div>
-  <div class="card info"><h2>💡 What is a pip?</h2><p>For many forex pairs, a pip is 0.0001. For many JPY pairs, it is 0.01. Pip values can vary by instrument, so always check the pair specifications.</p></div>
-</section>
 
-<section id="quiz" class="screen" data-screen="quiz">
-  <p class="eyebrow">KNOWLEDGE CHECK</p><h1>Forex Quiz</h1><p class="lead">Test what you've learned.</p><div id="quizBox"></div>
-</section>
 
-<section id="progress" class="screen" data-screen="progress">
-  <p class="eyebrow">YOUR JOURNEY</p><h1>Progress</h1>
-  <div class="stats"><div class="stat"><strong id="progressLessons">0</strong><small>Lessons</small></div><div class="stat"><strong id="progressQuiz">0%</strong><small>Best Quiz</small></div><div class="stat"><strong id="progressTrades">0</strong><small>Trades</small></div></div>
-  <div class="card center"><div class="big-number" id="progressNumber">0%</div><p class="muted" id="progressText">0 of 10 lessons completed</p><div class="bar"><span id="progressBar"></span></div></div>
-  <div class="card info"><h2>🏆 Your goal</h2><p>Complete the lessons, take the quiz and practice in demo mode before considering real-money trading. Forex trading involves significant risk.</p></div>
-  <button class="danger-outline" onclick="resetProgress()">Reset learning progress</button>
-</section>
+  <script src="app.js"></script>
 
-<section id="trade" class="screen" data-screen="trade">
-  <p class="eyebrow">SAFE PRACTICE</p><h1>Demo Trading</h1><p class="lead">Practice with virtual money. No real trades or deposits.</p>
-  <div class="pair-card">
-    <div class="pair-top"><div><div class="pair-name">EUR/USD</div><div class="muted" style="font-size:11px;margin-top:4px">Euro / US Dollar</div></div><div class="price"><div id="price">1.10000</div><div class="change" id="change">+0.12%</div></div></div>
-    <div class="chart"><svg viewBox="0 0 500 135" preserveAspectRatio="none"><polyline points="0,100 30,92 60,105 90,76 120,82 150,60 180,68 210,45 240,57 270,38 300,50 330,31 360,43 390,25 420,37 450,18 500,28" fill="none" stroke="currentColor" stroke-width="3"/></svg></div>
-    <div class="trade-buttons"><button class="buy" onclick="demoTrade('buy')">BUY</button><button class="sell" onclick="demoTrade('sell')">SELL</button></div>
-    <div class="trade-message" id="tradeMessage">Choose BUY or SELL to practice.</div>
-    <div class="trade-stats"><div class="trade-stat"><small>Demo balance</small><strong id="tradeBalance">$10,000.00</strong></div><div class="trade-stat"><small>Practice trades</small><strong id="tradeCount">0</strong></div></div>
-  </div>
-</section>
-</main>
-</div>
-
-<nav class="bottom-nav">
-<button class="nav-btn active" data-nav="home" onclick="showScreen('home')"><span>⌂</span>Home</button>
-<button class="nav-btn" data-nav="learn" onclick="showScreen('learn')"><span>📚</span>Learn</button>
-<button class="nav-btn" data-nav="trade" onclick="showScreen('trade')"><span>📈</span>Trade</button>
-<button class="nav-btn" data-nav="calculator" onclick="showScreen('calculator')"><span>🧮</span>Tools</button>
-<button class="nav-btn" data-nav="progress" onclick="showScreen('progress')"><span>🏆</span>Progress</button>
-</nav>
-<div class="toast" id="toast"></div>
-
-<script>
-const lessons=[
-{title:"What is Forex?",desc:"Understand the foreign exchange market.",content:`<h1>What is Forex?</h1><p>Forex, short for foreign exchange, is the global market where currencies are exchanged. Traders compare one currency against another using currency pairs such as EUR/USD.</p><h2>Why do currencies move?</h2><p>Prices can be affected by interest rates, economic data, central-bank decisions, political events and market sentiment.</p><div class="tip"><b>💡 Beginner Tip</b><p>Start by learning how the market works before worrying about making money.</p></div>`},
-{title:"Currency Pairs",desc:"Learn base and quote currencies.",content:`<h1>Currency Pairs</h1><p>A forex quote contains two currencies. In EUR/USD, EUR is the base currency and USD is the quote currency.</p><h2>Major pairs</h2><ul><li>EUR/USD</li><li>GBP/USD</li><li>USD/JPY</li><li>USD/CHF</li></ul><p>If EUR/USD rises, one euro is worth more US dollars than before.</p>`},
-{title:"Pips",desc:"Learn how traders describe small price moves.",content:`<h1>Understanding Pips</h1><p>A pip is a common unit for describing a small change in a forex price. Many non-JPY pairs use 0.0001 while many JPY pairs use 0.01.</p><div class="tip"><b>🧮 Practice</b><p>Use the Pip Calculator in the Tools tab to compare entry and exit prices.</p></div>`},
-{title:"Spread",desc:"Understand the difference between bid and ask.",content:`<h1>Spread</h1><p>The spread is the difference between a market's bid and ask price. It is one of the trading costs you should understand before entering a position.</p><p>Spreads can change with market conditions and liquidity.</p>`},
-{title:"Leverage",desc:"Understand why leverage increases risk.",content:`<h1>Leverage</h1><p>Leverage allows a trader to control a larger position relative to the capital committed. It can magnify both gains and losses.</p><div class="tip"><b>⚠️ Important</b><p>Leverage does not guarantee profit and can cause losses to grow quickly.</p></div>`},
-{title:"Stop Loss",desc:"Learn how traders define a loss limit.",content:`<h1>Stop Loss</h1><p>A stop-loss order is intended to close a position when price reaches a chosen trigger. It can help define risk, although execution can differ from the requested price in some market conditions.</p>`},
-{title:"Take Profit",desc:"Learn how traders plan a target.",content:`<h1>Take Profit</h1><p>A take-profit order is intended to close a position at a chosen target. Planning a target before entering can help make a trading plan more objective.</p>`},
-{title:"Risk Management",desc:"Learn the most important beginner skill.",content:`<h1>Risk Management</h1><p>Risk management is the system that helps keep one bad trade from seriously damaging an account.</p><h2>Simple calculation</h2><p>Risk amount = account equity × chosen risk percentage.</p><div class="tip"><b>🛡️ Beginner Rule</b><p>Use demo trading while learning. Never risk essential money or borrow money to trade.</p></div>`},
-{title:"Trading Psychology",desc:"Understand discipline and emotional control.",content:`<h1>Trading Psychology</h1><p>Fear, greed, impatience and revenge trading can affect decisions. A written plan and consistent risk rules can help reduce emotional decisions.</p><ul><li>Accept that losses can happen.</li><li>Do not chase losses.</li><li>Keep a trading journal.</li></ul>`},
-{title:"Build a Trading Plan",desc:"Put the beginner concepts together.",content:`<h1>Build a Trading Plan</h1><p>A simple plan can define what you trade, when you trade, where you enter, where the idea is invalidated, how much you risk and how you record the result.</p><div class="tip"><b>🎯 Final Beginner Goal</b><p>Focus on learning and consistent risk control rather than quick profits.</p></div>`}
-];
-
-const quiz=[
-{q:"What is EUR/USD?",a:["A stock","A currency pair","A cryptocurrency","An index"],c:1},
-{q:"What is a pip commonly used for?",a:["Measuring small price movement","Opening a bank account","Choosing a broker","Calculating taxes"],c:0},
-{q:"What does a BUY position generally expect?",a:["Price to rise","Price to become zero","The spread to disappear","No price movement"],c:0},
-{q:"What can leverage do?",a:["Guarantee profit","Magnify gains and losses","Remove all risk","Guarantee a stop loss"],c:1},
-{q:"What is a stop loss designed to do?",a:["Guarantee a winning trade","Help limit loss by closing at a trigger","Increase leverage","Predict news"],c:1}
-];
-
-let completed=JSON.parse(localStorage.getItem("fxCompleted")||"[]");
-let balance=Number(localStorage.getItem("fxBalance")||10000);
-let trades=Number(localStorage.getItem("fxTrades")||0);
-let bestQuiz=Number(localStorage.getItem("fxBestQuiz")||0);
-let quizIndex=0,quizScore=0;
-
-function save(){localStorage.setItem("fxCompleted",JSON.stringify(completed));localStorage.setItem("fxBalance",balance);localStorage.setItem("fxTrades",trades);localStorage.setItem("fxBestQuiz",bestQuiz)}
-function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove("show"),2200)}
-function showScreen(name){
- document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("active",s.dataset.screen===name));
- document.querySelectorAll(".nav-btn").forEach(b=>b.classList.toggle("active",b.dataset.nav===name));
- if(name==="learn")renderLessons();
- if(name==="progress")updateProgress();
- if(name==="quiz")renderQuiz();
- if(name==="trade")updateTrade();
- if(name==="home")updateProgress();
- window.scrollTo(0,0);
-}
-function renderLessons(){
- document.getElementById("lessonList").innerHTML=lessons.map((l,i)=>`<butto
+</body>
+        </html>
