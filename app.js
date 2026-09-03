@@ -1,1294 +1,824 @@
-/* =========================================
-   FOREXSTART V1
-   Complete Application JavaScript
-========================================= */
 
+/* =========================================================
+   FOREXSTART V2.1
+   Complete App JavaScript
+   ========================================================= */
 
-/* ---------- DATA ---------- */
+document.addEventListener("DOMContentLoaded", () => {
 
-const lessons = [
+  /* =======================================================
+     DATA
+     ======================================================= */
 
-  {
-    title: "What is Forex?",
-    description: "Understand the foreign exchange market.",
-    content:
-      "Forex, short for foreign exchange, is the global market where currencies are bought and sold. Traders exchange one currency for another, such as EUR/USD.",
-    example:
-      "If EUR/USD is 1.0850, one euro is worth approximately 1.0850 US dollars.",
-    tip:
-      "Start by understanding how currency pairs work before learning advanced strategies."
-  },
+  const lessons = [
+    {
+      title: "What is Forex?",
+      description: "Learn what forex trading means.",
+      content: `
+        <h2>What is Forex?</h2>
+        <p>Forex, short for foreign exchange, is the global market where currencies are bought and sold.</p>
+        <p>When you trade forex, you are trading one currency against another, such as EUR/USD.</p>
+        <div class="lesson-tip">
+          <strong>Key idea:</strong> Forex is always traded in currency pairs.
+        </div>
+      `
+    },
+    {
+      title: "Currency Pairs",
+      description: "Understand how currency pairs work.",
+      content: `
+        <h2>Currency Pairs</h2>
+        <p>A currency pair shows the value of one currency compared with another.</p>
+        <p>For example, EUR/USD compares the euro with the US dollar.</p>
+        <div class="lesson-tip">
+          <strong>Example:</strong> If EUR/USD is 1.08500, one euro is worth about 1.085 US dollars.
+        </div>
+      `
+    },
+    {
+      title: "What is a Pip?",
+      description: "Learn the basic unit used to measure price movement.",
+      content: `
+        <h2>What is a Pip?</h2>
+        <p>A pip is a standard unit used to measure movement in many forex currency pairs.</p>
+        <p>For most major pairs, one pip is 0.0001.</p>
+        <div class="lesson-tip">
+          <strong>Example:</strong> 1.08500 → 1.08600 is a movement of 10 pips.
+        </div>
+      `
+    },
+    {
+      title: "Buy & Sell",
+      description: "Understand the basic idea behind BUY and SELL.",
+      content: `
+        <h2>Buy & Sell</h2>
+        <p>You BUY when you expect the price to rise.</p>
+        <p>You SELL when you expect the price to fall.</p>
+        <div class="lesson-tip">
+          <strong>Remember:</strong> A trade can move against you, so risk management matters.
+        </div>
+      `
+    },
+    {
+      title: "Bid & Ask",
+      description: "Learn the difference between bid and ask prices.",
+      content: `
+        <h2>Bid & Ask</h2>
+        <p>The BID is the price at which you can sell.</p>
+        <p>The ASK is the price at which you can buy.</p>
+        <div class="lesson-tip">
+          <strong>Key idea:</strong> The difference between bid and ask is part of the spread.
+        </div>
+      `
+    },
+    {
+      title: "Spread",
+      description: "Understand one of the basic costs of trading.",
+      content: `
+        <h2>Spread</h2>
+        <p>The spread is the difference between the bid price and the ask price.</p>
+        <p>It is one of the costs traders may encounter when opening a trade.</p>
+        <div class="lesson-tip">
+          <strong>Tip:</strong> Smaller spreads can reduce trading costs.
+        </div>
+      `
+    },
+    {
+      title: "Leverage",
+      description: "Learn what leverage means and why it is risky.",
+      content: `
+        <h2>Leverage</h2>
+        <p>Leverage allows traders to control a larger position with a smaller amount of capital.</p>
+        <p>However, leverage can increase both potential gains and potential losses.</p>
+        <div class="lesson-tip">
+          <strong>Warning:</strong> More leverage does not mean less risk.
+        </div>
+      `
+    },
+    {
+      title: "Stop Loss",
+      description: "Learn how a stop loss can help control risk.",
+      content: `
+        <h2>Stop Loss</h2>
+        <p>A stop loss is an instruction designed to close a trade when price reaches a specified level.</p>
+        <p>Traders commonly use stop losses to limit potential losses.</p>
+        <div class="lesson-tip">
+          <strong>Key idea:</strong> Decide your risk before entering a trade.
+        </div>
+      `
+    },
+    {
+      title: "Risk Management",
+      description: "Learn why protecting your trading account matters.",
+      content: `
+        <h2>Risk Management</h2>
+        <p>Risk management is one of the most important parts of trading.</p>
+        <p>It involves controlling position size, using appropriate stops and avoiding risking too much on one trade.</p>
+        <div class="lesson-tip">
+          <strong>Rule:</strong> Protecting your capital is more important than chasing quick profits.
+        </div>
+      `
+    },
+    {
+      title: "Trading Psychology",
+      description: "Understand the emotional side of trading.",
+      content: `
+        <h2>Trading Psychology</h2>
+        <p>Trading can create emotions such as fear, excitement, frustration and greed.</p>
+        <p>A good trading process focuses on discipline rather than emotional decisions.</p>
+        <div class="lesson-tip">
+          <strong>Remember:</strong> A losing trade does not automatically mean you made a bad decision.
+        </div>
+      `
+    }
+  ];
 
-  {
-    title: "Currency Pairs",
-    description: "Learn how currencies are quoted.",
-    content:
-      "Forex is traded in pairs. The first currency is called the base currency and the second is called the quote currency.",
-    example:
-      "In GBP/USD, GBP is the base currency and USD is the quote currency.",
-    tip:
-      "Major pairs such as EUR/USD and GBP/USD are commonly used when learning forex."
-  },
+  const questions = [
+    {
+      question: "What does Forex stand for?",
+      options: [
+        "Foreign Exchange",
+        "Foreign Export",
+        "Financial Exchange",
+        "Future Exchange"
+      ],
+      answer: 0
+    },
+    {
+      question: "What does EUR/USD represent?",
+      options: [
+        "Two stocks",
+        "A currency pair",
+        "A cryptocurrency",
+        "A commodity"
+      ],
+      answer: 1
+    },
+    {
+      question: "For many major currency pairs, what is one pip?",
+      options: [
+        "0.1",
+        "0.01",
+        "0.0001",
+        "1.0000"
+      ],
+      answer: 2
+    },
+    {
+      question: "What does leverage do?",
+      options: [
+        "Removes all risk",
+        "Allows control of a larger position with less capital",
+        "Guarantees profit",
+        "Stops the market moving"
+      ],
+      answer: 1
+    },
+    {
+      question: "What is the spread?",
+      options: [
+        "The difference between bid and ask",
+        "Your account balance",
+        "Your trading profit",
+        "The number of trades"
+      ],
+      answer: 0
+    },
+    {
+      question: "Why is risk management important?",
+      options: [
+        "It guarantees winning trades",
+        "It prevents markets from moving",
+        "It helps protect your trading capital",
+        "It guarantees profit"
+      ],
+      answer: 2
+    }
+  ];
 
-  {
-    title: "What is a Pip?",
-    description: "Learn the basic forex price measurement.",
-    content:
-      "A pip is a standard unit used to measure a small change in the price of a currency pair.",
-    example:
-      "For many currency pairs, a movement from 1.0850 to 1.0860 is 10 pips.",
-    tip:
-      "Remember that JPY pairs commonly use a different pip decimal position."
-  },
+  /* =======================================================
+     STATE
+     ======================================================= */
 
-  {
-    title: "Buy & Sell",
-    description: "Understand long and short positions.",
-    content:
-      "When traders expect a currency pair to rise, they may buy it. When they expect it to fall, they may sell it.",
-    example:
-      "If you buy EUR/USD at 1.0850 and later close at 1.0900, the position moved in your expected direction.",
-    tip:
-      "Never enter a trade simply because the price is moving quickly."
-  },
+  const defaultState = {
+    completedLessons: [],
+    xp: 0,
+    balance: 10000,
+    trades: 0,
+    bestQuiz: 0,
+    journal: [],
+    position: null,
+    tradeHistory: []
+  };
 
-  {
-    title: "Bid & Ask",
-    description: "Understand the two prices shown by brokers.",
-    content:
-      "The bid is the price at which the market can buy from you, while the ask is the price at which you can buy from the market.",
-    example:
-      "A quote might show EUR/USD at 1.0849 / 1.0850.",
-    tip:
-      "The difference between bid and ask is important when calculating trading costs."
-  },
+  let state = loadState();
 
-  {
-    title: "Spread",
-    description: "Learn one of the basic costs of trading.",
-    content:
-      "The spread is the difference between the bid and ask price.",
-    example:
-      "If the bid is 1.0849 and ask is 1.0850, the spread is 1 pip.",
-    tip:
-      "Lower spreads can reduce trading costs, but other fees may also apply."
-  },
+  let selectedLesson = 0;
+  let quizIndex = 0;
+  let quizScore = 0;
 
-  {
-    title: "Leverage",
-    description: "Understand leverage and why it matters.",
-    content:
-      "Leverage allows traders to control a larger position using a smaller amount of capital. It can increase both potential gains and potential losses.",
-    example:
-      "With leverage, a relatively small account may control a larger position than its cash balance.",
-    tip:
-      "Higher leverage increases risk. Beginners should understand the risks before using it."
-  },
+  let demoPrice = 1.08500;
+  let previousPrice = demoPrice;
 
-  {
-    title: "Stop Loss",
-    description: "Learn how traders can limit potential losses.",
-    content:
-      "A stop loss is an order designed to close a position when the market reaches a specified price.",
-    example:
-      "A trader buying EUR/USD could set a stop loss below their entry price.",
-    tip:
-      "A stop loss does not guarantee an exact exit price during extreme market conditions."
-  },
+  /* =======================================================
+     STORAGE
+     ======================================================= */
 
-  {
-    title: "Risk Management",
-    description: "Learn why protecting your account matters.",
-    content:
-      "Risk management involves controlling how much of your account you expose to each trade.",
-    example:
-      "A trader may decide to risk only a small percentage of their account on a single trade.",
-    tip:
-      "Protecting your trading capital is more important than trying to win every trade."
-  },
+  function loadState() {
+    try {
+      const saved = localStorage.getItem("forexStartV2");
 
-  {
-    title: "Trading Psychology",
-    description: "Understand emotions and discipline.",
-    content:
-      "Trading psychology is about managing emotions such as fear, greed and impatience.",
-    example:
-      "After a losing trade, chasing another trade immediately can lead to emotional decisions.",
-    tip:
-      "Create rules before trading and follow them consistently."
-  }
+      if (saved) {
+        return {
+          ...defaultState,
+          ...JSON.parse(saved)
+        };
+      }
 
-];
+      /* Migrate useful progress from V1 if it exists */
+      const oldSaved = localStorage.getItem("forexStartV1");
 
+      if (oldSaved) {
+        const old = JSON.parse(oldSaved);
 
-const questions = [
+        const migrated = {
+          ...defaultState,
+          completedLessons: Array.isArray(old.completedLessons)
+            ? old.completedLessons
+            : [],
+          xp: Number(old.xp) || 0,
+          balance: Number(old.balance) || 10000,
+          trades: Number(old.trades) || 0,
+          bestQuiz: Number(old.bestQuiz) || 0,
+          journal: Array.isArray(old.journal)
+            ? old.journal
+            : [],
+          position: old.position || null,
+          tradeHistory: []
+        };
 
-  {
-    question: "What does Forex stand for?",
-    answers: [
-      "Foreign Exchange",
-      "Foreign Export",
-      "Financial Exchange",
-      "Foreign Expense"
-    ],
-    correct: 0
-  },
+        localStorage.setItem(
+          "forexStartV2",
+          JSON.stringify(migrated)
+        );
 
-  {
-    question: "Which currency is the base currency in EUR/USD?",
-    answers: [
-      "USD",
-      "EUR",
-      "Both",
-      "Neither"
-    ],
-    correct: 1
-  },
+        return migrated;
+      }
 
-  {
-    question: "What is a pip?",
-    answers: [
-      "A trading account",
-      "A type of broker",
-      "A unit used to measure price movement",
-      "A currency"
-    ],
-    correct: 2
-  },
-
-  {
-    question: "What is the spread?",
-    answers: [
-      "The difference between bid and ask",
-      "Your account balance",
-      "Your leverage",
-      "Your stop loss"
-    ],
-    correct: 0
-  },
-
-  {
-    question: "Why is risk management important?",
-    answers: [
-      "To guarantee profits",
-      "To avoid learning",
-      "To help control potential losses",
-      "To increase every trade"
-    ],
-    correct: 2
-  },
-
-  {
-    question: "Which emotion can negatively affect trading decisions?",
-    answers: [
-      "Patience",
-      "Discipline",
-      "Greed",
-      "Planning"
-    ],
-    correct: 2
-  }
-
-];
-
-
-/* ---------- STATE ---------- */
-
-const defaultState = {
-  completedLessons: [],
-  xp: 0,
-  balance: 10000,
-  trades: 0,
-  bestQuiz: 0,
-  journal: [],
-  position: null
-};
-
-
-let state = loadState();
-
-let currentLesson = 0;
-
-let quizIndex = 0;
-let quizScore = 0;
-let quizAnswered = false;
-
-let demoPrice = 1.08500;
-let previousPrice = demoPrice;
-
-
-/* ---------- STORAGE ---------- */
-
-function loadState() {
-
-  try {
-
-    const saved =
-      localStorage.getItem("forexStartV1");
-
-    if (!saved) {
-      return {...defaultState};
+    } catch (error) {
+      console.error("ForexStart storage error:", error);
     }
 
-    return {
-      ...defaultState,
-      ...JSON.parse(saved)
-    };
-
-  } catch (error) {
-
-    return {...defaultState};
-
+    return { ...defaultState };
   }
 
-}
-
-
-function saveState() {
-
-  localStorage.setItem(
-    "forexStartV1",
-    JSON.stringify(state)
-  );
-
-}
-
-
-/* ---------- TOAST ---------- */
-
-function showToast(message) {
-
-  const toast =
-    document.getElementById("toast");
-
-  toast.textContent = message;
-
-  toast.classList.add("show");
-
-  setTimeout(() => {
-
-    toast.classList.remove("show");
-
-  }, 2200);
-
-}
-
-
-/* ---------- NAVIGATION ---------- */
-
-function showScreen(screenName) {
-
-  document
-    .querySelectorAll(".screen")
-    .forEach(screen => {
-
-      screen.classList.remove("active");
-
-    });
-
-
-  const target =
-    document.getElementById(screenName);
-
-  if (target) {
-    target.classList.add("active");
-  }
-
-
-  document
-    .querySelectorAll(".nav-item")
-    .forEach(button => {
-
-      button.classList.toggle(
-        "active",
-        button.dataset.screen === screenName
+  function saveState() {
+    try {
+      localStorage.setItem(
+        "forexStartV2",
+        JSON.stringify(state)
       );
+    } catch (error) {
+      console.error("Could not save ForexStart state:", error);
+    }
+  }
 
+  /* =======================================================
+     HELPERS
+     ======================================================= */
+
+  function $(id) {
+    return document.getElementById(id);
+  }
+
+  function money(value) {
+    return Number(value || 0).toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+  }
+
+  function number(value, decimals = 2) {
+    return Number(value || 0).toFixed(decimals);
+  }
+
+  function showElement(id, show = true) {
+    const element = $(id);
+    if (!element) return;
+
+    element.style.display = show ? "" : "none";
+  }
+
+  function setText(id, text) {
+    const element = $(id);
+    if (element) {
+      element.textContent = text;
+    }
+  }
+
+  function getLevel() {
+    return Math.floor(state.xp / 100) + 1;
+  }
+
+  function getLessonProgress() {
+    return Math.round(
+      (state.completedLessons.length / lessons.length) * 100
+    );
+  }
+
+  function addXP(amount) {
+    state.xp += amount;
+    saveState();
+    updateAllStats();
+  }
+
+  /* =======================================================
+     NAVIGATION
+     ======================================================= */
+
+  function showScreen(screenId) {
+    document.querySelectorAll(".screen").forEach(screen => {
+      screen.classList.remove("active");
     });
 
+    const target = $(screenId);
 
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
+    if (target) {
+      target.classList.add("active");
+    }
+
+    document.querySelectorAll("[data-screen]").forEach(button => {
+      button.classList.remove("active");
+    });
+
+    document
+      .querySelectorAll(`[data-screen="${screenId}"]`)
+      .forEach(button => {
+        button.classList.add("active");
+      });
+
+    const mobileMenu = $("mobileMenu");
+
+    if (mobileMenu) {
+      mobileMenu.classList.remove("open");
+    }
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+    if (screenId === "home") {
+      updateAllStats();
+    }
+
+    if (screenId === "learn") {
+      renderLessons();
+    }
+
+    if (screenId === "journal") {
+      renderJournal();
+    }
+
+    if (screenId === "trade") {
+      updateTradingUI();
+    }
+
+    if (screenId === "profile") {
+      updateProfile();
+    }
+  }
+
+  document.querySelectorAll("[data-screen]").forEach(button => {
+    button.addEventListener("click", () => {
+      const screen = button.getAttribute("data-screen");
+
+      if (screen) {
+        showScreen(screen);
+      }
+    });
   });
 
+  /* Bottom navigation */
+  document.querySelectorAll(".bottom-nav [data-screen]").forEach(button => {
+    button.addEventListener("click", () => {
+      showScreen(button.dataset.screen);
+    });
+  });
 
-  closeMenu();
+  /* =======================================================
+     MOBILE MENU
+     ======================================================= */
 
+  const menuBtn = $("menuBtn");
+  const closeMenu = $("closeMenu");
+  const mobileMenu = $("mobileMenu");
 
-  if (screenName === "learn") {
-    renderLessons();
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.add("open");
+    });
   }
 
-  if (screenName === "journal") {
-    renderJournal();
+  if (closeMenu && mobileMenu) {
+    closeMenu.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+    });
   }
 
-  if (screenName === "profile") {
+  /* =======================================================
+     LESSONS
+     ======================================================= */
+
+  function renderLessons() {
+    const container = $("lessonList");
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    lessons.forEach((lesson, index) => {
+      const completed =
+        state.completedLessons.includes(index);
+
+      const card = document.createElement("button");
+
+      card.type = "button";
+      card.className = "lesson-card";
+
+      card.innerHTML = `
+        <div class="lesson-number">
+          ${completed ? "✓" : index + 1}
+        </div>
+
+        <div class="lesson-info">
+          <h3>${lesson.title}</h3>
+          <p>${lesson.description}</p>
+        </div>
+
+        <div class="lesson-arrow">›</div>
+      `;
+
+      card.addEventListener("click", () => {
+        openLesson(index);
+      });
+
+      container.appendChild(card);
+    });
+  }
+
+  function openLesson(index) {
+    selectedLesson = index;
+
+    const lesson = lessons[index];
+
+    if (!lesson) return;
+
+    const content = $("lessonContent");
+
+    if (content) {
+      content.innerHTML = `
+        <div class="lesson-detail-inner">
+          ${lesson.content}
+
+          <button
+            id="completeLessonBtn"
+            class="primary-btn">
+            ${
+              state.completedLessons.includes(index)
+                ? "Lesson Completed ✓"
+                : "Mark Lesson Complete"
+            }
+          </button>
+        </div>
+      `;
+
+      const completeButton = $("completeLessonBtn");
+
+      if (completeButton) {
+        completeButton.addEventListener("click", () => {
+          completeLesson(index);
+        });
+      }
+    }
+
+    showScreen("lesson");
+  }
+
+  function completeLesson(index) {
+    if (!state.completedLessons.includes(index)) {
+      state.completedLessons.push(index);
+      state.xp += 20;
+
+      saveState();
+
+      updateAllStats();
+      renderLessons();
+
+      alert("Lesson completed! +20 XP");
+
+      openLesson(index);
+    } else {
+      alert("You already completed this lesson.");
+    }
+  }
+
+  /* =======================================================
+     HOME STATS
+     ======================================================= */
+
+  function updateAllStats() {
+    const completed = state.completedLessons.length;
+    const progress = getLessonProgress();
+    const level = getLevel();
+
+    setText("homeXp", state.xp);
+    setText("homeLevel", level);
+
+    setText(
+      "homeProgressText",
+      `${completed} of ${lessons.length} lessons completed`
+    );
+
+    setText("homeProgressPercent", `${progress}%`);
+
+    const homeProgressBar = $("homeProgressBar");
+
+    if (homeProgressBar) {
+      homeProgressBar.style.width = `${progress}%`;
+    }
+
+    setText("learnCompleted", completed);
+    setText("learnXp", state.xp);
+
     updateProfile();
   }
 
-  if (screenName === "trade") {
-    updateTradeUI();
-  }
-
-}
-
-
-/* ---------- NAV BUTTONS ---------- */
-
-document
-  .querySelectorAll("[data-screen]")
-  .forEach(button => {
-
-    button.addEventListener(
-      "click",
-      () => {
-
-        showScreen(
-          button.dataset.screen
-        );
-
-      }
-    );
-
-  });
-
-
-/* ---------- MENU ---------- */
-
-const menuBtn =
-  document.getElementById("menuBtn");
-
-const closeMenuBtn =
-  document.getElementById("closeMenu");
-
-const mobileMenu =
-  document.getElementById("mobileMenu");
-
-
-menuBtn.addEventListener(
-  "click",
-  () => {
-
-    mobileMenu.classList.add("open");
-
-  }
-);
-
-
-closeMenuBtn.addEventListener(
-  "click",
-  closeMenu
-);
-
-
-function closeMenu() {
-
-  mobileMenu.classList.remove("open");
-
-}
-
-
-/* ---------- LESSONS ---------- */
-
-function renderLessons() {
-
-  const list =
-    document.getElementById("lessonList");
-
-  list.innerHTML = "";
-
-
-  lessons.forEach((lesson, index) => {
-
-    const completed =
-      state.completedLessons.includes(index);
-
-
-    const card =
-      document.createElement("button");
-
-    card.className =
-      "lesson-card" +
-      (completed ? " completed" : "");
-
-
-    card.innerHTML = `
-
-      <div class="lesson-number">
-        ${completed ? "✓" : index + 1}
-      </div>
-
-      <div>
-
-        <div class="lesson-title">
-          ${lesson.title}
-        </div>
-
-        <div class="lesson-description">
-          ${lesson.description}
-        </div>
-
-      </div>
-
-      <div class="lesson-arrow">
-        ›
-      </div>
-
-    `;
-
-
-    card.addEventListener(
-      "click",
-      () => openLesson(index)
-    );
-
-
-    list.appendChild(card);
-
-  });
-
-
-  updateLearnStats();
-
-}
-
-
-function updateLearnStats() {
-
-  const completed =
-    state.completedLessons.length;
-
-
-  document.getElementById(
-    "learnCompleted"
-  ).textContent = completed;
-
-
-  document.getElementById(
-    "learnXp"
-  ).textContent = state.xp;
-
-}
-
-
-/* ---------- OPEN LESSON ---------- */
-
-function openLesson(index) {
-
-  currentLesson = index;
-
-  const lesson =
-    lessons[index];
-
-  const completed =
-    state.completedLessons.includes(index);
-
-
-  const content =
-    document.getElementById("lessonContent");
-
-
-  content.innerHTML = `
-
-    <div class="lesson-detail-card">
-
-      <div class="lesson-detail-number">
-        ${index + 1}
-      </div>
-
-      <span class="eyebrow">
-        LESSON ${index + 1} OF ${lessons.length}
-      </span>
-
-      <h1>
-        ${lesson.title}
-      </h1>
-
-      <p>
-        ${lesson.content}
-      </p>
-
-
-      <div class="example-box">
-
-        <strong>💡 Example</strong>
-
-        <p>
-          ${lesson.example}
-        </p>
-
-      </div>
-
-
-      <div class="tip-box">
-
-        <strong>✓ Key Tip</strong>
-
-        <p>
-          ${lesson.tip}
-        </p>
-
-      </div>
-
-
-      <button
-        id="completeLessonBtn"
-        class="primary-btn"
-        style="margin-top:20px">
-
-        ${
-          completed
-          ? "✓ Lesson Completed"
-          : "Complete Lesson +25 XP"
-        }
-
-      </button>
-
-
-      <div class="lesson-navigation">
-
-        <button
-          id="previousLesson"
-          class="secondary-btn"
-          ${index === 0 ? "disabled" : ""}>
-
-          ← Previous
-
-        </button>
-
-
-        <button
-          id="nextLesson"
-          class="secondary-btn"
-          ${index === lessons.length - 1 ? "disabled" : ""}>
-
-          Next →
-
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
-
-
-  document
-    .getElementById("completeLessonBtn")
-    .addEventListener(
-      "click",
-      completeCurrentLesson
-    );
-
-
-  document
-    .getElementById("previousLesson")
-    .addEventListener(
-      "click",
-      () => {
-
-        if (currentLesson > 0) {
-          openLesson(currentLesson - 1);
-        }
-
-      }
-    );
-
-
-  document
-    .getElementById("nextLesson")
-    .addEventListener(
-      "click",
-      () => {
-
-        if (currentLesson < lessons.length - 1) {
-          openLesson(currentLesson + 1);
-        }
-
-      }
-    );
-
-
-  showScreen("lessonDetail");
-
-}
-
-
-function completeCurrentLesson() {
-
-  if (
-    !state.completedLessons.includes(
-      currentLesson
-    )
-  ) {
-
-    state.completedLessons.push(
-      currentLesson
-    );
-
-    state.xp += 25;
-
-    saveState();
-
-    showToast(
-      "Lesson completed! +25 XP 🎉"
-    );
-
-  } else {
-
-    showToast(
-      "You already completed this lesson."
-    );
-
-  }
-
-
-  updateAllStats();
-
-  openLesson(currentLesson);
-
-}
-
-
-/* ---------- HOME STATS ---------- */
-
-function updateHome() {
-
-  const completed =
-    state.completedLessons.length;
-
-  const percent =
-    Math.round(
-      (completed / lessons.length) * 100
-    );
-
-
-  document.getElementById(
-    "homeXp"
-  ).textContent = state.xp;
-
-
-  document.getElementById(
-    "homeProgressText"
-  ).textContent =
-    `${completed} of ${lessons.length} lessons completed`;
-
-
-  document.getElementById(
-    "homeProgressPercent"
-  ).textContent =
-    `${percent}%`;
-
-
-  document.getElementById(
-    "homeProgressBar"
-  ).style.width =
-    `${percent}%`;
-
-
-  const level =
-    Math.floor(state.xp / 100) + 1;
-
-
-  document.getElementById(
-    "homeLevel"
-  ).textContent =
-    level;
-
-}
-
-
-/* ---------- PROFILE ---------- */
-
-function updateProfile() {
-
-  const completed =
-    state.completedLessons.length;
-
-  const percent =
-    Math.round(
-      (completed / lessons.length) * 100
-    );
-
-
-  document.getElementById(
-    "profileXp"
-  ).textContent =
-    state.xp;
-
-
-  document.getElementById(
-    "profileLessons"
-  ).textContent =
-    completed;
-
-
-  document.getElementById(
-    "profileQuiz"
-  ).textContent =
-    `${state.bestQuiz}%`;
-
-
-  document.getElementById(
-    "profileTrades"
-  ).textContent =
-    state.trades;
-
-
-  document.getElementById(
-    "profilePercent"
-  ).textContent =
-    `${percent}%`;
-
-
-  document.getElementById(
-    "profileProgressBar"
-  ).style.width =
-    `${percent}%`;
-
-
-  let title =
-    "Forex Beginner";
-
-
-  let description =
-    "Complete lessons to unlock higher levels.";
-
-
-  if (state.xp >= 250) {
-
-    title = "Forex Explorer";
-
-    description =
-      "You're building a strong foundation.";
-
-  }
-
-
-  if (state.xp >= 500) {
-
-    title = "Forex Student";
-
-    description =
-      "You're making excellent progress.";
-
-  }
-
-
-  if (state.xp >= 750) {
-
-    title = "Forex Apprentice";
-
-    description =
-      "Keep learning and practicing.";
-
-  }
-
-
-  document.getElementById(
-    "levelTitle"
-  ).textContent =
-    title;
-
-
-  document.getElementById(
-    "levelDescription"
-  ).textContent =
-    description;
-
-}
-
-
-/* ---------- QUIZ ---------- */
-
-function startQuiz() {
-
-  quizIndex = 0;
-
-  quizScore = 0;
-
-  quizAnswered = false;
-
-  renderQuestion();
-
-}
-
-
-function renderQuestion() {
-
-  const container =
-    document.getElementById("quizContent");
-
-
-  if (quizIndex >= questions.length) {
-
-    showQuizResult();
-
-    return;
-
-  }
-
-
-  const question =
-    questions[quizIndex];
-
-
-  const progress =
-    ((quizIndex) /
-      questions.length) * 100;
-
-
-  container.innerHTML = `
-
-    <div class="quiz-card">
-
-      <div class="quiz-progress">
-
-        <div
-          class="quiz-progress-fill"
-          style="width:${progress}%">
-        </div>
-
-      </div>
-
-
-      <div class="question-count">
-        QUESTION ${quizIndex + 1}
-        OF ${questions.length}
-      </div>
-
-
-      <div class="question">
-        ${question.question}
-      </div>
-
-
-      <div class="answer-list">
-
-        ${question.answers
-          .map(
-            (answer, index) => `
-              <button
-                class="answer-btn"
-                data-answer="${index}">
-
-                ${answer}
-
-              </button>
-            `
-          )
-          .join("")}
-
-      </div>
-
-    </div>
-
-  `;
-
-
-  document
-    .querySelectorAll(".answer-btn")
-    .forEach(button => {
-
-      button.addEventListener(
-        "click",
-        () => {
-
-          answerQuestion(
-            Number(button.dataset.answer),
-            button
-          );
-
-        }
-      );
-
-    });
-
-}
-
-
-function answerQuestion(answer, clickedButton) {
-
-  if (quizAnswered) {
-    return;
-  }
-
-
-  quizAnswered = true;
-
-
-  const question =
-    questions[quizIndex];
-
-
-  const buttons =
-    document.querySelectorAll(
-      ".answer-btn"
-    );
-
-
-  buttons.forEach((button, index) => {
-
-    if (index === question.correct) {
-      button.classList.add("correct");
+  /* =======================================================
+     PROFILE
+     ======================================================= */
+
+  function updateProfile() {
+    const completed = state.completedLessons.length;
+    const progress = getLessonProgress();
+
+    setText("profileXp", state.xp);
+    setText("profileLessons", completed);
+    setText("profileQuiz", state.bestQuiz);
+    setText("profileTrades", state.trades);
+    setText("profilePercent", `${progress}%`);
+
+    const profileBar = $("profileProgressBar");
+
+    if (profileBar) {
+      profileBar.style.width = `${progress}%`;
     }
 
-  });
+    setText("levelTitle", `Level ${getLevel()}`);
 
-
-  if (answer === question.correct) {
-
-    quizScore++;
-
-    clickedButton.classList.add(
-      "correct"
+    setText(
+      "levelDescription",
+      getLevelDescription()
     );
-
-    showToast("Correct! 🎉");
-
-  } else {
-
-    clickedButton.classList.add(
-      "wrong"
-    );
-
-    showToast("Not quite. Keep learning!");
-
   }
 
+  function getLevelDescription() {
+    const level = getLevel();
 
-  setTimeout(() => {
+    if (level >= 10) {
+      return "ForexStart Master";
+    }
+
+    if (level >= 7) {
+      return "Advanced Learner";
+    }
+
+    if (level >= 4) {
+      return "Developing Trader";
+    }
+
+    if (level >= 2) {
+      return "Forex Learner";
+    }
+
+    return "Forex Beginner";
+  }
+
+  /* =======================================================
+     QUIZ
+     ======================================================= */
+
+  function startQuiz() {
+    quizIndex = 0;
+    quizScore = 0;
+    renderQuizQuestion();
+    showScreen("quiz");
+  }
+
+  function renderQuizQuestion() {
+    const container = $("quizContent");
+
+    if (!container) return;
+
+    if (quizIndex >= questions.length) {
+      finishQuiz();
+      return;
+    }
+
+    const question = questions[quizIndex];
+
+    container.innerHTML = `
+      <div class="quiz-question">
+        <div class="small-label">
+          QUESTION ${quizIndex + 1} OF ${questions.length}
+        </div>
+
+        <h2>${question.question}</h2>
+
+        <div class="quiz-options">
+          ${question.options
+            .map(
+              (option, index) => `
+                <button
+                  class="quiz-option"
+                  data-answer="${index}">
+                  ${option}
+                </button>
+              `
+            )
+            .join("")}
+        </div>
+      </div>
+    `;
+
+    container
+      .querySelectorAll(".quiz-option")
+      .forEach(button => {
+        button.addEventListener("click", () => {
+          answerQuestion(
+            Number(button.dataset.answer)
+          );
+        });
+      });
+  }
+
+  function answerQuestion(answer) {
+    const question = questions[quizIndex];
+
+    if (answer === question.answer) {
+      quizScore++;
+    }
 
     quizIndex++;
 
-    quizAnswered = false;
+    renderQuizQuestion();
+  }
 
-    renderQuestion();
+  function finishQuiz() {
+    const container = $("quizContent");
 
-  }, 900);
-
-}
-
-
-function showQuizResult() {
-
-  const percentage =
-    Math.round(
+    const percentage = Math.round(
       (quizScore / questions.length) * 100
     );
 
+    if (percentage > state.bestQuiz) {
+      state.bestQuiz = percentage;
+    }
 
-  if (
-    percentage > state.bestQuiz
-  ) {
+    const earnedXP = quizScore * 10;
 
-    state.bestQuiz =
-      percentage;
-
-    state.xp += 25;
+    state.xp += earnedXP;
 
     saveState();
+    updateAllStats();
 
-  }
+    if (container) {
+      container.innerHTML = `
+        <div class="quiz-result">
+          <div class="small-label">QUIZ COMPLETE</div>
 
+          <h2>${percentage}%</h2>
 
-  document.getElementById(
-    "quizContent"
-  ).innerHTML = `
+          <p>
+            You scored
+            <strong>${quizScore}</strong>
+            out of
+            <strong>${questions.length}</strong>.
+          </p>
 
-    <div class="quiz-card quiz-result">
+          <p>XP earned: <strong>+${earnedXP}</strong></p>
 
-      <div class="eyebrow">
-        QUIZ COMPLETE
-      </div>
+          <button
+            id="retryQuiz"
+            class="primary-btn">
+            Try Again
+          </button>
+        </div>
+      `;
 
-      <div class="quiz-result-score">
-        ${percentage}%
-      </div>
+      const retry = $("retryQuiz");
 
-      <p>
-        You answered
-        ${quizScore}
-        out of
-        ${questions.length}
-        correctly.
-      </p>
-
-      <button
-        id="retryQuiz"
-        class="primary-btn"
-        style="margin-top:20px">
-
-        Try Again
-
-      </button>
-
-      <button
-        id="quizLearn"
-        class="secondary-btn"
-        style="margin-top:10px">
-
-        Continue Learning
-
-      </button>
-
-    </div>
-
-  `;
-
-
-  document
-    .getElementById("retryQuiz")
-    .addEventListener(
-      "click",
-      startQuiz
-    );
-
-
-  document
-    .getElementById("quizLearn")
-    .addEventListener(
-      "click",
-      () => showScreen("learn")
-    );
-
-
-  updateAllStats();
-
-}
-
-
-/* ---------- DEMO TRADING ---------- */
-
-function updateTradeUI() {
-
-  document.getElementById(
-    "demoBalance"
-  ).textContent =
-    formatMoney(state.balance);
-
-
-  document.getElementById(
-    "tradeCount"
-  ).textContent =
-    state.trades;
-
-
-  document.getElementById(
-    "demoPrice"
-  ).textContent =
-    demoPrice.toFixed(5);
-
-
-  const movement =
-    demoPrice - previousPrice;
-
-
-  document.getElementById(
-    "priceMovement"
-  ).textContent =
-    `${movement >= 0 ? "+" : ""}${movement.toFixed(5)}`;
-
-
-  renderPosition();
-
-}
-
-
-function formatMoney(number) {
-
-  return new Intl.NumberFormat(
-    "en-US",
-    {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 2
+      if (retry) {
+        retry.addEventListener("click", startQuiz);
+      }
     }
-  ).format(number);
-
-}
-
-
-function openPosition(side) {
-
-  if (state.position) {
-
-    showToast(
-      "Close your current position first."
-    );
-
-    return;
-
   }
 
-
-  state.position = {
-
-    side: side,
-
-    entry: demoPrice,
-
-    openedAt:
-      new Date().toISOString()
-
-  };
-
-
-  saveState();
-
-  renderPosition();
-
-  showToast(
-    `${side.toUpperCase()} position opened`
-  );
-
-}
-
-
-function calculatePositionPips() {
-
-  if (!state.position) {
-    return 0;
-  }
-
-
-  const difference =
-    demoPrice -
-    state.position.entry;
-
-
-  if (state.position.side === "buy") {
-
-    return difference / 0.0001;
-
-  }
-
-
-  return -difference / 0.0001;
-
-}
-
-
-function closePosition() {
-
-  if (!state.position) {
-    return;
-  }
-
-
-  const pips =
-    calculatePositionPips();
-
-
-  const pnl =
-    pips * 1;
-
-
-  state.balance += pnl;
-
-  state.trades++;
-
-
-  state.journal.unshift({
-
-    type: "trade",
-
-    side: state.position.side,
-
-    entry: state.position.entry,
-
-    exit: demoPrice,
-
-    pips: Number(
-      pips.toFixed(1)
-    ),
-
-    pnl: Number(
-      pnl.toFixed(2)
-    ),
-
-    date:
-      new Date().toISOString()
-
+  /* Existing quiz/menu buttons */
+  document.querySelectorAll('[data-screen="quiz"]').forEach(button => {
+    button.addEventListener("click", () => {
+      startQuiz();
+    });
   });
 
+  /* =======================================================
+     DEMO TRADING
+     ======================================================= */
 
-  state.position = null;
-
-
-  saveState();
-
-  updateTradeUI();
-
-  renderJournal();
-
-  showToast(
-    `Trade closed: ${pips.toFixed(1)} pips`
-  );
-
-
-  updateAllStats();
-
-}
-
-
-function renderPosition() {
-
-  const box =
-    document.getElementById(
-      "positionBox"
+  function updateTradingUI() {
+    setText(
+      "demoBalance",
+      `$${money(state.balance)}`
     );
 
+    setText(
+      "tradeCount",
+      state.trades
+    );
 
-  if (!state.position) {
+    setText(
+      "demoPrice",
+      demoPrice.toFixed(5)
+    );
 
-    box.classList.add("hidden");
+    const movement = demoPrice - previousPrice;
 
-    return;
+    const movementText =
+      movement >= 0
+        ? `+${movement.toFixed(5)}`
+        : movement.toFixed(5);
 
+    setText(
+      "priceMovement",
+      movementText
+    );
+
+    renderPosition();
   }
 
+  function openPosition(type) {
+    if (state.position) {
+      alert("You already have an open position. Close it first.");
+      return;
+    }
 
-  box.classList.remove("hidden");
+    state.position = {
+      type,
+      entry: demoPrice,
+      size: 1,
+      openedAt: new Date().toISOString()
+    };
 
+    saveState();
+    updateTradingUI();
 
-  const pips =
-    calculatePositionPips();
+    alert(
+      `${type.toUpperCase()} opened at ${demoPrice.toFixed(5)}`
+    );
+  }
 
+  function closePosition() {
+    if (!state.position) {
+      alert("You do not have an open position.");
+      return;
+    }
 
-  const pnl =
-    pips * 1;
+    const position = state.position;
 
+    const pipDifference =
+      position.type === "buy"
+        ? (demoPrice - position.entry) * 10000
+        : (position.entry - demoPrice) * 10000;
 
-  box.innerHTML = `
+    const profitLoss = pipDifference * position.size;
 
-    <strong>
-      ${state.position.side.toUpperCase()}
-      EUR/USD
-    </strong>
+    state.balance += profitLoss;
+    state.trades++;
 
-    <br>
+    const trade = {
+      type: position.type,
+      entry: position.entry,
+      exit: demoPrice,
+      pips: pipDifference,
+      profitLoss,
+      date: new Date().toISOString()
+    };
 
-    Entry:
-    ${state.position.entry.toFixed(5)}
+    state.tradeHistory.unshift(trade);
+    state.position = null;
 
-    <br>
+    saveState();
+    updateTradingUI();
 
-    Current:
-    ${demoPrice.toFixed(5)}
-
-    <br>
-
-    P/L:
-    <span class="${pnl >= 0 ? "trade-profit" : "trade-loss"}">
-      ${pnl >= 0 ? "+" : ""}
-      $${pnl.toFixed(2)}
-      (${pips.toFixed(1)} pips)
-    </span>
-
-    <button
-      id="closePositionBtn"
-      class="secondary-btn"
-      st
+    const result =
+      profitLoss >= 
